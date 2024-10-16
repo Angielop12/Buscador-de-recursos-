@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="TU_CLIENT_ID_GOOGLE">
+    <title>Buscador de Recursos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h1>Bienvenido al Buscador de Recursos</h1>
+        <p>Por favor, inicia sesión con Google para continuar.</p>
+
+        <!-- Botón de inicio de sesión de Google -->
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+        <!-- Mensaje de estado (para mostrar errores o accesos) -->
+        <div id="status"></div>
+
+        <!-- Lugar donde el buscador aparecerá después de iniciar sesión -->
+        <div id="buscador" style="display:none;">
+            <h2>Buscador de Recursos</h2>
+            <!-- Aquí es donde agregaremos el buscador en el siguiente paso -->
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script src="app.js"></script>
+</body>
+</html>
