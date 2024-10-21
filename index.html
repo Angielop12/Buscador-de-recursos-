@@ -19,14 +19,15 @@
     
     <main>
         <div id="protected-content" style="display:none;">
-            <!-- Aquí pones tu buscador de recursos que quieres proteger -->
+            <!-- Aquí se muestra el contenido protegido: buscador de recursos -->
             <h2>Recursos protegidos</h2>
-            <p>Solo visible para usuarios autenticados.</p>
-            
-            <!-- Contenedor donde se mostrará la lista de recursos -->
-            <div id="resource-list">
-                <!-- Aquí aparecerán los recursos obtenidos de Google Sheets -->
+            <div>
+                <label for="filter">Filtrar recursos:</label>
+                <input type="text" id="filter" placeholder="Filtra por categoría, etapa o tipo...">
             </div>
+            <ul id="resource-list">
+                <!-- Lista de recursos que será generada por app.js -->
+            </ul>
         </div>
     </main>
 
@@ -59,8 +60,22 @@
             logoutButton.style.display = 'none';
             protectedContent.style.display = 'none'; // Ocultar contenido protegido
         });
+
+        // Verificar si ya hay una sesión activa al cargar la página
+        netlifyIdentity.on('init', function(user) {
+            if (user) {
+                loginButton.style.display = 'none';
+                logoutButton.style.display = 'block';
+                protectedContent.style.display = 'block';
+            } else {
+                loginButton.style.display = 'block';
+                logoutButton.style.display = 'none';
+                protectedContent.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
+
 
 

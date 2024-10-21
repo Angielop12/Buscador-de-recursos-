@@ -1,49 +1,62 @@
-// Reemplaza con tu API Key y el ID de tu hoja
-const apiKey = '';
-const sheetId = '18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA';
-const sheetRange = 'Hoja1!A:E';  // Ajusta el rango según tu hoja (A:E es solo un ejemplo)
+// Accede a la variable de entorno (Netlify reemplazará esta variable en tiempo de ejecución)
+const apiKey = process.env.CONX_SHEETS;  // CONX_SHEETS es la variable de entorno que configuraste en Netlify
 
-// Función para obtener datos de Google Sheets
-async function obtenerDatosDeSheet() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetRange}?key=${apiKey}`;
-    
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        mostrarDatosEnTabla(data.values);
-    } catch (error) {
-        console.error('Error al obtener datos:', error);
-    }
-}
+// ID de la hoja de Google Sheets
+const sheetId = "18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA"; // Asegúrate de que este sea el ID correcto de tu hoja de cálculo
 
-// Función para mostrar los datos en la tabla del HTML
-function mostrarDatosEnTabla(datos) {
-    const tabla = document.getElementById('resource-list');
-    tabla.innerHTML = ''; // Limpia la tabla antes de mostrar nuevos datos
+// URL para obtener los datos de la hoja de Google Sheets
+const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:Z100?key=${apiKey}`;
 
-    datos.forEach((fila, index) => {
-        if (index === 0) return; // Ignorar la primera fila (encabezados)
-
-        const nombreRecurso = fila[0];
-        const categoria = fila[1];
-        const etapa = fila[2];
-        const tipoArchivo = fila[3];
-        const linkDescarga = fila[4];
-
-        const filaHTML = `
-            <div class="recurso">
-                <h3>${nombreRecurso}</h3>
-                <p><strong>Categoría:</strong> ${categoria}</p>
-                <p><strong>Etapa:</strong> ${etapa}</p>
-                <p><strong>Tipo de Archivo:</strong> ${tipoArchivo}</p>
-                <a href="${linkDescarga}" target="_blank">Descargar</a>
-            </div>
-        `;
-
-        tabla.innerHTML += filaHTML;
+// Función para obtener los datos de Google Sheets
+function fetchResources() {
+  fetch(endpoint)
+    .then(response => response.json())
+    .then(data => {
+      const resources = data.values; // Asegúrate de que estás manejando los datos correctamente
+      renderResourceList(resources);
+    })
+    .catch(error => {
+      console.error("Error al obtener los datos de Google Sheets: ", error);
     });
 }
 
-// Llamar la función cuando cargue la página
-document.addEventListener('DOMContentLoaded', obtenerDatosDeSheet);
+// Función para renderizar la lista de recursos en el DOM
+function renderResourceList(resources) {
+  const resourceList = document.getElementById("resource-list");
+  resourceList.innerHTML = ""; // Limpiar la lista actual
 
+  resources.forEach(resource => {
+    const li = document.createElement("li");
+    li.textContent = `${resource[0]} - ${resource[1]} - ${resource[2]}`; // Aquí asumes que las columnas son [Nombre, Descripción, URL]
+    
+    const downloadLink = document.createElement("a");
+    downloadLink.href = resource[2]; // URL para descargar el recurso
+    downloadLink.textContent = "Descargar";
+    downloadLink.target = "_blank"; // Abrir en una nueva pestaña
+
+    li.appendChild(downloadLink);
+    resourceList.appendChild(li);
+  });
+}
+
+// Función para filtrar los recursos
+function filterResources(event) {
+  const filterValue = event.target.value.toLowerCase();
+  const allResources = document.querySelectorAll("#resource-list li");
+
+  allResources.forEach(resource => {
+    const text = resource.textContent.toLowerCase();
+    if (text.includes(filterValue)) {
+      resource.style.display = "";
+    } else {
+      resource.style.display = "none";
+    }
+  });
+}
+
+// Escucha el evento del input de filtro
+const filterInput = document.getElementById("filter");
+filterInput.addEventListener("input", filterResources);
+
+// Llama a la función para obtener los recursos cuando el DOM esté cargado
+document.addEventListener("DOMContentLoaded", fetchResources);
