@@ -1,37 +1,49 @@
-// Función que se ejecuta cuando el usuario inicia sesión correctamente con Google
-function onSignIn(googleUser) {
-    // Obtener la información del perfil del usuario
-    var profile = googleUser.getBasicProfile();
-    var email = profile.getEmail();
-    var name = profile.getName();
+// Reemplaza con tu API Key y el ID de tu hoja
+const apiKey = 'AIzaSyBG6f0rxa7b3yhRJsTpK_K4ZAIDRNPFD_E';
+const sheetId = '18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA';
+const sheetRange = 'Hoja1!A:E';  // Ajusta el rango según tu hoja (A:E es solo un ejemplo)
 
-    console.log('Email: ' + email);
-    console.log('Nombre: ' + name);
-
-    // Aquí puedes agregar la validación para comprobar si el usuario está autorizado
-    if (emailAutorizado(email)) {
-        // Mostrar el buscador si el usuario está autorizado
-        document.getElementById('buscador').style.display = 'block';
-        document.getElementById('status').innerText = 'Acceso concedido. Bienvenido, ' + name;
-    } else {
-        // Mostrar un mensaje de error si el usuario no está autorizado
-        document.getElementById('status').innerText = 'No tienes acceso autorizado.';
+// Función para obtener datos de Google Sheets
+async function obtenerDatosDeSheet() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetRange}?key=${apiKey}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        mostrarDatosEnTabla(data.values);
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
     }
 }
 
-// Función para verificar si el correo electrónico está en la lista de autorizados
-function emailAutorizado(email) {
-    // Lista de usuarios autorizados (puedes actualizar esto para usar Google Sheets más adelante)
-    var usuariosAutorizados = ["usuario1@gmail.com", "usuario2@gmail.com"];
-    return usuariosAutorizados.includes(email);
-}
+// Función para mostrar los datos en la tabla del HTML
+function mostrarDatosEnTabla(datos) {
+    const tabla = document.getElementById('resource-list');
+    tabla.innerHTML = ''; // Limpia la tabla antes de mostrar nuevos datos
 
-// Función para cerrar sesión (opcional)
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('Usuario desconectado.');
-        document.getElementById('buscador').style.display = 'none';
-        document.getElementById('status').innerText = '';
+    datos.forEach((fila, index) => {
+        if (index === 0) return; // Ignorar la primera fila (encabezados)
+
+        const nombreRecurso = fila[0];
+        const categoria = fila[1];
+        const etapa = fila[2];
+        const tipoArchivo = fila[3];
+        const linkDescarga = fila[4];
+
+        const filaHTML = `
+            <div class="recurso">
+                <h3>${nombreRecurso}</h3>
+                <p><strong>Categoría:</strong> ${categoria}</p>
+                <p><strong>Etapa:</strong> ${etapa}</p>
+                <p><strong>Tipo de Archivo:</strong> ${tipoArchivo}</p>
+                <a href="${linkDescarga}" target="_blank">Descargar</a>
+            </div>
+        `;
+
+        tabla.innerHTML += filaHTML;
     });
 }
+
+// Llamar la función cuando cargue la página
+document.addEventListener('DOMContentLoaded', obtenerDatosDeSheet);
+
