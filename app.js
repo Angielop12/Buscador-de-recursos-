@@ -2,7 +2,7 @@
 const apiKey = process.env.CONX_SHEETS;  // CONX_SHEETS es la variable de entorno que configuraste en Netlify
 
 // ID de la hoja de Google Sheets
-const sheetId = "18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA"; // Asegúrate de que este sea el ID correcto de tu hoja de cálculo
+const sheetId = '18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA'; // Tu ID de hoja
 
 // URL para obtener los datos de la hoja de Google Sheets
 const endpoint = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:Z100?key=${apiKey}`;
