@@ -3,31 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="TU_CLIENT_ID_GOOGLE">
     <title>Buscador de Recursos</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="app.js" defer></script>
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <!-- Contenedor principal -->
-    <div class="container">
+    <header>
         <h1>Bienvenido al Buscador de Recursos</h1>
-        <p>Por favor, inicia sesión con Google para continuar.</p>
-
-        <!-- Botón de inicio de sesión de Google -->
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-        <!-- Mensaje de estado (para mostrar errores o accesos) -->
-        <div id="status"></div>
-
-        <!-- Lugar donde el buscador aparecerá después de iniciar sesión -->
-        <div id="buscador" style="display:none;">
-            <h2>Buscador de Recursos</h2>
-            <!-- Aquí es donde agregaremos el buscador en el siguiente paso -->
+        <!-- Botón de inicio de sesión -->
+        <button id="login-button">Iniciar sesión</button>
+        <button id="logout-button" style="display:none;">Cerrar sesión</button>
+    </header>
+    
+    <main>
+        <div id="protected-content" style="display:none;">
+            <!-- Aquí pones tu buscador de recursos que quieres proteger -->
+            <h2>Recursos protegidos</h2>
+            <p>Solo visible para usuarios autenticados.</p>
+            <!-- Tus secciones protegidas -->
         </div>
-    </div>
+    </main>
 
-    <!-- Script principal -->
-    <script src="app.js"></script>
+    <script>
+        // Inicia Netlify Identity y gestiona eventos de autenticación
+        var loginButton = document.getElementById('login-button');
+        var logoutButton = document.getElementById('logout-button');
+        var protectedContent = document.getElementById('protected-content');
+        
+        loginButton.addEventListener('click', function() {
+            netlifyIdentity.open(); // Abre el widget de Netlify Identity para el login
+        });
+
+        logoutButton.addEventListener('click', function() {
+            netlifyIdentity.logout(); // Cierra sesión
+        });
+
+        // Evento cuando el usuario inicia sesión
+        netlifyIdentity.on('login', function(user) {
+            console.log('Usuario autenticado:', user);
+            loginButton.style.display = 'none';
+            logoutButton.style.display = 'block';
+            protectedContent.style.display = 'block'; // Mostrar contenido protegido
+            netlifyIdentity.close(); // Cerrar el widget
+        });
+
+        // Evento cuando el usuario cierra sesión
+        netlifyIdentity.on('logout', function() {
+            loginButton.style.display = 'block';
+            logoutButton.style.display = 'none';
+            protectedContent.style.display = 'none'; // Ocultar contenido protegido
+        });
+    </script>
 </body>
 </html>
+
