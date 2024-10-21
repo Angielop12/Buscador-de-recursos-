@@ -1,5 +1,5 @@
 // Reemplaza con tu API Key y el ID de tu hoja
-const apiKey = 'AIzaSyBG6f0rxa7b3yhRJsTpK_K4ZAIDRNPFD_E';
+const apiKey = 'AIzaSyDj3truoLuqlfebewH6uii5iIpSgWtrcBI';
 const sheetId = '18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA';
 const sheetRange = 'Hoja1!A:E';  // Ajusta el rango según tu hoja (A:E es solo un ejemplo)
 
