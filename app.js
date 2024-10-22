@@ -12,6 +12,7 @@ function fetchResources() {
   fetch(endpoint)
     .then(response => response.json())
     .then(data => {
+      console.log(data); // Verifica si los datos están llegando aquí
       const resources = data.values; // Asegúrate de que estás manejando los datos correctamente
       renderResourceList(resources);
     })
@@ -60,3 +61,4 @@ filterInput.addEventListener("input", filterResources);
 
 // Llama a la función para obtener los recursos cuando el DOM esté cargado
 document.addEventListener("DOMContentLoaded", fetchResources);
+
