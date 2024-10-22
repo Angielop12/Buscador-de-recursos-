@@ -26,12 +26,13 @@ function renderResourceList(resources) {
   const resourceList = document.getElementById("resource-list");
   resourceList.innerHTML = ""; // Limpiar la lista actual
 
-  resources.forEach(resource => {
+  // Omitimos la primera fila, que es el encabezado de la tabla
+  resources.slice(1).forEach(resource => {
     const li = document.createElement("li");
-    li.textContent = `${resource[0]} - ${resource[1]} - ${resource[2]}`; // Aquí asumes que las columnas son [Nombre, Descripción, URL]
+    li.textContent = `${resource[0]} - ${resource[1]} - ${resource[2]} - ${resource[3]}`; // Nombre, Objetivo, Etapa, Tipo
     
     const downloadLink = document.createElement("a");
-    downloadLink.href = resource[2]; // URL para descargar el recurso
+    downloadLink.href = resource[4]; // URL de descarga
     downloadLink.textContent = "Descargar";
     downloadLink.target = "_blank"; // Abrir en una nueva pestaña
 
@@ -61,4 +62,3 @@ filterInput.addEventListener("input", filterResources);
 
 // Llama a la función para obtener los recursos cuando el DOM esté cargado
 document.addEventListener("DOMContentLoaded", fetchResources);
-
