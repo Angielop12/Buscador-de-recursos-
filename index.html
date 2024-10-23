@@ -5,77 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Recursos</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
-    <!-- Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido al Buscador de Recursos</h1>
-        <!-- Botón de inicio de sesión -->
-        <button id="login-button">Iniciar sesión</button>
-        <button id="logout-button" style="display:none;">Cerrar sesión</button>
-    </header>
-    
-    <main>
-        <div id="protected-content" style="display:none;">
-            <!-- Aquí se muestra el contenido protegido: buscador de recursos -->
-            <h2>Recursos protegidos</h2>
-            <div>
-                <label for="filter">Filtrar recursos:</label>
-                <input type="text" id="filter" placeholder="Filtra por categoría, etapa o tipo...">
-            </div>
-            <ul id="resource-list">
-                <!-- Lista de recursos que será generada por app.js -->
-            </ul>
+    <div id="filters-container">
+        <h1>Hola! Bienvenid@</h1>
+        <h2>Bienvenido al banco de recursos Adultos CreSentia</h2>
+        <p>Completa los filtros para realizar la búsqueda:</p>
+
+        <div class="filter-group">
+            <label for="objetivo-terapeutico">Objetivo terapéutico</label>
+            <select id="objetivo-terapeutico" name="objetivo-terapeutico">
+                <option value="">Selecciona un objetivo</option>
+            </select>
         </div>
-    </main>
 
-    <script>
-        // Inicia Netlify Identity y gestiona eventos de autenticación
-        var loginButton = document.getElementById('login-button');
-        var logoutButton = document.getElementById('logout-button');
-        var protectedContent = document.getElementById('protected-content');
-        
-        loginButton.addEventListener('click', function() {
-            netlifyIdentity.open(); // Abre el widget de Netlify Identity para el login
-        });
+        <div class="filter-group">
+            <label for="etapa">Etapa</label>
+            <select id="etapa" name="etapa">
+                <option value="">Selecciona una etapa</option>
+            </select>
+        </div>
 
-        logoutButton.addEventListener('click', function() {
-            netlifyIdentity.logout(); // Cierra sesión
-        });
+        <div class="filter-group">
+            <label for="tipo-recurso">Tipo de recurso</label>
+            <select id="tipo-recurso" name="tipo-recurso">
+                <option value="">Selecciona un tipo de recurso</option>
+            </select>
+        </div>
 
-        // Evento cuando el usuario inicia sesión
-        netlifyIdentity.on('login', function(user) {
-            console.log('Usuario autenticado:', user);
-            loginButton.style.display = 'none';
-            logoutButton.style.display = 'block';
-            protectedContent.style.display = 'block'; // Mostrar contenido protegido
-            netlifyIdentity.close(); // Cerrar el widget
-        });
+        <button id="buscar-recurso">Buscar recurso</button>
+    </div>
 
-        // Evento cuando el usuario cierra sesión
-        netlifyIdentity.on('logout', function() {
-            loginButton.style.display = 'block';
-            logoutButton.style.display = 'none';
-            protectedContent.style.display = 'none'; // Ocultar contenido protegido
-        });
-
-        // Verificar si ya hay una sesión activa al cargar la página
-        netlifyIdentity.on('init', function(user) {
-            if (user) {
-                loginButton.style.display = 'none';
-                logoutButton.style.display = 'block';
-                protectedContent.style.display = 'block';
-            } else {
-                loginButton.style.display = 'block';
-                logoutButton.style.display = 'none';
-                protectedContent.style.display = 'none';
-            }
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
-
-
-
