@@ -75,7 +75,7 @@
   <script>
     // Función para obtener los datos desde el archivo JSON
     function fetchResources() {
-      fetch('/recursos.json')  // Si el archivo JSON tiene otro nombre o está en una carpeta, ajusta la ruta
+      fetch('/resources.json')  // Si el archivo JSON tiene otro nombre o está en una carpeta, ajusta la ruta
         .then(response => response.json())
         .then(data => {
           const resources = data.values;  // Obtenemos la sección "values" del JSON
