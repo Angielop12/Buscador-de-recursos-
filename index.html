@@ -112,7 +112,7 @@
     // Inicializar Netlify Identity
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
-
+    
     netlifyIdentity.on('init', user => {
       if (user) {
         showAuthenticated(user);
@@ -127,6 +127,7 @@
 
     logoutBtn.addEventListener('click', () => {
       netlifyIdentity.logout();
+      location.reload();
     });
 
     loginBtn.addEventListener('click', () => {
@@ -139,10 +140,7 @@
     });
 
     netlifyIdentity.on('logout', () => {
-      loginBtn.style.display = 'inline-block';
-      logoutBtn.style.display = 'none';
-      // Aquí puedes limpiar la lista de recursos si lo deseas
-      document.getElementById("resource-list").innerHTML = "";
+      location.reload();
     });
 
     // Función para obtener los datos desde el archivo JSON
@@ -238,7 +236,11 @@
 
     // Llamar a la función para obtener los recursos cuando el DOM esté cargado
     document.addEventListener("DOMContentLoaded", () => {
-      netlifyIdentity.init(); // Asegurarse de inicializar la identidad
+      netlifyIdentity.on('init', user => {
+        if (user) {
+          showAuthenticated(user);
+        }
+      });
     });
   </script>
 
