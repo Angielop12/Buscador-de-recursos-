@@ -3,25 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscador de Recursos</title>
+  <title>Recursos CreSentia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Fuente similar -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fce4ec; /* Rosado claro para el fondo */
+      font-family: 'Poppins', sans-serif; /* Fuente similar al logo */
+      background: linear-gradient(135deg, #fde4e2, #fce7c9); /* Degradado melocotón a rosa */
       padding: 20px;
+      min-height: 100vh;
+      position: relative;
     }
+
+    /* Forma curva en las esquinas superiores */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      background: #f8bbd0; /* Color rosado suave */
+      border-radius: 0 0 100% 0;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: #fdd79d; /* Color melocotón suave */
+      border-radius: 0 0 0 100%;
+    }
+
     .container {
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #ffebee; /* Fondo de contenedor en color salmón */
+      background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      position: relative;
     }
+
     h1 {
       text-align: center;
-      color: #e91e63; /* Color rosa fuerte para el título */
+      font-size: 2.5em;
+      color: #e91e63; /* Color rosado similar al logo */
+      font-weight: 600;
     }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5em;
+      color: #e91e63; /* Color rosado fuerte */
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
     select, button {
       width: 100%;
       padding: 10px;
@@ -29,38 +70,48 @@
       border-radius: 5px;
       border: 1px solid #f48fb1; /* Borde rosado */
       font-size: 16px;
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1); /* Degradado para selectores y botón */
+      color: white;
     }
+
     button {
-      background-color: #ec407a; /* Botón color rosa fuerte */
+      background: linear-gradient(135deg, #ec407a, #e91e63); /* Degradado fuerte para el botón */
       color: white;
       cursor: pointer;
     }
+
     ul {
       list-style-type: none;
       padding: 0;
     }
+
     li {
-      background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
+      background-color: #f8bbd0; /* Fondo rosado suave */
       margin: 10px 0;
       padding: 10px;
       border-radius: 5px;
+      color: white;
     }
+
     a {
-      color: #ad1457; /* Color rosado para los enlaces */
+      color: #ad1457; /* Color rosado oscuro para los enlaces */
       text-decoration: none;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
     }
+
     #login-btn, #logout-btn {
-      background-color: #ad1457; /* Botón de login en rosado oscuro */
+      background: linear-gradient(135deg, #ad1457, #e91e63); /* Degradado para botones de login/logout */
       color: white;
       border: none;
       padding: 10px;
       cursor: pointer;
     }
+
     #logout-btn {
       display: none;
     }
@@ -70,7 +121,7 @@
 <body>
 
   <header>
-    <h1>Buscador de Recursos</h1>
+    <h1>Recursos CreSentia</h1>
     <button id="login-btn">Iniciar sesión</button>
     <button id="logout-btn">Cerrar sesión</button>
   </header>
@@ -221,14 +272,3 @@
     // Llamar a la función para obtener los recursos cuando el DOM esté cargado
     document.addEventListener("DOMContentLoaded", () => {
       netlifyIdentity.on('init', user => {
-        if (user) {
-          showAuthenticated(user);
-        }
-      });
-    });
-  </script>
-
-</body>
-</html>
-
-
