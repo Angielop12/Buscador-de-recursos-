@@ -109,7 +109,43 @@
     <ul id="resource-list"></ul>
   </div>
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
+    // Inicializar Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (user) {
+          mostrarUsuario(user);
+        } else {
+          console.log("No hay usuario autenticado.");
+        }
+      });
+    }
+
+    // Mostrar información del usuario autenticado
+    function mostrarUsuario(user) {
+      document.getElementById('login-btn').style.display = 'none';
+      document.getElementById('logout-btn').style.display = 'inline';
+      console.log('Usuario autenticado:', user);
+    }
+
+    // Manejar el botón de inicio de sesión
+    document.getElementById('login-btn').addEventListener('click', () => {
+      netlifyIdentity.open(); // Abrir el modal de autenticación de Netlify Identity
+    });
+
+    // Manejar el cierre de sesión
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      netlifyIdentity.logout(); // Cerrar sesión
+    });
+
+    // Cuando el usuario cierra sesión
+    netlifyIdentity.on('logout', () => {
+      document.getElementById('login-btn').style.display = 'inline';
+      document.getElementById('logout-btn').style.display = 'none';
+      console.log("Sesión cerrada.");
+    });
+
     // Función para obtener los datos desde el archivo JSON
     function fetchResources() {
       fetch('/resources.json')
