@@ -6,17 +6,16 @@
   <title>Buscador de Recursos CreSentia</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to top right, #f9f9f9 0%, #ffffff 50%) no-repeat, 
-                  url('https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg') no-repeat center center fixed;
-      background-size: contain; /* Ajustamos el tamaño de la imagen */
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff5f7;
+      background: linear-gradient(to top right, #fff5f7, #ffebf0, #fce8e8);
       padding: 20px;
       min-height: 100vh;
       overflow: hidden;
       position: relative;
     }
 
-    /* Curvas de fondo usando pseudo-elementos */
+    /* Curvas y formas en el fondo */
     body::before, body::after {
       content: '';
       position: absolute;
@@ -28,16 +27,14 @@
       border-radius: 50% 50% 0 0 / 15% 15% 0 0;
       transform: scaleX(1.5);
     }
-    
-    /* Curva superior */
+
     body::before {
-      background: radial-gradient(circle at top right, #f48fb1, #f9f9f9);
+      background: radial-gradient(circle at top left, #ffebf0, #fff5f7);
       height: 50%;
     }
 
-    /* Curva inferior */
     body::after {
-      background: radial-gradient(circle at bottom left, #ffe4e1, #ffffff);
+      background: radial-gradient(circle at bottom right, #ffedd5, #fff1e8);
       height: 80%;
       top: 40%;
     }
@@ -47,23 +44,31 @@
       margin: 0 auto;
       padding: 20px;
       background-color: #ffffff;
-      border-radius: 10px;
+      border-radius: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
       text-align: center;
       color: #e91e63;
-      font-size: 2em;
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
     select, button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
-      border-radius: 5px;
+      border-radius: 10px;
       border: 1px solid #f48fb1;
       font-size: 16px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    select {
+      background-color: #ffeef1;
+      color: #e91e63;
     }
 
     button {
@@ -71,6 +76,11 @@
       color: white;
       cursor: pointer;
       border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d81b60;
     }
 
     ul {
@@ -82,7 +92,7 @@
       background-color: #f8bbd0;
       margin: 10px 0;
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 10px;
     }
 
     a {
@@ -100,12 +110,37 @@
       background-color: #ad1457;
       color: white;
       border: none;
-      padding: 10px;
+      padding: 12px;
       cursor: pointer;
+      font-size: 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    #login-btn:hover, #logout-btn:hover {
+      background-color: #d81b60;
     }
 
     #logout-btn {
       display: none;
+    }
+
+    /* Estilo para el logo y el título */
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 150px;
+      margin-bottom: 10px;
+    }
+
+    .logo h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.5em;
+      color: #e91e63;
+      margin-top: 0;
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -113,12 +148,18 @@
 <body>
 
   <header>
-    <h1>Buscador de Recursos</h1>
+    <h1>Buscador de Recursos CreSentia</h1>
     <button id="login-btn">Iniciar sesión</button>
     <button id="logout-btn">Cerrar sesión</button>
   </header>
 
   <div class="container">
+    <!-- Logo CreSentia -->
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia">
+      <h1>Buscador de Recursos CreSentia</h1>
+    </div>
+
     <!-- Filtros -->
     <select id="filter-objetivo">
       <option value="">Selecciona un objetivo terapéutico</option>
@@ -258,18 +299,7 @@
       });
     }
 
-    // Escuchar el evento del botón de búsqueda
     document.getElementById("buscar").addEventListener("click", filterResources);
-
-    // Llamar a la función para obtener los recursos cuando el DOM esté cargado
-    document.addEventListener("DOMContentLoaded", () => {
-      netlifyIdentity.on('init', user => {
-        if (user) {
-          showAuthenticated(user);
-        }
-      });
-    });
   </script>
-
 </body>
 </html>
