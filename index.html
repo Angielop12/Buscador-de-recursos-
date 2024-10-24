@@ -1,41 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Recursos</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador de Recursos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #bdc3c7;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2ecc71;
+      color: white;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #ecf0f1;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="filters-container">
-        <h1>Hola! Bienvenid@</h1>
-        <h2>Bienvenido al banco de recursos Adultos CreSentia</h2>
-        <p>Completa los filtros para realizar la búsqueda:</p>
 
-        <div class="filter-group">
-            <label for="objetivo-terapeutico">Objetivo terapéutico</label>
-            <select id="objetivo-terapeutico" name="objetivo-terapeutico">
-                <option value="">Selecciona un objetivo</option>
-            </select>
-        </div>
+  <div class="container">
+    <h1>Buscador de Recursos</h1>
+    
+    <!-- Filtros -->
+    <select id="filter-objetivo">
+      <option value="">Selecciona un objetivo terapéutico</option>
+    </select>
+    <select id="filter-etapa">
+      <option value="">Selecciona una etapa</option>
+    </select>
+    <select id="filter-tipo">
+      <option value="">Selecciona un tipo de recurso</option>
+    </select>
+    <button id="buscar">Buscar recurso</button>
 
-        <div class="filter-group">
-            <label for="etapa">Etapa</label>
-            <select id="etapa" name="etapa">
-                <option value="">Selecciona una etapa</option>
-            </select>
-        </div>
+    <!-- Lista de recursos -->
+    <ul id="resource-list"></ul>
+  </div>
 
-        <div class="filter-group">
-            <label for="tipo-recurso">Tipo de recurso</label>
-            <select id="tipo-recurso" name="tipo-recurso">
-                <option value="">Selecciona un tipo de recurso</option>
-            </select>
-        </div>
+  <script>
+    // Función para obtener los datos desde el archivo JSON
+    function fetchResources() {
+      fetch('/recursos.json')  // Si el archivo JSON tiene otro nombre o está en una carpeta, ajusta la ruta
+        .then(response => response.json())
+        .then(data => {
+          const resources = data.values;  // Obtenemos la sección "values" del JSON
+          generarFiltros(resources);      // Generamos los filtros a partir de los datos
+          renderResourceList(resources);  // Renderizamos la lista completa inicialmente
+        })
+        .catch(error => {
+          console.error("Error al obtener los datos del archivo JSON: ", error);
+        });
+    }
 
-        <button id="buscar-recurso">Buscar recurso</button>
-    </div>
+    // Función para generar los filtros dinámicamente
+    function generarFiltros(resources) {
+      const filterObjetivo = document.getElementById("filter-objetivo");
+      const filterEtapa = document.getElementById("filter-etapa");
+      const filterTipo = document.getElementById("filter-tipo");
 
-    <script src="app.js"></script>
+      let objetivos = new Set();
+      let etapas = new Set();
+      let tipos = new Set();
+
+      resources.forEach(resource => {
+        objetivos.add(resource[1]);
+        etapas.add(resource[2]);
+        tipos.add(resource[3]);
+      });
+
+      objetivos.forEach(obj => {
+        let option = document.createElement("option");
+        option.value = obj;
+        option.textContent = obj;
+        filterObjetivo.appendChild(option);
+      });
+
+      etapas.forEach(et => {
+        let option = document.createElement("option");
+        option.value = et;
+        option.textContent = et;
+        filterEtapa.appendChild(option);
+      });
+
+      tipos.forEach(tp => {
+        let option = document.createElement("option");
+        option.value = tp;
+        option.textContent = tp;
+        filterTipo.appendChild(option);
+      });
+    }
+
+    // Función para renderizar la lista de recursos en el DOM
+    function renderResourceList(resources) {
+      const resourceList = document.getElementById("resource-list");
+      resourceList.innerHTML = "";  // Limpiar la lista actual
+
+      resources.forEach(resource => {
+        const li = document.createElement("li");
+        li.textContent = `${resource[0]} - ${resource[1]} - ${resource[2]} - ${resource[3]}`;
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = resource[4];  // URL para descargar el recurso
+        downloadLink.textContent = "Descargar";
+        downloadLink.target = "_blank";  // Abrir en una nueva pestaña
+
+        li.appendChild(downloadLink);
+        resourceList.appendChild(li);
+      });
+    }
+
+    // Función para filtrar los recursos
+    function filterResources() {
+      const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
+      const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
+      const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
+      const allResources = document.querySelectorAll("#resource-list li");
+
+      allResources.forEach(resource => {
+        const text = resource.textContent.toLowerCase();
+        if (text.includes(filterObjetivo) && text.includes(filterEtapa) && text.includes(filterTipo)) {
+          resource.style.display = "";
+        } else {
+          resource.style.display = "none";
+        }
+      });
+    }
+
+    // Escuchar el evento del botón de búsqueda
+    document.getElementById("buscar").addEventListener("click", filterResources);
+
+    // Llamar a la función para obtener los recursos cuando el DOM esté cargado
+    document.addEventListener("DOMContentLoaded", fetchResources);
+  </script>
+
 </body>
 </html>
+
