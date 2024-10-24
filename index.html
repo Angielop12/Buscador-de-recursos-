@@ -49,13 +49,33 @@
       color: #3498db;
       text-decoration: none;
     }
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    #login-btn, #logout-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #logout-btn {
+      display: none;
+    }
   </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
-  <div class="container">
+  <header>
     <h1>Buscador de Recursos</h1>
-    
+    <button id="login-btn">Iniciar sesión</button>
+    <button id="logout-btn">Cerrar sesión</button>
+  </header>
+
+  <div class="container">
     <!-- Filtros -->
     <select id="filter-objetivo">
       <option value="">Selecciona un objetivo terapéutico</option>
@@ -73,14 +93,48 @@
   </div>
 
   <script>
+    // Inicializar Netlify Identity
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        showAuthenticated(user);
+      }
+    });
+
+    function showAuthenticated(user) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      fetchResources();  // Cargar recursos solo para usuarios autenticados
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+      location.reload();
+    });
+
+    loginBtn.addEventListener('click', () => {
+      netlifyIdentity.open();
+    });
+
+    netlifyIdentity.on('login', user => {
+      showAuthenticated(user);
+      netlifyIdentity.close();
+    });
+
+    netlifyIdentity.on('logout', () => {
+      location.reload();
+    });
+
     // Función para obtener los datos desde el archivo JSON
     function fetchResources() {
-      fetch('/resources.json')  // Si el archivo JSON tiene otro nombre o está en una carpeta, ajusta la ruta
+      fetch('/resources.json')
         .then(response => response.json())
         .then(data => {
-          const resources = data.values;  // Obtenemos la sección "values" del JSON
-          generarFiltros(resources);      // Generamos los filtros a partir de los datos
-          renderResourceList(resources);  // Renderizamos la lista completa inicialmente
+          const resources = data.recursos;
+          generarFiltros(resources);
+          renderResourceList(resources);
         })
         .catch(error => {
           console.error("Error al obtener los datos del archivo JSON: ", error);
@@ -98,9 +152,9 @@
       let tipos = new Set();
 
       resources.forEach(resource => {
-        objetivos.add(resource[1]);
-        etapas.add(resource[2]);
-        tipos.add(resource[3]);
+        objetivos.add(resource.objetivo_terapeutico);
+        etapas.add(resource.etapa);
+        tipos.add(resource.tipo);
       });
 
       objetivos.forEach(obj => {
@@ -132,12 +186,12 @@
 
       resources.forEach(resource => {
         const li = document.createElement("li");
-        li.textContent = `${resource[0]} - ${resource[1]} - ${resource[2]} - ${resource[3]}`;
+        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
 
         const downloadLink = document.createElement("a");
-        downloadLink.href = resource[4];  // URL para descargar el recurso
-        downloadLink.textContent = "Descargar";
-        downloadLink.target = "_blank";  // Abrir en una nueva pestaña
+        downloadLink.href = resource.link;
+        downloadLink.textContent = "Ver recurso";
+        downloadLink.target = "_blank";
 
         li.appendChild(downloadLink);
         resourceList.appendChild(li);
@@ -165,7 +219,13 @@
     document.getElementById("buscar").addEventListener("click", filterResources);
 
     // Llamar a la función para obtener los recursos cuando el DOM esté cargado
-    document.addEventListener("DOMContentLoaded", fetchResources);
+    document.addEventListener("DOMContentLoaded", () => {
+      netlifyIdentity.on('init', user => {
+        if (user) {
+          showAuthenticated(user);
+        }
+      });
+    });
   </script>
 
 </body>

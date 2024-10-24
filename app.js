@@ -1,53 +1,84 @@
-// API Key y Spreadsheet ID
-const API_KEY = 'AIzaSyBG6f0rxa7b3yhRJsTpK_K4ZAIDRNPFD_E';
-const SPREADSHEET_ID = '18dSjJghk91Ap5sNYU9yVc0hQaC12WzKBxvu82m-YCgA';
-const RANGE = 'Sheet1!A1:E100'; // Rango de datos de tu Google Sheet
-
-// Función para obtener los datos del Google Sheets
-function fetchData() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`;
+document.addEventListener('DOMContentLoaded', function () {
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const resultadosDiv = document.getElementById('resultados');
     
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // Verifica que los datos se reciban correctamente
-        const values = data.values;
-        if (values && values.length > 1) {
-            renderData(values);
-        } else {
-            alert('No se encontraron datos en la hoja de cálculo.');
-        }
-    })
-    .catch(error => {
-        console.error('Error al obtener los datos:', error);
-        alert('Hubo un error al obtener los datos.');
+    // Inicializar Netlify Identity
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        showAuthenticated(user);
+      } else {
+        netlifyIdentity.open();
+      }
     });
-}
-
-// Función para renderizar los datos en el HTML
-function renderData(values) {
-    const resourceContainer = document.getElementById('resource-list');
-    resourceContainer.innerHTML = ''; // Limpiar el contenedor
-
-    // Iterar sobre las filas (excluyendo la primera fila de encabezado)
-    for (let i = 1; i < values.length; i++) {
-        const row = values[i];
-        const resourceElement = document.createElement('div');
-        resourceElement.classList.add('resource-item');
-        
-        resourceElement.innerHTML = `
-            <h3>${row[0]}</h3> <!-- Nombre del recurso -->
-            <p><strong>Objetivo terapéutico:</strong> ${row[1]}</p>
-            <p><strong>Etapa:</strong> ${row[2]}</p>
-            <p><strong>Tipo de Recurso:</strong> ${row[3]}</p>
-            <a href="${row[4]}" target="_blank">Ver recurso</a>
-        `;
-
-        resourceContainer.appendChild(resourceElement);
+  
+    // Mostrar UI para usuarios autenticados
+    function showAuthenticated(user) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      loadResources(); // Cargar recursos solo para usuarios autenticados
     }
-}
-
-// Llamar a la función para obtener los datos al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    fetchData();
-});
+  
+    // Cerrar sesión
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+      location.reload();
+    });
+  
+    // Login handler
+    loginBtn.addEventListener('click', () => {
+      netlifyIdentity.open();
+    });
+  
+    // Cargar recursos desde JSON
+    function loadResources() {
+      fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+          searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredResources = data.recursos.filter(recurso => {
+              return recurso.nombre.toLowerCase().includes(query) || 
+                     recurso.objetivo_terapeutico.toLowerCase().includes(query) ||
+                     recurso.etapa.toLowerCase().includes(query) ||
+                     recurso.tipo.toLowerCase().includes(query);
+            });
+  
+            displayResults(filteredResources);
+          });
+        });
+    }
+  
+    // Mostrar los resultados en el DOM
+    function displayResults(resources) {
+      resultadosDiv.innerHTML = '';
+      if (resources.length > 0) {
+        resources.forEach(recurso => {
+          resultadosDiv.innerHTML += `
+            <div class="resource">
+              <h3>${recurso.nombre}</h3>
+              <p><strong>Objetivo terapéutico:</strong> ${recurso.objetivo_terapeutico}</p>
+              <p><strong>Etapa:</strong> ${recurso.etapa}</p>
+              <p><strong>Tipo:</strong> ${recurso.tipo}</p>
+              <a href="${recurso.link}" target="_blank">Abrir recurso</a>
+            </div>`;
+        });
+      } else {
+        resultadosDiv.innerHTML = '<p>No se encontraron recursos.</p>';
+      }
+    }
+  
+    // Escuchar el evento de login de Netlify Identity
+    netlifyIdentity.on('login', user => {
+      showAuthenticated(user);
+      netlifyIdentity.close();
+    });
+  
+    // Recargar al cerrar sesión
+    netlifyIdentity.on('logout', () => {
+      location.reload();
+    });
+  });
+  

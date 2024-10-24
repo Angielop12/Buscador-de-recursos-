@@ -1,37 +1,48 @@
-#filters-container {
-    background-color: #e0f7fa;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
     padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.filter-group {
-    margin-bottom: 15px;
-}
-
-.filter-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.filter-group select {
-    width: 100%;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #search-container {
+    margin-bottom: 20px;
+  }
+  
+  #search-input {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#buscar-recurso {
-    padding: 10px 20px;
-    background-color: #26a69a;
+    width: 70%;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-#buscar-recurso:hover {
-    background-color: #00796b;
-}
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .resource {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resource h3 {
+    margin-top: 0;
+  }
+  
