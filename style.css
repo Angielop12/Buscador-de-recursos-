@@ -1,48 +1,70 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
+    background-color: #fce4ec; /* Rosado claro para el fondo */
     padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffebee; /* Fondo de contenedor en color salmón */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #e91e63; /* Color rosa fuerte para el título */
+  }
+  
+  select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #f48fb1; /* Borde rosado */
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #ec407a; /* Botón color rosa fuerte */
+    color: white;
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  a {
+    color: #ad1457; /* Color rosado para los enlaces */
+    text-decoration: none;
   }
   
   header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
   }
   
-  #search-container {
-    margin-bottom: 20px;
-  }
-  
-  #search-input {
-    padding: 10px;
-    width: 70%;
-    margin-right: 10px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #4CAF50;
+  #login-btn, #logout-btn {
+    background-color: #ad1457; /* Botón de login en rosado oscuro */
     color: white;
     border: none;
+    padding: 10px;
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  .resource {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .resource h3 {
-    margin-top: 0;
+  #logout-btn {
+    display: none;
   }
   
