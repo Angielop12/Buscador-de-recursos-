@@ -7,29 +7,23 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #fce4ec; /* Rosado claro para el fondo */
+      background: linear-gradient(135deg, #ffe4e1, #fff6e5); /* Degradado en tonos suaves */
       padding: 20px;
       min-height: 100vh;
-      position: relative;
     }
-
     .container {
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #ffebee; /* Fondo de contenedor en color salmón */
+      background-color: #ffffff;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1;
-      position: relative;
     }
-
     h1 {
       text-align: center;
       color: #e91e63; /* Color rosa fuerte para el título */
       font-size: 2em;
     }
-
     select, button {
       width: 100%;
       padding: 10px;
@@ -38,37 +32,31 @@
       border: 1px solid #f48fb1; /* Borde rosado */
       font-size: 16px;
     }
-
     button {
       background-color: #ec407a; /* Botón color rosa fuerte */
       color: white;
       cursor: pointer;
-      border: none; /* Aseguramos que el botón no tenga borde */
+      border: none;
     }
-
     ul {
       list-style-type: none;
       padding: 0;
     }
-
     li {
       background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
       margin: 10px 0;
       padding: 10px;
       border-radius: 5px;
     }
-
     a {
       color: #ad1457; /* Color rosado para los enlaces */
       text-decoration: none;
     }
-
     header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
     }
-
     #login-btn, #logout-btn {
       background-color: #ad1457; /* Botón de login en rosado oscuro */
       color: white;
@@ -76,9 +64,8 @@
       padding: 10px;
       cursor: pointer;
     }
-
     #logout-btn {
-      display: none; /* Inicialmente oculto */
+      display: none;
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
