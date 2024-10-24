@@ -7,75 +7,92 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
+      background-color: #fce4ec; /* Rosado claro para el fondo */
       padding: 20px;
     }
+
     .container {
       max-width: 600px;
       margin: 0 auto;
       padding: 20px;
-      background-color: #ffffff;
+      background-color: #ffebee; /* Fondo de contenedor en color salmón */
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       text-align: center;
-      color: #2c3e50;
+      color: #e91e63; /* Color rosa fuerte para el título */
     }
+
     select, button {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 5px;
-      border: 1px solid #bdc3c7;
+      border: 1px solid #f48fb1; /* Borde rosado */
       font-size: 16px;
     }
+
     button {
-      background-color: #2ecc71;
+      background-color: #ec407a; /* Botón color rosa fuerte */
       color: white;
       cursor: pointer;
     }
+
     ul {
       list-style-type: none;
       padding: 0;
     }
+
     li {
-      background-color: #ecf0f1;
+      background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
       margin: 10px 0;
       padding: 10px;
       border-radius: 5px;
     }
+
     a {
-      color: #3498db;
+      color: #ad1457; /* Color rosado para los enlaces */
       text-decoration: none;
     }
+
     header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
+
     #login-btn, #logout-btn {
-      background-color: #3498db;
+      background-color: #ad1457; /* Botón de login en rosado oscuro */
       color: white;
       border: none;
       padding: 10px;
       cursor: pointer;
     }
+
     #logout-btn {
       display: none;
     }
+
+    img {
+      height: 50px;
+      margin-right: 10px;
+    }
   </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>Buscador de Recursos</h1>
-    <button id="login-btn">Iniciar sesión</button>
-    <button id="logout-btn">Cerrar sesión</button>
-  </header>
-
   <div class="container">
+    <!-- Encabezado con el logo -->
+    <header>
+      <img src="logo.png" alt="Logo">
+      <h1>Buscador de Recursos</h1>
+      <button id="login-btn">Iniciar sesión</button>
+      <button id="logout-btn">Cerrar sesión</button>
+    </header>
+
     <!-- Filtros -->
     <select id="filter-objetivo">
       <option value="">Selecciona un objetivo terapéutico</option>
@@ -93,40 +110,6 @@
   </div>
 
   <script>
-    // Inicializar Netlify Identity
-    const loginBtn = document.getElementById('login-btn');
-    const logoutBtn = document.getElementById('logout-btn');
-    
-    netlifyIdentity.on('init', user => {
-      if (user) {
-        showAuthenticated(user);
-      }
-    });
-
-    function showAuthenticated(user) {
-      loginBtn.style.display = 'none';
-      logoutBtn.style.display = 'inline-block';
-      fetchResources();  // Cargar recursos solo para usuarios autenticados
-    }
-
-    logoutBtn.addEventListener('click', () => {
-      netlifyIdentity.logout();
-      location.reload();
-    });
-
-    loginBtn.addEventListener('click', () => {
-      netlifyIdentity.open();
-    });
-
-    netlifyIdentity.on('login', user => {
-      showAuthenticated(user);
-      netlifyIdentity.close();
-    });
-
-    netlifyIdentity.on('logout', () => {
-      location.reload();
-    });
-
     // Función para obtener los datos desde el archivo JSON
     function fetchResources() {
       fetch('/resources.json')
@@ -186,12 +169,12 @@
 
       resources.forEach(resource => {
         const li = document.createElement("li");
-        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
+        li.textContent = `${resource.nombre} - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
 
         const downloadLink = document.createElement("a");
-        downloadLink.href = resource.link;
-        downloadLink.textContent = "Ver recurso";
-        downloadLink.target = "_blank";
+        downloadLink.href = resource.link;  // URL para descargar el recurso
+        downloadLink.textContent = "Descargar";
+        downloadLink.target = "_blank";  // Abrir en una nueva pestaña
 
         li.appendChild(downloadLink);
         resourceList.appendChild(li);
@@ -219,15 +202,8 @@
     document.getElementById("buscar").addEventListener("click", filterResources);
 
     // Llamar a la función para obtener los recursos cuando el DOM esté cargado
-    document.addEventListener("DOMContentLoaded", () => {
-      netlifyIdentity.on('init', user => {
-        if (user) {
-          showAuthenticated(user);
-        }
-      });
-    });
+    document.addEventListener("DOMContentLoaded", fetchResources);
   </script>
 
 </body>
 </html>
-
