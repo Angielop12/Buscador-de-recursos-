@@ -7,7 +7,9 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to top right, #f9f9f9 0%, #ffffff 50%) no-repeat;
+      background: linear-gradient(to top right, #f9f9f9 0%, #ffffff 50%) no-repeat, 
+                  url('https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg') no-repeat center center;
+      background-size: contain; /* Ajustamos el tamaño de la imagen */
       padding: 20px;
       min-height: 100vh;
       overflow: hidden;
@@ -105,7 +107,6 @@
     #logout-btn {
       display: none;
     }
-
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
