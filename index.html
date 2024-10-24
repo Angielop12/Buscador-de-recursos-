@@ -7,10 +7,39 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ffe4e1, #fff6e5); /* Degradado en tonos suaves */
+      background: linear-gradient(to top right, #f9f9f9 0%, #ffffff 50%) no-repeat;
       padding: 20px;
       min-height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
+
+    /* Curvas de fondo usando pseudo-elementos */
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+      transform: scaleX(1.5);
+    }
+    
+    /* Curva superior */
+    body::before {
+      background: radial-gradient(circle at top right, #f48fb1, #f9f9f9);
+      height: 50%;
+    }
+
+    /* Curva inferior */
+    body::after {
+      background: radial-gradient(circle at bottom left, #ffe4e1, #ffffff);
+      height: 80%;
+      top: 40%;
+    }
+
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -19,54 +48,64 @@
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       text-align: center;
-      color: #e91e63; /* Color rosa fuerte para el título */
+      color: #e91e63;
       font-size: 2em;
     }
+
     select, button {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border-radius: 5px;
-      border: 1px solid #f48fb1; /* Borde rosado */
+      border: 1px solid #f48fb1;
       font-size: 16px;
     }
+
     button {
-      background-color: #ec407a; /* Botón color rosa fuerte */
+      background-color: #ec407a;
       color: white;
       cursor: pointer;
       border: none;
     }
+
     ul {
       list-style-type: none;
       padding: 0;
     }
+
     li {
-      background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
+      background-color: #f8bbd0;
       margin: 10px 0;
       padding: 10px;
       border-radius: 5px;
     }
+
     a {
-      color: #ad1457; /* Color rosado para los enlaces */
+      color: #ad1457;
       text-decoration: none;
     }
+
     header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
     }
+
     #login-btn, #logout-btn {
-      background-color: #ad1457; /* Botón de login en rosado oscuro */
+      background-color: #ad1457;
       color: white;
       border: none;
       padding: 10px;
       cursor: pointer;
     }
+
     #logout-btn {
       display: none;
     }
+
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
