@@ -1,70 +1,247 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fce4ec; /* Rosado claro para el fondo */
-    padding: 20px;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffebee; /* Fondo de contenedor en color salmón */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-    color: #e91e63; /* Color rosa fuerte para el título */
-  }
-  
-  select, button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #f48fb1; /* Borde rosado */
-    font-size: 16px;
-  }
-  
-  button {
-    background-color: #ec407a; /* Botón color rosa fuerte */
-    color: white;
-    cursor: pointer;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  a {
-    color: #ad1457; /* Color rosado para los enlaces */
-    text-decoration: none;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  #login-btn, #logout-btn {
-    background-color: #ad1457; /* Botón de login en rosado oscuro */
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  #logout-btn {
-    display: none;
-  }
-  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador de Recursos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fce4ec; /* Rosado claro para el fondo */
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffebee; /* Fondo de contenedor en color salmón */
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #e91e63; /* Color rosa fuerte para el título */
+      font-size: 2em;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #f48fb1; /* Borde rosado */
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #ec407a; /* Botón color rosa fuerte */
+      color: white;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f8bbd0; /* Fondo rosado claro para cada recurso */
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    a {
+      color: #ad1457; /* Color rosado para los enlaces */
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    #login-btn, #logout-btn {
+      background-color: #ad1457; /* Botón de login en rosado oscuro */
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #logout-btn {
+      display: none;
+    }
+  </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Buscador de Recursos</h1>
+    <button id="login-btn">Iniciar sesión</button>
+    <button id="logout-btn">Cerrar sesión</button>
+  </header>
+
+  <div class="container">
+    <!-- Filtros -->
+    <select id="filter-objetivo">
+      <option value="">Selecciona un objetivo terapéutico</option>
+    </select>
+    <select id="filter-etapa">
+      <option value="">Selecciona una etapa</option>
+    </select>
+    <select id="filter-tipo">
+      <option value="">Selecciona un tipo de recurso</option>
+    </select>
+    <button id="buscar">Buscar recurso</button>
+
+    <!-- Lista de recursos -->
+    <ul id="resource-list"></ul>
+  </div>
+
+  <script>
+    // Inicializar Netlify Identity
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        showAuthenticated(user);
+      }
+    });
+
+    function showAuthenticated(user) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      fetchResources();  // Cargar recursos solo para usuarios autenticados
+    }
+
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+      location.reload();
+    });
+
+    loginBtn.addEventListener('click', () => {
+      netlifyIdentity.open();
+    });
+
+    netlifyIdentity.on('login', user => {
+      showAuthenticated(user);
+      netlifyIdentity.close();
+    });
+
+    netlifyIdentity.on('logout', () => {
+      location.reload();
+    });
+
+    // Función para obtener los datos desde el archivo JSON
+    function fetchResources() {
+      fetch('/resources.json')
+        .then(response => response.json())
+        .then(data => {
+          const resources = data.recursos;
+          generarFiltros(resources);
+          renderResourceList(resources);
+        })
+        .catch(error => {
+          console.error("Error al obtener los datos del archivo JSON: ", error);
+        });
+    }
+
+    // Función para generar los filtros dinámicamente
+    function generarFiltros(resources) {
+      const filterObjetivo = document.getElementById("filter-objetivo");
+      const filterEtapa = document.getElementById("filter-etapa");
+      const filterTipo = document.getElementById("filter-tipo");
+
+      let objetivos = new Set();
+      let etapas = new Set();
+      let tipos = new Set();
+
+      resources.forEach(resource => {
+        objetivos.add(resource.objetivo_terapeutico);
+        etapas.add(resource.etapa);
+        tipos.add(resource.tipo);
+      });
+
+      objetivos.forEach(obj => {
+        let option = document.createElement("option");
+        option.value = obj;
+        option.textContent = obj;
+        filterObjetivo.appendChild(option);
+      });
+
+      etapas.forEach(et => {
+        let option = document.createElement("option");
+        option.value = et;
+        option.textContent = et;
+        filterEtapa.appendChild(option);
+      });
+
+      tipos.forEach(tp => {
+        let option = document.createElement("option");
+        option.value = tp;
+        option.textContent = tp;
+        filterTipo.appendChild(option);
+      });
+    }
+
+    // Función para renderizar la lista de recursos en el DOM
+    function renderResourceList(resources) {
+      const resourceList = document.getElementById("resource-list");
+      resourceList.innerHTML = "";  // Limpiar la lista actual
+
+      resources.forEach(resource => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = resource.link;
+        downloadLink.textContent = "Ver recurso";
+        downloadLink.target = "_blank";
+
+        li.appendChild(downloadLink);
+        resourceList.appendChild(li);
+      });
+    }
+
+    // Función para filtrar los recursos
+    function filterResources() {
+      const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
+      const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
+      const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
+      const allResources = document.querySelectorAll("#resource-list li");
+
+      allResources.forEach(resource => {
+        const text = resource.textContent.toLowerCase();
+        if (text.includes(filterObjetivo) && text.includes(filterEtapa) && text.includes(filterTipo)) {
+          resource.style.display = "";
+        } else {
+          resource.style.display = "none";
+        }
+      });
+    }
+
+    // Escuchar el evento del botón de búsqueda
+    document.getElementById("buscar").addEventListener("click", filterResources);
+
+    // Llamar a la función para obtener los recursos cuando el DOM esté cargado
+    document.addEventListener("DOMContentLoaded", () => {
+      netlifyIdentity.on('init', user => {
+        if (user) {
+          showAuthenticated(user);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
