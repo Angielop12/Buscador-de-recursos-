@@ -2,7 +2,7 @@
     "recursos": [
         {
             "nombre": "limite y bienestar manual de uso",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -10,7 +10,7 @@
         },
         {
             "nombre": "limite y bienestar ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "reconocimiento",
             "tipo": "lamina",
@@ -18,7 +18,7 @@
         },
         {
             "nombre": "DEAR MAN guia ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en expresion",
             "tipo": "documento",
@@ -26,7 +26,7 @@
         },
         {
             "nombre": "DEAR MAN ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en expresion",
             "tipo": "lamina",
@@ -34,7 +34,7 @@
         },
         {
             "nombre": "Mi red social",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -42,7 +42,7 @@
         },
         {
             "nombre": "Mi red social",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "presentacion ",
@@ -50,7 +50,7 @@
         },
         {
             "nombre": "vinculo seguro discriminacion",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -58,7 +58,7 @@
         },
         {
             "nombre": "vinculo seguro discriminacion",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "presentacion ",
@@ -66,7 +66,7 @@
         },
         {
             "nombre": "la amistad manual de uso",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "documento",
@@ -74,7 +74,7 @@
         },
         {
             "nombre": "la amistad",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "presentacion ",
@@ -82,7 +82,7 @@
         },
         {
             "nombre": "validacion emocional ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "documento",
@@ -90,7 +90,7 @@
         },
         {
             "nombre": "validacion emocional ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "presentacion ",
@@ -98,7 +98,7 @@
         },
         {
             "nombre": "vinculo seguro valores y acciones ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "documento",
@@ -106,7 +106,7 @@
         },
         {
             "nombre": "vinculo seguro valores y acciones ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "entrenamiento",
             "tipo": "presentacion ",
@@ -114,7 +114,7 @@
         },
         {
             "nombre": "construyendo la consiencia de mis emociones ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -122,7 +122,7 @@
         },
         {
             "nombre": "construyendo la consiencia de mis emociones ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "lamina",
@@ -130,7 +130,7 @@
         },
         {
             "nombre": "hechos e interpretaciones manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -138,7 +138,7 @@
         },
         {
             "nombre": "hechos e interpretaciones ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -146,7 +146,7 @@
         },
         {
             "nombre": "hechos vs interpretacion ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -154,7 +154,7 @@
         },
         {
             "nombre": "hechos vs interpretacion ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "lamina",
@@ -162,7 +162,7 @@
         },
         {
             "nombre": "fuera de mi control ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "documento",
@@ -170,7 +170,7 @@
         },
         {
             "nombre": "fuera de mi control ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "presentacion ",
@@ -178,7 +178,7 @@
         },
         {
             "nombre": "habilidades de mindfulness",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "documento",
@@ -186,7 +186,7 @@
         },
         {
             "nombre": "habilidades de mindfulness",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "presentacion ",
@@ -194,7 +194,7 @@
         },
         {
             "nombre": "validacion vs invalidacion emocional ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "documento",
@@ -202,7 +202,7 @@
         },
         {
             "nombre": "validacion vs invalidacion emocional ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion ",
             "tipo": "presentacion ",
@@ -210,7 +210,7 @@
         },
         {
             "nombre": "resolucion de problemas manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "habilidades sociales ",
             "etapa": "practica",
             "tipo": "documento",
@@ -218,7 +218,7 @@
         },
         {
             "nombre": "resolucion de problemas ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "habilidades sociales ",
             "etapa": "practica",
             "tipo": "documento",
@@ -226,7 +226,7 @@
         },
         {
             "nombre": "arbol_imagen",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -234,7 +234,7 @@
         },
         {
             "nombre": "arbol_imagen",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "lamina",
@@ -242,7 +242,7 @@
         },
         {
             "nombre": "quien soy_azul",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "presentacion ",
@@ -250,7 +250,7 @@
         },
         {
             "nombre": "quien soy manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -258,7 +258,7 @@
         },
         {
             "nombre": "quien soy_rosa",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "presentacion",
@@ -266,7 +266,7 @@
         },
         {
             "nombre": "yo del tiempo manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -274,7 +274,7 @@
         },
         {
             "nombre": "yo del tiempo hombre ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "presentacion",
@@ -282,7 +282,7 @@
         },
         {
             "nombre": "yo del tiempo mujer ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "presentacion",
@@ -290,7 +290,7 @@
         },
         {
             "nombre": "6 tipos de descanso manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -298,7 +298,7 @@
         },
         {
             "nombre": "6 tipos de descanso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "entrenamiento ",
             "tipo": "presentacion ",
@@ -306,7 +306,7 @@
         },
         {
             "nombre": "caja aceptacion, contemplacion, emocional y cambio manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -314,7 +314,7 @@
         },
         {
             "nombre": "caja aceptacion, contemplacion, emocional y cambio ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "presentacion ",
@@ -322,7 +322,7 @@
         },
         {
             "nombre": "recordatorio defusion manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -330,7 +330,7 @@
         },
         {
             "nombre": "recordatorio defusion  ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "lamina",
@@ -338,7 +338,7 @@
         },
         {
             "nombre": "clarificacion valores por area manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -346,7 +346,7 @@
         },
         {
             "nombre": "clarificacion valores por area",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -354,7 +354,7 @@
         },
         {
             "nombre": "encontrando el sentido manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -362,7 +362,7 @@
         },
         {
             "nombre": "encontrando el sentido hoja de trabajo",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "documento",
@@ -370,7 +370,7 @@
         },
         {
             "nombre": "econtrando el sentido ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "lamina ",
@@ -378,7 +378,7 @@
         },
         {
             "nombre": "notar el impulso y lo importante manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "gestion de barreras ",
             "tipo": "documento",
@@ -386,7 +386,7 @@
         },
         {
             "nombre": "notar el impulso y lo importante ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "gestion de barreras ",
             "tipo": "lamina",
@@ -394,7 +394,7 @@
         },
         {
             "nombre": "valores en el area laboral manual de uso ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "accion valiosa ",
             "tipo": "documento",
@@ -402,7 +402,7 @@
         },
         {
             "nombre": "valores en el area laboral ",
-            "linea_terapeutica ": "adultos",
+            "linea_terapeutica": "adultos",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "accion valiosa ",
             "tipo": "documento",
@@ -410,7 +410,7 @@
         },
         {
             "nombre": "comunicar el malestar ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en expresion",
             "tipo": "documento",
@@ -418,7 +418,7 @@
         },
         {
             "nombre": "manual de uso comunicacion del malestar ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en expresion",
             "tipo": "documento",
@@ -426,7 +426,7 @@
         },
         {
             "nombre": "escucha asertiva ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en recepcion",
             "tipo": "lamina",
@@ -434,7 +434,7 @@
         },
         {
             "nombre": "manual escucha asertiva ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en recepcion",
             "tipo": "lamina",
@@ -442,7 +442,7 @@
         },
         {
             "nombre": "tarjeta escucha asertiva ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "entrenamiento en recepcion",
             "tipo": "lamina",
@@ -450,7 +450,7 @@
         },
         {
             "nombre": "los deberia ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "reconocimiento",
             "tipo": "presentacion ",
@@ -458,7 +458,7 @@
         },
         {
             "nombre": "manual de los deberia ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "comunicacion y limites acertivos",
             "etapa": "reconocimiento",
             "tipo": "lamina",
@@ -466,7 +466,7 @@
         },
         {
             "nombre": "manual de uso mi red social ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -474,7 +474,7 @@
         },
         {
             "nombre": "Mi red social",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -482,7 +482,7 @@
         },
         {
             "nombre": "mi red social ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "presentacion ",
@@ -490,7 +490,7 @@
         },
         {
             "nombre": "manual de uso vinculo seguro, valores y acciones",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -498,7 +498,7 @@
         },
         {
             "nombre": "vinculo seguro valores y acciones ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "construir vinculos seguros ",
             "etapa": "reconocimiento",
             "tipo": "presentacion ",
@@ -506,7 +506,7 @@
         },
         {
             "nombre": "manejo de emociones ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion",
             "tipo": "audio ",
@@ -514,7 +514,7 @@
         },
         {
             "nombre": "manual de uso desescalada de los sentidos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion",
             "tipo": "documento",
@@ -522,7 +522,7 @@
         },
         {
             "nombre": "sentidos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion",
             "tipo": "lamina ",
@@ -530,7 +530,7 @@
         },
         {
             "nombre": "manual de uso respiracion de arcoiris ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion",
             "tipo": "documento",
@@ -538,7 +538,7 @@
         },
         {
             "nombre": "respiracion de arcoiris ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "gestion",
             "tipo": "lamina ",
@@ -546,7 +546,7 @@
         },
         {
             "nombre": "ira ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "video ",
@@ -554,7 +554,7 @@
         },
         {
             "nombre": "manual de uso funcion de emociones ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -562,7 +562,7 @@
         },
         {
             "nombre": "miedo ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "video ",
@@ -570,7 +570,7 @@
         },
         {
             "nombre": "tristeza ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "video ",
@@ -578,7 +578,7 @@
         },
         {
             "nombre": "manual aprendiendo a conocer tus emociones ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -586,7 +586,7 @@
         },
         {
             "nombre": "reconociendo tus emociones ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "reconocimiento",
             "tipo": "documento",
@@ -594,7 +594,7 @@
         },
         {
             "nombre": "manual de uso una pausa para continuar ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -602,7 +602,7 @@
         },
         {
             "nombre": "una pausa para continuar ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "separacion ",
             "tipo": "documento",
@@ -610,7 +610,7 @@
         },
         {
             "nombre": "como validar la emocion ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "solucion ",
             "tipo": "lamina ",
@@ -618,7 +618,7 @@
         },
         {
             "nombre": "manual como validar la emocion ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "doctorado emocional ",
             "etapa": "solucion ",
             "tipo": "lamina ",
@@ -626,7 +626,7 @@
         },
         {
             "nombre": "creando la guia emocional de nuestros hijos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -634,7 +634,7 @@
         },
         {
             "nombre": "manual creando la guia emocional de nuestros hijos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -642,7 +642,7 @@
         },
         {
             "nombre": "tres claves para reducir las pataletas ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -650,7 +650,7 @@
         },
         {
             "nombre": "manual tres claves para reducir las pataletas ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -658,7 +658,7 @@
         },
         {
             "nombre": "gestion emocional con hijos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "lamina ",
@@ -666,7 +666,7 @@
         },
         {
             "nombre": "manual gestion emocional con tus hijos ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -674,7 +674,7 @@
         },
         {
             "nombre": "autoridad y autoritarismo ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "lamina ",
@@ -682,7 +682,7 @@
         },
         {
             "nombre": "manual de uso autoridad vs autoritarismo ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "documento",
@@ -690,7 +690,7 @@
         },
         {
             "nombre": "analisis funciones de conducta",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "presentacion ",
@@ -698,7 +698,7 @@
         },
         {
             "nombre": "manual analisis funciones de conducta ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "documento",
@@ -706,7 +706,7 @@
         },
         {
             "nombre": "manual tipos de crianza ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "lamina ",
@@ -714,7 +714,7 @@
         },
         {
             "nombre": "tipos de crianza ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "el padre que quiero ser ",
             "etapa": "psicoeducacion ",
             "tipo": "presentacion ",
@@ -722,7 +722,7 @@
         },
         {
             "nombre": "lenguajes del amor ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi familia mi equipo ",
             "etapa": "entrenamiento ",
             "tipo": "lamina ",
@@ -730,7 +730,7 @@
         },
         {
             "nombre": "manual de uso lenguajes del amor ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi familia mi equipo ",
             "etapa": "entrenamiento ",
             "tipo": "documento",
@@ -738,7 +738,7 @@
         },
         {
             "nombre": "manual quien soy ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "lamina ",
@@ -746,7 +746,7 @@
         },
         {
             "nombre": "quien soy ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "clarificacion ",
             "tipo": "presentacion ",
@@ -754,7 +754,7 @@
         },
         {
             "nombre": "cultivando mi autocuidado ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "generalizacion ",
             "tipo": "lamina ",
@@ -762,7 +762,7 @@
         },
         {
             "nombre": "manual cultivando mi autocuidado",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "mi vision del yo",
             "etapa": "generalizacion ",
             "tipo": "documento",
@@ -770,7 +770,7 @@
         },
         {
             "nombre": "intencion paradojica ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "enfoque ",
             "tipo": "presentacion ",
@@ -778,7 +778,7 @@
         },
         {
             "nombre": "manual intencion paradojica ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "enfoque ",
             "tipo": "lamina ",
@@ -786,7 +786,7 @@
         },
         {
             "nombre": "la metafora del salon de clase ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "presentacion ",
@@ -794,7 +794,7 @@
         },
         {
             "nombre": "manual metafora del salon de clase ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "relacion con mis pensamientos ",
             "etapa": "separacion ",
             "tipo": "lamina ",
@@ -802,7 +802,7 @@
         },
         {
             "nombre": "encontrando el sentido 1",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "lamina ",
@@ -810,7 +810,7 @@
         },
         {
             "nombre": "encontrando el sentido 2 ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "lamina ",
@@ -818,7 +818,7 @@
         },
         {
             "nombre": "encontrando el sentido 3 ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "lamina",
@@ -826,7 +826,7 @@
         },
         {
             "nombre": "encontrando el sentido 4 ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "lamina ",
@@ -834,7 +834,7 @@
         },
         {
             "nombre": "plantilla encontrando el sentido ",
-            "linea_terapeutica ": "familias",
+            "linea_terapeutica": "familias",
             "objetivo_terapeutico": "vida valiosa",
             "etapa": "clarificacion ",
             "tipo": "documento",
