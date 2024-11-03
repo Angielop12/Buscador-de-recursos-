@@ -68,10 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Al seleccionar una línea, actualizamos los objetivos terapéuticos
     filterLinea.addEventListener("change", () => {
       const lineaSeleccionada = filterLinea.value;
-      inicializarFiltroObjetivo(resources, lineaSeleccionada);
-      filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
-      filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
-      filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+      if (lineaSeleccionada) {
+        inicializarFiltroObjetivo(resources, lineaSeleccionada);
+      } else {
+        limpiarFiltro(filterObjetivo);
+        limpiarFiltro(filterEtapa);
+        limpiarFiltro(filterTipo);
+      }
     });
   }
 
@@ -83,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .map(r => r.objetivo_terapeutico)
     );
 
-    filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
+    limpiarFiltro(filterObjetivo);
     objetivos.forEach(obj => {
       let option = document.createElement("option");
       option.value = obj;
@@ -93,9 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     filterObjetivo.addEventListener("change", () => {
       const objetivoSeleccionado = filterObjetivo.value;
-      inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado);
-      filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
-      filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+      if (objetivoSeleccionado) {
+        inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado);
+      } else {
+        limpiarFiltro(filterEtapa);
+        limpiarFiltro(filterTipo);
+      }
     });
   }
 
@@ -107,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .map(r => r.etapa)
     );
 
-    filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
+    limpiarFiltro(filterEtapa);
     etapas.forEach(etapa => {
       let option = document.createElement("option");
       option.value = etapa;
@@ -117,8 +123,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     filterEtapa.addEventListener("change", () => {
       const etapaSeleccionada = filterEtapa.value;
-      inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada);
-      filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+      if (etapaSeleccionada) {
+        inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada);
+      } else {
+        limpiarFiltro(filterTipo);
+      }
     });
   }
 
@@ -134,13 +143,18 @@ document.addEventListener('DOMContentLoaded', function () {
         .map(r => r.tipo)
     );
 
-    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+    limpiarFiltro(filterTipo);
     tipos.forEach(tipo => {
       let option = document.createElement("option");
       option.value = tipo;
       option.textContent = tipo;
       filterTipo.appendChild(option);
     });
+  }
+
+  // Función para limpiar un filtro
+  function limpiarFiltro(filtro) {
+    filtro.innerHTML = '<option value="">Selecciona una opción</option>';
   }
 
   // Función para renderizar la lista de recursos en el DOM
