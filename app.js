@@ -8,15 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const resourceList = document.getElementById("resource-list");
   const buscarBtn = document.getElementById("buscar");
 
-  // Inicializar Netlify Identity
-  netlifyIdentity.on('init', user => {
-    if (user) {
-      showAuthenticated(user);
-    } else {
-      netlifyIdentity.open();
-    }
-  });
-
   function showAuthenticated(user) {
     loginBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
@@ -54,10 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  // Inicializar el filtro de Línea Terapéutica
+  // Función para inicializar el filtro de Línea Terapéutica
   function inicializarFiltroLinea(resources) {
+    limpiarFiltro(filterLinea, "Selecciona una línea terapéutica");
     let lineas = new Set(resources.map(r => r.linea_terapeutica));
-    filterLinea.innerHTML = '<option value="">Selecciona una línea terapéutica</option>';
+
     lineas.forEach(linea => {
       let option = document.createElement("option");
       option.value = linea;
@@ -65,28 +57,26 @@ document.addEventListener('DOMContentLoaded', function () {
       filterLinea.appendChild(option);
     });
 
-    // Al seleccionar una línea, actualizamos los objetivos terapéuticos
     filterLinea.addEventListener("change", () => {
       const lineaSeleccionada = filterLinea.value;
       if (lineaSeleccionada) {
         inicializarFiltroObjetivo(resources, lineaSeleccionada);
-      } else {
-        limpiarFiltro(filterObjetivo);
-        limpiarFiltro(filterEtapa);
-        limpiarFiltro(filterTipo);
       }
+      limpiarFiltro(filterObjetivo, "Selecciona un objetivo terapéutico");
+      limpiarFiltro(filterEtapa, "Selecciona una etapa");
+      limpiarFiltro(filterTipo, "Selecciona un tipo de recurso");
     });
   }
 
-  // Inicializar el filtro de Objetivo Terapéutico basado en la Línea Terapéutica seleccionada
+  // Función para inicializar el filtro de Objetivo Terapéutico
   function inicializarFiltroObjetivo(resources, lineaSeleccionada) {
+    limpiarFiltro(filterObjetivo, "Selecciona un objetivo terapéutico");
     const objetivos = new Set(
       resources
         .filter(r => r.linea_terapeutica === lineaSeleccionada)
         .map(r => r.objetivo_terapeutico)
     );
 
-    limpiarFiltro(filterObjetivo);
     objetivos.forEach(obj => {
       let option = document.createElement("option");
       option.value = obj;
@@ -98,22 +88,21 @@ document.addEventListener('DOMContentLoaded', function () {
       const objetivoSeleccionado = filterObjetivo.value;
       if (objetivoSeleccionado) {
         inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado);
-      } else {
-        limpiarFiltro(filterEtapa);
-        limpiarFiltro(filterTipo);
       }
+      limpiarFiltro(filterEtapa, "Selecciona una etapa");
+      limpiarFiltro(filterTipo, "Selecciona un tipo de recurso");
     });
   }
 
-  // Inicializar el filtro de Etapa basado en la Línea y el Objetivo seleccionados
+  // Función para inicializar el filtro de Etapa
   function inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado) {
+    limpiarFiltro(filterEtapa, "Selecciona una etapa");
     const etapas = new Set(
       resources
         .filter(r => r.linea_terapeutica === lineaSeleccionada && r.objetivo_terapeutico === objetivoSeleccionado)
         .map(r => r.etapa)
     );
 
-    limpiarFiltro(filterEtapa);
     etapas.forEach(etapa => {
       let option = document.createElement("option");
       option.value = etapa;
@@ -125,14 +114,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const etapaSeleccionada = filterEtapa.value;
       if (etapaSeleccionada) {
         inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada);
-      } else {
-        limpiarFiltro(filterTipo);
       }
+      limpiarFiltro(filterTipo, "Selecciona un tipo de recurso");
     });
   }
 
-  // Inicializar el filtro de Tipo de Recurso basado en la Línea, Objetivo y Etapa seleccionados
+  // Función para inicializar el filtro de Tipo de Recurso
   function inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada) {
+    limpiarFiltro(filterTipo, "Selecciona un tipo de recurso");
     const tipos = new Set(
       resources
         .filter(
@@ -143,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .map(r => r.tipo)
     );
 
-    limpiarFiltro(filterTipo);
     tipos.forEach(tipo => {
       let option = document.createElement("option");
       option.value = tipo;
@@ -152,26 +140,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Función para limpiar un filtro
-  function limpiarFiltro(filtro) {
-    filtro.innerHTML = '<option value="">Selecciona una opción</option>';
-  }
-
-  // Función para renderizar la lista de recursos en el DOM
-  function renderResourceList(resources) {
-    resourceList.innerHTML = "";
-    resources.forEach(resource => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo} - ${resource.linea_terapeutica}`;
-
-      const downloadLink = document.createElement("a");
-      downloadLink.href = resource.link;
-      downloadLink.textContent = "Ver recurso";
-      downloadLink.target = "_blank";
-
-      li.appendChild(downloadLink);
-      resourceList.appendChild(li);
-    });
+  // Función para limpiar un filtro y agregar una opción por defecto
+  function limpiarFiltro(filtro, mensaje) {
+    filtro.innerHTML = `<option value="">${mensaje}</option>`;
   }
 
   function filterResources(resources) {
@@ -190,5 +161,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     renderResourceList(filteredResources);
+  }
+
+  function renderResourceList(resources) {
+    resourceList.innerHTML = "";
+    resources.forEach(resource => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo} - ${resource.linea_terapeutica}`;
+
+      const downloadLink = document.createElement("a");
+      downloadLink.href = resource.link;
+      downloadLink.textContent = "Ver recurso";
+      downloadLink.target = "_blank";
+
+      li.appendChild(downloadLink);
+      resourceList.appendChild(li);
+    });
   }
 });
