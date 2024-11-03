@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  // Función para generar los filtros dinámicamente
+  // Función para generar los filtros dinámicamente en el orden especificado
   function generarFiltros(resources) {
     // Cargar opciones de línea terapéutica
     let lineas = new Set(resources.map(r => r.linea_terapeutica));
