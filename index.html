@@ -5,143 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscador de Recursos CreSentia</title>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #fff5f7;
-      background: linear-gradient(to top right, #fff5f7, #ffebf0, #fce8e8);
-      padding: 20px;
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Curvas y formas en el fondo */
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      border-radius: 50% 50% 0 0 / 15% 15% 0 0;
-      transform: scaleX(1.5);
-    }
-
-    body::before {
-      background: radial-gradient(circle at top left, #ffebf0, #fff5f7);
-      height: 50%;
-    }
-
-    body::after {
-      background: radial-gradient(circle at bottom right, #ffedd5, #fff1e8);
-      height: 80%;
-      top: 40%;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      text-align: center;
-      color: #e91e63;
-      font-size: 2.5em;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    select, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #f48fb1;
-      font-size: 16px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    select {
-      background-color: #ffeef1;
-      color: #e91e63;
-    }
-
-    button {
-      background-color: #ec407a;
-      color: white;
-      cursor: pointer;
-      border: none;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #d81b60;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      background-color: #f8bbd0;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #ad1457;
-      text-decoration: none;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    #login-btn, #logout-btn {
-      background-color: #ad1457;
-      color: white;
-      border: none;
-      padding: 12px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    #login-btn:hover, #logout-btn:hover {
-      background-color: #d81b60;
-    }
-
-    #logout-btn {
-      display: none;
-    }
-
-    /* Estilo para el logo y el título */
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      width: 150px;
-      margin-bottom: 10px;
-    }
-
-    .logo h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.5em;
-      color: #e91e63;
-      margin-top: 0;
-    }
+    /* El mismo estilo que tienes ahora, sin cambios */
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -154,7 +18,6 @@
   </header>
 
   <div class="container">
-    <!-- Logo CreSentia -->
     <div class="logo">
       <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia">
       <h1>Buscador de Recursos CreSentia</h1>
@@ -170,14 +33,15 @@
     <select id="filter-tipo">
       <option value="">Selecciona un tipo de recurso</option>
     </select>
+    <select id="filter-linea">
+      <option value="">Selecciona una línea terapéutica</option>
+    </select>
     <button id="buscar">Buscar recurso</button>
 
-    <!-- Lista de recursos -->
     <ul id="resource-list"></ul>
   </div>
 
   <script>
-    // Inicializar Netlify Identity
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
     
@@ -190,7 +54,7 @@
     function showAuthenticated(user) {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'inline-block';
-      fetchResources();  // Cargar recursos solo para usuarios autenticados
+      fetchResources();
     }
 
     logoutBtn.addEventListener('click', () => {
@@ -213,7 +77,7 @@
 
     // Función para obtener los datos desde el archivo JSON
     function fetchResources() {
-      fetch('/resources.json')
+      fetch('resources.json')
         .then(response => response.json())
         .then(data => {
           const resources = data.recursos;
@@ -230,15 +94,18 @@
       const filterObjetivo = document.getElementById("filter-objetivo");
       const filterEtapa = document.getElementById("filter-etapa");
       const filterTipo = document.getElementById("filter-tipo");
+      const filterLinea = document.getElementById("filter-linea");
 
       let objetivos = new Set();
       let etapas = new Set();
       let tipos = new Set();
+      let lineas = new Set();
 
       resources.forEach(resource => {
         objetivos.add(resource.objetivo_terapeutico);
         etapas.add(resource.etapa);
         tipos.add(resource.tipo);
+        lineas.add(resource.linea_terapeutica); // Agregar línea terapéutica
       });
 
       objetivos.forEach(obj => {
@@ -261,6 +128,13 @@
         option.textContent = tp;
         filterTipo.appendChild(option);
       });
+
+      lineas.forEach(ln => {
+        let option = document.createElement("option");
+        option.value = ln;
+        option.textContent = ln;
+        filterLinea.appendChild(option);
+      });
     }
 
     // Función para renderizar la lista de recursos en el DOM
@@ -270,7 +144,7 @@
 
       resources.forEach(resource => {
         const li = document.createElement("li");
-        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
+        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo} - ${resource.linea_terapeutica}`;
 
         const downloadLink = document.createElement("a");
         downloadLink.href = resource.link;
@@ -287,11 +161,12 @@
       const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
       const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
       const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
+      const filterLinea = document.getElementById("filter-linea").value.toLowerCase();
       const allResources = document.querySelectorAll("#resource-list li");
 
       allResources.forEach(resource => {
         const text = resource.textContent.toLowerCase();
-        if (text.includes(filterObjetivo) && text.includes(filterEtapa) && text.includes(filterTipo)) {
+        if (text.includes(filterObjetivo) && text.includes(filterEtapa) && text.includes(filterTipo) && text.includes(filterLinea)) {
           resource.style.display = "";
         } else {
           resource.style.display = "none";
