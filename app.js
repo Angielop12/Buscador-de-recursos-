@@ -11,6 +11,46 @@ function fetchResources() {
     .catch(error => console.error("Error al obtener los datos del archivo JSON: ", error));
 }
 
+// Configuración de Netlify Identity para el inicio y cierre de sesión
+const loginBtn = document.getElementById('login-btn');
+const logoutBtn = document.createElement('button'); // Crear botón de cierre de sesión
+logoutBtn.textContent = "Cerrar sesión";
+logoutBtn.style.display = "none"; // Ocultar al inicio
+document.body.appendChild(logoutBtn); // Añadir botón al DOM
+
+// Mostrar el botón de cerrar sesión y cargar recursos para usuarios autenticados
+function showAuthenticated(user) {
+  loginBtn.style.display = 'none';
+  logoutBtn.style.display = 'inline-block';
+  fetchResources(); // Cargar recursos solo para usuarios autenticados
+}
+
+// Escuchar eventos de Netlify Identity para el inicio de sesión
+netlifyIdentity.on('init', user => {
+  if (user) {
+    showAuthenticated(user);
+  }
+});
+
+loginBtn.addEventListener('click', () => {
+  netlifyIdentity.open(); // Abrir el widget de Netlify Identity
+});
+
+netlifyIdentity.on('login', user => {
+  showAuthenticated(user);
+  netlifyIdentity.close(); // Cerrar el widget después del inicio de sesión
+});
+
+logoutBtn.addEventListener('click', () => {
+  netlifyIdentity.logout(); // Cerrar sesión en Netlify Identity
+});
+
+netlifyIdentity.on('logout', () => {
+  loginBtn.style.display = 'inline-block';
+  logoutBtn.style.display = 'none';
+  document.getElementById("resource-list").innerHTML = ""; // Limpiar la lista de recursos al cerrar sesión
+});
+
 // Función para generar los filtros dinámicamente
 function generarFiltros() {
   const filterLinea = document.getElementById("filter-linea-terapeutica");
@@ -118,5 +158,9 @@ function filterResources() {
 // Configurar el botón de búsqueda
 document.getElementById("buscar").addEventListener("click", filterResources);
 
-// Cargar los recursos al cargar la página
-fetchResources();
+// Cargar los recursos al cargar la página solo si el usuario está autenticado
+netlifyIdentity.on('init', user => {
+  if (user) {
+    showAuthenticated(user);
+  }
+});
