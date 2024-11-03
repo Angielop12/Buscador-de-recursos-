@@ -103,8 +103,26 @@
     .form-section button:hover {
       background-color: #1e3b2b;
     }
+
+    #resource-list {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    #resource-list li {
+      background-color: #f8bbd0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #resource-list a {
+      color: #ad1457;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -145,38 +163,11 @@
     </div>
   </div>
 
-  <script>
-    // Inicializar Netlify Identity
-    const loginBtn = document.getElementById('login-btn');
-    
-    netlifyIdentity.on('init', user => {
-      if (user) {
-        loginBtn.style.display = 'none';
-      }
-    });
+  <!-- Lista de resultados -->
+  <ul id="resource-list"></ul>
 
-    loginBtn.addEventListener('click', () => {
-      netlifyIdentity.open();
-    });
-
-    netlifyIdentity.on('login', user => {
-      loginBtn.style.display = 'none';
-      netlifyIdentity.close();
-    });
-
-    netlifyIdentity.on('logout', () => {
-      loginBtn.style.display = 'inline-block';
-    });
-
-    // Función para cargar recursos y generar filtros (simplificado)
-    function generarFiltros() {
-      // Lógica para cargar opciones de filtros
-      // Esta parte puede ser completada con tus datos
-    }
-
-    document.getElementById("buscar").addEventListener("click", () => {
-      // Lógica de búsqueda de recursos
-    });
-  </script>
+  <!-- Enlace al archivo JavaScript -->
+  <script src="app.js"></script>
 </body>
 </html>
+
