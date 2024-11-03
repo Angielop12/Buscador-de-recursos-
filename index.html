@@ -141,25 +141,28 @@
       <h1>Buscador de Recursos CreSentia</h1>
     </div>
 
-    <!-- Filtros -->
-    <select id="filter-objetivo">
-      <option value="">Selecciona un objetivo terapéutico</option>
-    </select>
-    <select id="filter-etapa">
-      <option value="">Selecciona una etapa</option>
-    </select>
-    <select id="filter-tipo">
-      <option value="">Selecciona un tipo de recurso</option>
-    </select>
-    <!-- Nuevo filtro de línea terapéutica -->
-    <select id="filter-linea-terapeutica">
-      <option value="">Selecciona una línea terapéutica</option>
-    </select>
-    <button id="buscar">Buscar recurso</button>
+  <!-- Filtros dinámicos -->
+  <select id="filter-linea-terapeutica">
+    <option value="">Selecciona una línea terapéutica</option>
+  </select>
 
-    <!-- Lista de recursos -->
-    <ul id="resource-list"></ul>
-  </div>
+  <select id="filter-objetivo">
+    <option value="">Selecciona un objetivo terapéutico</option>
+  </select>
+
+  <select id="filter-etapa">
+    <option value="">Selecciona una etapa</option>
+  </select>
+
+  <select id="filter-tipo">
+    <option value="">Selecciona un tipo de recurso</option>
+  </select>
+  
+  <button id="buscar">Buscar recurso</button>
+
+  <ul id="resource-list"></ul>
+</div>
+
 
   <script>
     // Inicializar Netlify Identity
