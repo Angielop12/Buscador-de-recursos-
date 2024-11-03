@@ -68,9 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Al seleccionar una línea, actualizamos los objetivos terapéuticos
     filterLinea.addEventListener("change", () => {
       const lineaSeleccionada = filterLinea.value;
-      if (lineaSeleccionada) {
-        inicializarFiltroObjetivo(resources, lineaSeleccionada);
-      }
+      inicializarFiltroObjetivo(resources, lineaSeleccionada);
       filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
       filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
       filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
@@ -93,12 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
       filterObjetivo.appendChild(option);
     });
 
-    // Al seleccionar un objetivo, actualizamos las etapas
     filterObjetivo.addEventListener("change", () => {
       const objetivoSeleccionado = filterObjetivo.value;
-      if (objetivoSeleccionado) {
-        inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado);
-      }
+      inicializarFiltroEtapa(resources, lineaSeleccionada, objetivoSeleccionado);
       filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
       filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
     });
@@ -120,12 +115,9 @@ document.addEventListener('DOMContentLoaded', function () {
       filterEtapa.appendChild(option);
     });
 
-    // Al seleccionar una etapa, actualizamos los tipos de recurso
     filterEtapa.addEventListener("change", () => {
       const etapaSeleccionada = filterEtapa.value;
-      if (etapaSeleccionada) {
-        inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada);
-      }
+      inicializarFiltroTipo(resources, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada);
       filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
     });
   }
@@ -153,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Función para renderizar la lista de recursos en el DOM
   function renderResourceList(resources) {
-    resourceList.innerHTML = "";  // Limpiar la lista actual
+    resourceList.innerHTML = "";
     resources.forEach(resource => {
       const li = document.createElement("li");
       li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo} - ${resource.linea_terapeutica}`;
@@ -168,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Función para filtrar y mostrar los recursos
   function filterResources(resources) {
     const lineaSeleccionada = filterLinea.value.toLowerCase();
     const objetivoSeleccionado = filterObjetivo.value.toLowerCase();
