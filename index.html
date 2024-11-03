@@ -103,6 +103,25 @@
     .form-section button:hover {
       background-color: #1e3b2b;
     }
+
+    #resource-list {
+      margin-top: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    #resource-list li {
+      background-color: #f8bbd0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #resource-list a {
+      color: #ad1457;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -145,6 +164,9 @@
     </div>
   </div>
 
+  <!-- Lista de resultados -->
+  <ul id="resource-list"></ul>
+
   <script>
     // Inicializar Netlify Identity
     const loginBtn = document.getElementById('login-btn');
@@ -152,6 +174,7 @@
     netlifyIdentity.on('init', user => {
       if (user) {
         loginBtn.style.display = 'none';
+        fetchResources();
       }
     });
 
@@ -161,22 +184,93 @@
 
     netlifyIdentity.on('login', user => {
       loginBtn.style.display = 'none';
+      fetchResources();
       netlifyIdentity.close();
     });
 
     netlifyIdentity.on('logout', () => {
       loginBtn.style.display = 'inline-block';
+      document.getElementById("resource-list").innerHTML = "";  // Limpiar lista de recursos al cerrar sesión
     });
 
-    // Función para cargar recursos y generar filtros (simplificado)
-    function generarFiltros() {
-      // Lógica para cargar opciones de filtros
-      // Esta parte puede ser completada con tus datos
+    // Función para cargar recursos desde el archivo JSON y generar filtros
+    function fetchResources() {
+      fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+          const resources = data.recursos;
+          generarFiltros(resources);
+          renderResourceList(resources);
+        })
+        .catch(error => console.error("Error al obtener los datos del archivo JSON: ", error));
     }
 
-    document.getElementById("buscar").addEventListener("click", () => {
-      // Lógica de búsqueda de recursos
-    });
+    // Función para generar los filtros dinámicamente
+    function generarFiltros(resources) {
+      const filterObjetivo = document.getElementById("filter-objetivo");
+      const filterEtapa = document.getElementById("filter-etapa");
+      const filterTipo = document.getElementById("filter-tipo");
+      const filterLinea = document.getElementById("filter-linea-terapeutica");
+
+      // Limpiar filtros existentes
+      filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
+      filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
+      filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+      filterLinea.innerHTML = '<option value="">Selecciona una línea terapéutica</option>';
+
+      // Crear conjuntos para evitar duplicados
+      let objetivos = new Set();
+      let etapas = new Set();
+      let tipos = new Set();
+      let lineas = new Set();
+
+      resources.forEach(resource => {
+        objetivos.add(resource.objetivo_terapeutico);
+        etapas.add(resource.etapa);
+        tipos.add(resource.tipo);
+        lineas.add(resource.linea_terapeutica);
+      });
+
+      // Agregar opciones únicas a cada filtro
+      objetivos.forEach(obj => filterObjetivo.innerHTML += `<option value="${obj}">${obj}</option>`);
+      etapas.forEach(et => filterEtapa.innerHTML += `<option value="${et}">${et}</option>`);
+      tipos.forEach(tp => filterTipo.innerHTML += `<option value="${tp}">${tp}</option>`);
+      lineas.forEach(ln => filterLinea.innerHTML += `<option value="${ln}">${ln}</option>`);
+    }
+
+    // Función para renderizar la lista de recursos en el DOM
+    function renderResourceList(resources) {
+      const resourceList = document.getElementById("resource-list");
+      resourceList.innerHTML = "";  // Limpiar la lista actual
+
+      resources.forEach(resource => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo} - <a href="${resource.link}" target="_blank">Ver recurso</a>`;
+        resourceList.appendChild(li);
+      });
+    }
+
+    // Función para filtrar los recursos
+    function filterResources() {
+      const filterLinea = document.getElementById("filter-linea-terapeutica").value.toLowerCase();
+      const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
+      const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
+      const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
+
+      fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+          const filteredResources = data.recursos.filter(recurso =>
+            (filterLinea === "" || recurso.linea_terapeutica.toLowerCase().includes(filterLinea)) &&
+            (filterObjetivo === "" || recurso.objetivo_terapeutico.toLowerCase().includes(filterObjetivo)) &&
+            (filterEtapa === "" || recurso.etapa.toLowerCase().includes(filterEtapa)) &&
+            (filterTipo === "" || recurso.tipo.toLowerCase().includes(filterTipo))
+          );
+          renderResourceList(filteredResources);
+        });
+    }
+
+    document.getElementById("buscar").addEventListener("click", filterResources);
   </script>
 </body>
 </html>
