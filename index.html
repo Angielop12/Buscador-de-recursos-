@@ -8,179 +8,151 @@
     /* Estilos del sitio */
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff5f7;
-      background: linear-gradient(to top right, #fff5f7, #ffebf0, #fce8e8);
+      background-color: #f7eae6;
       padding: 20px;
       min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    body::before, body::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      border-radius: 50% 50% 0 0 / 15% 15% 0 0;
-      transform: scaleX(1.5);
-    }
-
-    body::before {
-      background: radial-gradient(circle at top left, #ffebf0, #fff5f7);
-      height: 50%;
-    }
-
-    body::after {
-      background: radial-gradient(circle at bottom right, #ffedd5, #fff1e8);
-      height: 80%;
-      top: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      text-align: center;
-      color: #e91e63;
-      font-size: 2.5em;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    select, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #f48fb1;
-      font-size: 16px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    select {
-      background-color: #ffeef1;
-      color: #e91e63;
-    }
-
-    button {
-      background-color: #ec407a;
-      color: white;
-      cursor: pointer;
-      border: none;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #d81b60;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      background-color: #f8bbd0;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    a {
-      color: #ad1457;
-      text-decoration: none;
-    }
-
-    header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
+      max-width: 900px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+
+    .logo-section, .form-section {
+      width: 45%;
+    }
+
+    .logo-section {
+      text-align: center;
+    }
+
+    .logo-section img {
+      width: 200px;
       margin-bottom: 20px;
     }
 
-    #login-btn, #logout-btn {
-      background-color: #ad1457;
-      color: white;
-      border: none;
-      padding: 12px;
+    .logo-section button {
+      background-color: #fff;
+      color: #2f4f3e;
+      border: 2px solid #2f4f3e;
+      padding: 10px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
-      border-radius: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .logo-section button:hover {
+      background-color: #2f4f3e;
+      color: #fff;
+    }
+
+    .form-section h2 {
+      color: #2f4f3e;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .form-section p {
+      color: #2f4f3e;
+      margin-bottom: 20px;
+    }
+
+    .form-section label {
+      font-weight: bold;
+      color: #b26060;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-section select, .form-section button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section select {
+      background-color: #f9f6f5;
+      color: #2f4f3e;
+    }
+
+    .form-section button {
+      background-color: #2f4f3e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
       transition: background-color 0.3s ease;
+      border: none;
     }
 
-    #login-btn:hover, #logout-btn:hover {
-      background-color: #d81b60;
-    }
-
-    #logout-btn {
-      display: none;
+    .form-section button:hover {
+      background-color: #1e3b2b;
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
-  <header>
-    <h1>Buscador de Recursos CreSentia</h1>
-    <button id="login-btn">Iniciar sesión</button>
-    <button id="logout-btn">Cerrar sesión</button>
-  </header>
-
   <div class="container">
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia" width="150">
-      <h1>Buscador de Recursos CreSentia</h1>
+    <!-- Sección del logo y botón de inicio de sesión -->
+    <div class="logo-section">
+      <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia">
+      <button id="login-btn">Iniciar sesión</button>
     </div>
 
-    <!-- Filtros -->
-    <select id="filter-objetivo">
-      <option value="">Selecciona un objetivo terapéutico</option>
-    </select>
-    <select id="filter-etapa">
-      <option value="">Selecciona una etapa</option>
-    </select>
-    <select id="filter-tipo">
-      <option value="">Selecciona un tipo de recurso</option>
-    </select>
-    <!-- Nuevo filtro de línea terapéutica -->
-    <select id="filter-linea-terapeutica">
-      <option value="">Selecciona una línea terapéutica</option>
-    </select>
-    <button id="buscar">Buscar recurso</button>
+    <!-- Sección del formulario de filtros -->
+    <div class="form-section">
+      <h2>Hola! Bienvenid@</h2>
+      <p>Al banco de recursos de <strong>CreSentia</strong></p>
+      <p>Completa los filtros para realizar la búsqueda:</p>
 
-    <!-- Lista de recursos -->
-    <ul id="resource-list"></ul>
+      <label for="filter-linea-terapeutica">Línea terapéutica</label>
+      <select id="filter-linea-terapeutica">
+        <option value="">Selecciona una línea terapéutica</option>
+      </select>
+
+      <label for="filter-objetivo">Objetivo terapéutico</label>
+      <select id="filter-objetivo">
+        <option value="">Selecciona un objetivo terapéutico</option>
+      </select>
+
+      <label for="filter-etapa">Etapa</label>
+      <select id="filter-etapa">
+        <option value="">Selecciona una etapa</option>
+      </select>
+
+      <label for="filter-tipo">Tipo de recurso</label>
+      <select id="filter-tipo">
+        <option value="">Selecciona un tipo de recurso</option>
+      </select>
+
+      <button id="buscar">Buscar recurso</button>
+    </div>
   </div>
 
   <script>
     // Inicializar Netlify Identity
     const loginBtn = document.getElementById('login-btn');
-    const logoutBtn = document.getElementById('logout-btn');
     
     netlifyIdentity.on('init', user => {
       if (user) {
-        showAuthenticated(user);
+        loginBtn.style.display = 'none';
       }
-    });
-
-    function showAuthenticated(user) {
-      loginBtn.style.display = 'none';
-      logoutBtn.style.display = 'inline-block';
-      fetchResources();  // Cargar recursos solo para usuarios autenticados
-    }
-
-    logoutBtn.addEventListener('click', () => {
-      netlifyIdentity.logout();
-      location.reload();
     });
 
     loginBtn.addEventListener('click', () => {
@@ -188,119 +160,23 @@
     });
 
     netlifyIdentity.on('login', user => {
-      showAuthenticated(user);
+      loginBtn.style.display = 'none';
       netlifyIdentity.close();
     });
 
     netlifyIdentity.on('logout', () => {
-      location.reload();
+      loginBtn.style.display = 'inline-block';
     });
 
-    // Función para obtener los datos desde el archivo JSON
-    function fetchResources() {
-      fetch('/resources.json')
-        .then(response => response.json())
-        .then(data => {
-          const resources = data.recursos;
-          generarFiltros(resources);
-          renderResourceList(resources);
-        })
-        .catch(error => {
-          console.error("Error al obtener los datos del archivo JSON: ", error);
-        });
+    // Función para cargar recursos y generar filtros (simplificado)
+    function generarFiltros() {
+      // Lógica para cargar opciones de filtros
+      // Esta parte puede ser completada con tus datos
     }
 
-    // Función para generar los filtros dinámicamente
-    function generarFiltros(resources) {
-      const filterObjetivo = document.getElementById("filter-objetivo");
-      const filterEtapa = document.getElementById("filter-etapa");
-      const filterTipo = document.getElementById("filter-tipo");
-      const filterLinea = document.getElementById("filter-linea-terapeutica");
-
-      let objetivos = new Set();
-      let etapas = new Set();
-      let tipos = new Set();
-      let lineas = new Set();
-
-      resources.forEach(resource => {
-        objetivos.add(resource.objetivo_terapeutico);
-        etapas.add(resource.etapa);
-        tipos.add(resource.tipo);
-        lineas.add(resource["linea_terapeutica"]);
-      });
-
-      objetivos.forEach(obj => {
-        let option = document.createElement("option");
-        option.value = obj;
-        option.textContent = obj;
-        filterObjetivo.appendChild(option);
-      });
-
-      etapas.forEach(et => {
-        let option = document.createElement("option");
-        option.value = et;
-        option.textContent = et;
-        filterEtapa.appendChild(option);
-      });
-
-      tipos.forEach(tp => {
-        let option = document.createElement("option");
-        option.value = tp;
-        option.textContent = tp;
-        filterTipo.appendChild(option);
-      });
-
-      lineas.forEach(ln => {
-        let option = document.createElement("option");
-        option.value = ln;
-        option.textContent = ln;
-        filterLinea.appendChild(option);
-      });
-    }
-
-    // Función para renderizar la lista de recursos en el DOM
-    function renderResourceList(resources) {
-      const resourceList = document.getElementById("resource-list");
-      resourceList.innerHTML = "";  // Limpiar la lista actual
-
-      resources.forEach(resource => {
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${resource.nombre}</strong> - ${resource.objetivo_terapeutico} - ${resource.etapa} - ${resource.tipo}`;
-
-        const downloadLink = document.createElement("a");
-        downloadLink.href = resource.link;
-        downloadLink.textContent = "Ver recurso";
-        downloadLink.target = "_blank";
-
-        li.appendChild(downloadLink);
-        resourceList.appendChild(li);
-      });
-    }
-
-    // Función para filtrar los recursos
-    function filterResources() {
-      const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
-      const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
-      const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
-      const filterLinea = document.getElementById("filter-linea-terapeutica").value.toLowerCase();
-      const allResources = document.querySelectorAll("#resource-list li");
-
-      allResources.forEach(resource => {
-        const text = resource.textContent.toLowerCase();
-        if (
-          text.includes(filterObjetivo) &&
-          text.includes(filterEtapa) &&
-          text.includes(filterTipo) &&
-          text.includes(filterLinea)
-        ) {
-          resource.style.display = "";
-        } else {
-          resource.style.display = "none";
-        }
-      });
-    }
-
-    document.getElementById("buscar").addEventListener("click", filterResources);
+    document.getElementById("buscar").addEventListener("click", () => {
+      // Lógica de búsqueda de recursos
+    });
   </script>
 </body>
 </html>
