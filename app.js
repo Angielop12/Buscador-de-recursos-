@@ -1,89 +1,84 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const lineaSelect = document.getElementById('filter-linea');
-  const objetivoSelect = document.getElementById('filter-objetivo');
-  const etapaSelect = document.getElementById('filter-etapa');
-  const tipoSelect = document.getElementById('filter-tipo');
-  const buscarBtn = document.getElementById('buscar');
-  const resourceList = document.getElementById('resource-list');
-
-  // Cargar datos desde el archivo JSON
-  fetch('resources.json')
-    .then(response => response.json())
-    .then(data => {
-      const recursos = data.recursos;
-      initFilters(recursos);
-      
-      buscarBtn.addEventListener('click', () => {
-        const filteredResources = filterResources(recursos);
-        displayResources(filteredResources);
-      });
+    const loginBtn = document.getElementById('login-btn');
+    const logoutBtn = document.getElementById('logout-btn');
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const resultadosDiv = document.getElementById('resultados');
+    
+    // Inicializar Netlify Identity
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        showAuthenticated(user);
+      } else {
+        netlifyIdentity.open();
+      }
     });
-
-  // Inicializar filtros únicos
-  function initFilters(recursos) {
-    const lineas = [...new Set(recursos.map(recurso => recurso['linea_terapeutica '].trim()))];
-    const objetivos = [...new Set(recursos.map(recurso => recurso.objetivo_terapeutico.trim()))];
-    const etapas = [...new Set(recursos.map(recurso.etapa.trim()))];
-    const tipos = [...new Set(recursos.map(recurso.tipo.trim()))];
-
-    populateSelect(lineaSelect, lineas);
-    populateSelect(objetivoSelect, objetivos);
-    populateSelect(etapaSelect, etapas);
-    populateSelect(tipoSelect, tipos);
-  }
-
-  function populateSelect(selectElement, options) {
-    options.forEach(option => {
-      const opt = document.createElement('option');
-      opt.value = option;
-      opt.textContent = option;
-      selectElement.appendChild(opt);
+  
+    // Mostrar UI para usuarios autenticados
+    function showAuthenticated(user) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+      loadResources(); // Cargar recursos solo para usuarios autenticados
+    }
+  
+    // Cerrar sesión
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+      location.reload();
     });
-  }
-
-  function filterResources(recursos) {
-    const selectedLinea = lineaSelect.value;
-    const selectedObjetivo = objetivoSelect.value;
-    const selectedEtapa = etapaSelect.value;
-    const selectedTipo = tipoSelect.value;
-
-    return recursos.filter(recurso => {
-      return (!selectedLinea || recurso['linea_terapeutica '].trim() === selectedLinea) &&
-             (!selectedObjetivo || recurso.objetivo_terapeutico.trim() === selectedObjetivo) &&
-             (!selectedEtapa || recurso.etapa.trim() === selectedEtapa) &&
-             (!selectedTipo || recurso.tipo.trim() === selectedTipo);
+  
+    // Login handler
+    loginBtn.addEventListener('click', () => {
+      netlifyIdentity.open();
     });
-  }
-
-  function displayResources(recursos) {
-    resourceList.innerHTML = '';
-    recursos.forEach(recurso => {
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${recurso.link}" target="_blank">${recurso.nombre}</a>`;
-      resourceList.appendChild(li);
+  
+    // Cargar recursos desde JSON
+    function loadResources() {
+      fetch('resources.json')
+        .then(response => response.json())
+        .then(data => {
+          searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredResources = data.recursos.filter(recurso => {
+              return recurso.nombre.toLowerCase().includes(query) || 
+                     recurso.objetivo_terapeutico.toLowerCase().includes(query) ||
+                     recurso.etapa.toLowerCase().includes(query) ||
+                     recurso.tipo.toLowerCase().includes(query);
+            });
+  
+            displayResults(filteredResources);
+          });
+        });
+    }
+  
+    // Mostrar los resultados en el DOM
+    function displayResults(resources) {
+      resultadosDiv.innerHTML = '';
+      if (resources.length > 0) {
+        resources.forEach(recurso => {
+          resultadosDiv.innerHTML += `
+            <div class="resource">
+              <h3>${recurso.nombre}</h3>
+              <p><strong>Objetivo terapéutico:</strong> ${recurso.objetivo_terapeutico}</p>
+              <p><strong>Etapa:</strong> ${recurso.etapa}</p>
+              <p><strong>Tipo:</strong> ${recurso.tipo}</p>
+              <a href="${recurso.link}" target="_blank">Abrir recurso</a>
+            </div>`;
+        });
+      } else {
+        resultadosDiv.innerHTML = '<p>No se encontraron recursos.</p>';
+      }
+    }
+  
+    // Escuchar el evento de login de Netlify Identity
+    netlifyIdentity.on('login', user => {
+      showAuthenticated(user);
+      netlifyIdentity.close();
     });
-  }
-
-  // Manejo de autenticación con Netlify
-  const loginBtn = document.getElementById('login-btn');
-  const logoutBtn = document.getElementById('logout-btn');
-
-  netlifyIdentity.on('login', () => {
-    loginBtn.style.display = 'none';
-    logoutBtn.style.display = 'inline';
-    netlifyIdentity.close();
+  
+    // Recargar al cerrar sesión
+    netlifyIdentity.on('logout', () => {
+      location.reload();
+    });
   });
-
-  netlifyIdentity.on('logout', () => {
-    loginBtn.style.display = 'inline';
-    logoutBtn.style.display = 'none';
-  });
-
-  loginBtn.addEventListener('click', () => {
-    netlifyIdentity.open();
-  });
-
-  logoutBtn.addEventListener('click', () => {
-    netlifyIdentity.logout();
-  });
-});
+  
