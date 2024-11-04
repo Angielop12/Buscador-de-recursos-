@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Selección de elementos en el DOM
   const loginBtn = document.getElementById('login-btn');
   const logoutBtn = document.getElementById('logout-btn');
   const filterLinea = document.getElementById("filter-linea-terapeutica");
@@ -8,18 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterTipo = document.getElementById("filter-tipo");
   const searchBtn = document.getElementById('buscar');
   const resultadosDiv = document.getElementById('resource-list');
-  let resourcesData = []; // Array para almacenar datos de los recursos
+  let resourcesData = []; // Para almacenar datos de los recursos
 
   // Inicializar Netlify Identity para autenticación
   netlifyIdentity.on('init', user => {
     if (user) {
-      showAuthenticated(user); // Mostrar UI autenticada si hay usuario
+      showAuthenticated(user);
     } else {
-      netlifyIdentity.open(); // Pedir login si no hay usuario
+      netlifyIdentity.open();
     }
   });
 
-  // Función para mostrar la UI autenticada y cargar recursos
+  // Mostrar UI autenticada y cargar recursos
   function showAuthenticated(user) {
     loginBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Evento para cerrar sesión
   logoutBtn.addEventListener('click', () => {
     netlifyIdentity.logout();
-    location.reload(); // Recargar la página después de cerrar sesión
+    location.reload();
   });
 
   // Evento para abrir login
@@ -50,22 +49,29 @@ document.addEventListener('DOMContentLoaded', function () {
   // Poblar opciones de "Línea Terapéutica" en el filtro
   function populateLineaOptions() {
     const lineas = [...new Set(resourcesData.map(resource => resource.linea_terapeutica))];
+    filterLinea.innerHTML = '<option value="">Selecciona una línea terapéutica</option>';
     lineas.forEach(linea => {
       const option = document.createElement("option");
       option.value = linea;
       option.textContent = linea;
       filterLinea.appendChild(option);
     });
+    // Limpiar filtros dependientes
+    filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
+    filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
+    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
   }
 
   // Actualizar "Objetivo Terapéutico" basado en la "Línea Terapéutica" seleccionada
   filterLinea.addEventListener('change', () => {
     const selectedLinea = filterLinea.value;
 
-    // Limpiar opciones dependientes
+    // Limpiar filtros dependientes
     filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
     filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+
+    if (!selectedLinea) return; // Detener si no hay línea seleccionada
 
     // Obtener objetivos relacionados a la línea seleccionada
     const objetivos = [...new Set(
@@ -88,9 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const selectedLinea = filterLinea.value;
     const selectedObjetivo = filterObjetivo.value;
 
-    // Limpiar opciones dependientes
+    // Limpiar filtros dependientes
     filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+
+    if (!selectedObjetivo) return; // Detener si no hay objetivo seleccionado
 
     // Obtener etapas relacionadas al objetivo seleccionado
     const etapas = [...new Set(
@@ -116,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Limpiar opciones de tipo de recurso
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
+
+    if (!selectedEtapa) return; // Detener si no hay etapa seleccionada
 
     // Obtener tipos relacionados a la etapa seleccionada
     const tipos = [...new Set(
