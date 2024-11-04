@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Selección de elementos en el DOM
   const loginBtn = document.getElementById('login-btn');
   const logoutBtn = document.getElementById('logout-btn');
   const filterLinea = document.getElementById("filter-linea-terapeutica");
@@ -7,43 +8,46 @@ document.addEventListener('DOMContentLoaded', function () {
   const filterTipo = document.getElementById("filter-tipo");
   const searchBtn = document.getElementById('buscar');
   const resultadosDiv = document.getElementById('resource-list');
-  let resourcesData = [];
+  let resourcesData = []; // Array para almacenar datos de los recursos
 
-  // Inicializar Netlify Identity
+  // Inicializar Netlify Identity para autenticación
   netlifyIdentity.on('init', user => {
     if (user) {
-      showAuthenticated(user);
+      showAuthenticated(user); // Mostrar UI autenticada si hay usuario
     } else {
-      netlifyIdentity.open();
+      netlifyIdentity.open(); // Pedir login si no hay usuario
     }
   });
 
+  // Función para mostrar la UI autenticada y cargar recursos
   function showAuthenticated(user) {
     loginBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
-    loadResources();
+    loadResources(); // Cargar los recursos desde JSON
   }
 
+  // Evento para cerrar sesión
   logoutBtn.addEventListener('click', () => {
     netlifyIdentity.logout();
-    location.reload();
+    location.reload(); // Recargar la página después de cerrar sesión
   });
 
+  // Evento para abrir login
   loginBtn.addEventListener('click', () => {
     netlifyIdentity.open();
   });
 
-  // Cargar recursos desde JSON y almacenar los datos
+  // Cargar recursos desde el archivo JSON
   function loadResources() {
     fetch('resources.json')
       .then(response => response.json())
       .then(data => {
-        resourcesData = data.recursos;
-        populateLineaOptions();
+        resourcesData = data.recursos; // Guardar datos en resourcesData
+        populateLineaOptions(); // Poblar opciones iniciales de línea terapéutica
       });
   }
 
-  // Poblar opciones de "Línea Terapéutica"
+  // Poblar opciones de "Línea Terapéutica" en el filtro
   function populateLineaOptions() {
     const lineas = [...new Set(resourcesData.map(resource => resource.linea_terapeutica))];
     lineas.forEach(linea => {
@@ -54,19 +58,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Actualizar "Objetivo Terapéutico" basado en "Línea Terapéutica"
+  // Actualizar "Objetivo Terapéutico" basado en la "Línea Terapéutica" seleccionada
   filterLinea.addEventListener('change', () => {
     const selectedLinea = filterLinea.value;
+
+    // Limpiar opciones dependientes
     filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
     filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
 
+    // Obtener objetivos relacionados a la línea seleccionada
     const objetivos = [...new Set(
       resourcesData
         .filter(resource => resource.linea_terapeutica === selectedLinea)
         .map(resource => resource.objetivo_terapeutico)
     )];
 
+    // Poblar opciones de "Objetivo Terapéutico"
     objetivos.forEach(objetivo => {
       const option = document.createElement("option");
       option.value = objetivo;
@@ -75,19 +83,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Actualizar "Etapa" basado en "Objetivo Terapéutico"
+  // Actualizar "Etapa" basado en el "Objetivo Terapéutico" seleccionado
   filterObjetivo.addEventListener('change', () => {
     const selectedLinea = filterLinea.value;
     const selectedObjetivo = filterObjetivo.value;
+
+    // Limpiar opciones dependientes
     filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
 
+    // Obtener etapas relacionadas al objetivo seleccionado
     const etapas = [...new Set(
       resourcesData
         .filter(resource => resource.linea_terapeutica === selectedLinea && resource.objetivo_terapeutico === selectedObjetivo)
         .map(resource => resource.etapa)
     )];
 
+    // Poblar opciones de "Etapa"
     etapas.forEach(etapa => {
       const option = document.createElement("option");
       option.value = etapa;
@@ -96,13 +108,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Actualizar "Tipo" basado en "Etapa"
+  // Actualizar "Tipo" basado en la "Etapa" seleccionada
   filterEtapa.addEventListener('change', () => {
     const selectedLinea = filterLinea.value;
     const selectedObjetivo = filterObjetivo.value;
     const selectedEtapa = filterEtapa.value;
+
+    // Limpiar opciones de tipo de recurso
     filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
 
+    // Obtener tipos relacionados a la etapa seleccionada
     const tipos = [...new Set(
       resourcesData
         .filter(resource => 
@@ -113,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .map(resource => resource.tipo)
     )];
 
+    // Poblar opciones de "Tipo de Recurso"
     tipos.forEach(tipo => {
       const option = document.createElement("option");
       option.value = tipo;
@@ -121,13 +137,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Filtrar y mostrar resultados
+  // Filtrar y mostrar resultados en base a las selecciones del usuario
   searchBtn.addEventListener('click', () => {
     const selectedLinea = filterLinea.value;
     const selectedObjetivo = filterObjetivo.value;
     const selectedEtapa = filterEtapa.value;
     const selectedTipo = filterTipo.value;
 
+    // Filtrar recursos según los filtros seleccionados
     const filteredResources = resourcesData.filter(resource =>
       (!selectedLinea || resource.linea_terapeutica === selectedLinea) &&
       (!selectedObjetivo || resource.objetivo_terapeutico === selectedObjetivo) &&
@@ -135,9 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
       (!selectedTipo || resource.tipo === selectedTipo)
     );
 
-    displayResults(filteredResources);
+    displayResults(filteredResources); // Mostrar resultados filtrados
   });
 
+  // Función para mostrar resultados en el DOM
   function displayResults(resources) {
     resultadosDiv.innerHTML = '';
     if (resources.length > 0) {
@@ -156,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Eventos de login/logout de Netlify Identity para actualizar la UI
   netlifyIdentity.on('login', user => {
     showAuthenticated(user);
     netlifyIdentity.close();
