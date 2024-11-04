@@ -8,11 +8,12 @@
 </head>
 <body>
 
-    <!-- Formulario de Inicio de Sesión -->
+    <!-- Contenedor de Autenticación -->
     <div id="auth-container">
         <button onclick="netlifyIdentity.open()">Iniciar sesión / Registrarse</button>
     </div>
 
+    <!-- Contenedor de la Aplicación -->
     <div id="app-container" style="display: none;">
         <p>Bienvenido, <span id="user-email"></span></p>
         <button onclick="logout()">Cerrar sesión</button>
@@ -37,6 +38,12 @@
         <select id="tipo">
             <option value="">Selecciona un tipo</option>
         </select>
+
+        <!-- Botón de búsqueda -->
+        <button onclick="buscarRecursos()">Buscar</button>
+
+        <!-- Contenedor para mostrar los resultados de la búsqueda -->
+        <div id="resultados"></div>
     </div>
 
 </body>

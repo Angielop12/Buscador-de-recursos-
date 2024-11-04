@@ -113,5 +113,41 @@ function actualizarTipos() {
     });
 }
 
+function buscarRecursos() {
+    const lineaSeleccionada = lineaTerapeuticaSelect.value;
+    const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
+    const etapaSeleccionada = etapaSelect.value;
+    const tipoSeleccionado = tipoSelect.value;
+
+    // Filtra los recursos según los criterios seleccionados
+    const resultados = recursos.filter(item => {
+        return (!lineaSeleccionada || item.linea_terapeutica === lineaSeleccionada) &&
+               (!objetivoSeleccionado || item.objetivo_terapeutico === objetivoSeleccionado) &&
+               (!etapaSeleccionada || item.etapa === etapaSeleccionada) &&
+               (!tipoSeleccionado || item.tipo === tipoSeleccionado);
+    });
+
+    // Muestra los resultados en el contenedor "resultados"
+    const resultadosDiv = document.getElementById('resultados');
+    resultadosDiv.innerHTML = ''; // Limpia los resultados anteriores
+
+    if (resultados.length === 0) {
+        resultadosDiv.innerHTML = '<p>No se encontraron resultados</p>';
+    } else {
+        resultados.forEach(recurso => {
+            const recursoDiv = document.createElement('div');
+            recursoDiv.innerHTML = `
+                <h4>${recurso.nombre}</h4>
+                <p>Línea Terapéutica: ${recurso.linea_terapeutica}</p>
+                <p>Objetivo Terapéutico: ${recurso.objetivo_terapeutico}</p>
+                <p>Etapa: ${recurso.etapa}</p>
+                <p>Tipo: ${recurso.tipo}</p>
+                <a href="${recurso.link}" target="_blank">Ver Recurso</a>
+            `;
+            resultadosDiv.appendChild(recursoDiv);
+        });
+    }
+}
+
 // Inicializar Netlify Identity
 netlifyIdentity.init();
