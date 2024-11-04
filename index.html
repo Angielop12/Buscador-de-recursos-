@@ -28,6 +28,7 @@
             text-align: center;
         }
 
+        /* Button styling */
         #auth-container button, #app-container button {
             font-size: 1em;
             padding: 10px 20px;
@@ -133,6 +134,19 @@
             <button onclick="buscarRecurso()">Buscar recurso</button>
         </div>
     </div>
+
+    <script>
+        // Evento de Netlify Identity para mostrar el contenedor de búsqueda después de iniciar sesión
+        netlifyIdentity.on('login', user => {
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+        });
+
+        netlifyIdentity.on('logout', () => {
+            document.getElementById('auth-container').style.display = 'block';
+            document.getElementById('app-container').style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>
