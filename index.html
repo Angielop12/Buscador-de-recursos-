@@ -2,57 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Banco de Recursos - CreSentia</title>
+    <title>Buscador en Escala con Autenticación</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="app.js" defer></script> <!-- Enlace al archivo app.js -->
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
 </head>
 <body>
 
-    <!-- Contenedor Principal -->
-    <div class="container">
-        <!-- Sección de bienvenida -->
-        <div class="welcome-section">
-            <img src="logo.png" alt="Logo CreSentia" class="logo"> <!-- Reemplaza "logo.png" con la URL de tu logo -->
-            <button class="login-button" onclick="netlifyIdentity.open()">Iniciar sesión</button>
-            <div class="social-links">
-                <a href="https://instagram.com/cresentia.psic">@cresentia.psic</a> |
-                <a href="https://cresentia.com.co">cresentia.com.co</a>
-            </div>
-        </div>
+    <!-- Contenedor de Autenticación -->
+    <div id="auth-container">
+        <button onclick="netlifyIdentity.open()">Iniciar sesión / Registrarse</button>
+    </div>
 
-        <!-- Sección de filtros y búsqueda -->
-        <div class="search-section">
-            <p class="welcome-message">Hola! Bienvenid@ <br> Al banco de recursos de <span>CreSentia</span></p>
-            <p class="instruction">Completa los filtros para realizar la búsqueda:</p>
-            
-            <label for="linea_terapeutica">Línea terapéutica</label>
-            <select id="linea_terapeutica" onchange="actualizarObjetivos()">
-                <option value="">Selecciona una línea terapéutica</option>
-            </select>
+    <!-- Contenedor de la Aplicación -->
+    <div id="app-container" style="display: none;">
+        <p>Bienvenido, <span id="user-email"></span></p>
+        <button onclick="logout()">Cerrar sesión</button>
 
-            <label for="objetivo_terapeutico">Objetivo terapéutico</label>
-            <select id="objetivo_terapeutico" onchange="actualizarEtapas()">
-                <option value="">Selecciona un objetivo terapéutico</option>
-            </select>
+        <!-- Buscador en Escala -->
+        <label for="linea_terapeutica">Línea Terapéutica:</label>
+        <select id="linea_terapeutica" onchange="actualizarObjetivos()">
+            <option value="">Selecciona una línea terapéutica</option>
+        </select>
 
-            <label for="etapa">Etapa</label>
-            <select id="etapa" onchange="actualizarTipos()">
-                <option value="">Selecciona una etapa</option>
-            </select>
+        <label for="objetivo_terapeutico">Objetivo Terapéutico:</label>
+        <select id="objetivo_terapeutico" onchange="actualizarEtapas()">
+            <option value="">Selecciona un objetivo terapéutico</option>
+        </select>
 
-            <label for="tipo">Tipo de recurso</label>
-            <select id="tipo">
-                <option value="">Selecciona un tipo</option>
-            </select>
+        <label for="etapa">Etapa:</label>
+        <select id="etapa" onchange="actualizarTipos()">
+            <option value="">Selecciona una etapa</option>
+        </select>
 
-            <!-- Botón de búsqueda -->
-            <button class="search-button" onclick="buscarRecursos()">Buscar recurso</button>
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+            <option value="">Selecciona un tipo</option>
+        </select>
 
-            <!-- Contenedor para mostrar los resultados de la búsqueda -->
-            <div id="resultados"></div>
-        </div>
+        <!-- Botón de búsqueda -->
+        <button onclick="buscarRecursos()">Buscar</button>
+
+        <!-- Contenedor para mostrar los resultados de la búsqueda -->
+        <div id="resultados"></div>
     </div>
 
 </body>
 </html>
+
+
