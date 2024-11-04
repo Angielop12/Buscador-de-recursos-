@@ -1,4 +1,4 @@
-const recursos = [ /* Aquí pega el contenido de tu JSON "recursos" */ ];
+let recursos = [];
 
 const lineaTerapeuticaSelect = document.getElementById('linea_terapeutica');
 const objetivoTerapeuticoSelect = document.getElementById('objetivo_terapeutico');
@@ -7,6 +7,18 @@ const tipoSelect = document.getElementById('tipo');
 const authContainer = document.getElementById('auth-container');
 const appContainer = document.getElementById('app-container');
 const userEmail = document.getElementById('user-email');
+
+// Función para cargar el archivo JSON
+async function cargarDatos() {
+    try {
+        const response = await fetch('resources.json');
+        const data = await response.json();
+        recursos = data.recursos; // Asigna los datos del JSON a recursos
+        cargarLineasTerapeuticas();
+    } catch (error) {
+        console.error("Error al cargar los datos:", error);
+    }
+}
 
 // Configurar Netlify Identity
 netlifyIdentity.on("init", user => {
@@ -30,7 +42,7 @@ function showApp(user) {
     authContainer.style.display = 'none';
     appContainer.style.display = 'block';
     userEmail.textContent = user.email;
-    cargarLineasTerapeuticas();
+    cargarDatos(); // Llama a cargarDatos() para obtener los datos JSON
 }
 
 function showAuth() {
