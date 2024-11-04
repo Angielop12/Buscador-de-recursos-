@@ -1,196 +1,105 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const loginBtn = document.getElementById('login-btn');
-  const logoutBtn = document.getElementById('logout-btn');
-  const filterLinea = document.getElementById("filter-linea-terapeutica");
-  const filterObjetivo = document.getElementById("filter-objetivo");
-  const filterEtapa = document.getElementById("filter-etapa");
-  const filterTipo = document.getElementById("filter-tipo");
-  const searchBtn = document.getElementById('buscar');
-  const resultadosDiv = document.getElementById('resource-list');
-  let resourcesData = []; // Para almacenar datos de los recursos
+const recursos = [ /* Aquí pega el contenido de tu JSON "recursos" */ ];
 
-  // Inicializar Netlify Identity para autenticación
-  netlifyIdentity.on('init', user => {
+const lineaTerapeuticaSelect = document.getElementById('linea_terapeutica');
+const objetivoTerapeuticoSelect = document.getElementById('objetivo_terapeutico');
+const etapaSelect = document.getElementById('etapa');
+const tipoSelect = document.getElementById('tipo');
+const authContainer = document.getElementById('auth-container');
+const appContainer = document.getElementById('app-container');
+const userEmail = document.getElementById('user-email');
+
+// Configurar Netlify Identity
+netlifyIdentity.on("init", user => {
     if (user) {
-      showAuthenticated(user);
+        showApp(user);
     } else {
-      netlifyIdentity.open();
+        showAuth();
     }
-  });
-
-  // Mostrar UI autenticada y cargar recursos
-  function showAuthenticated(user) {
-    loginBtn.style.display = 'none';
-    logoutBtn.style.display = 'inline-block';
-    loadResources(); // Cargar los recursos desde JSON
-  }
-
-  // Evento para cerrar sesión
-  logoutBtn.addEventListener('click', () => {
-    netlifyIdentity.logout();
-    location.reload();
-  });
-
-  // Evento para abrir login
-  loginBtn.addEventListener('click', () => {
-    netlifyIdentity.open();
-  });
-
-  // Cargar recursos desde el archivo JSON
-  function loadResources() {
-    fetch('resources.json')
-      .then(response => response.json())
-      .then(data => {
-        resourcesData = data.recursos; // Guardar datos en resourcesData
-        populateLineaOptions(); // Poblar opciones iniciales de línea terapéutica
-      });
-  }
-
-  // Poblar opciones de "Línea Terapéutica" en el filtro
-  function populateLineaOptions() {
-    const lineas = [...new Set(resourcesData.map(resource => resource.linea_terapeutica))];
-    filterLinea.innerHTML = '<option value="">Selecciona una línea terapéutica</option>';
-    lineas.forEach(linea => {
-      const option = document.createElement("option");
-      option.value = linea;
-      option.textContent = linea;
-      filterLinea.appendChild(option);
-    });
-    // Limpiar filtros dependientes
-    filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
-    filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
-    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
-  }
-
-  // Actualizar "Objetivo Terapéutico" basado en la "Línea Terapéutica" seleccionada
-  filterLinea.addEventListener('change', () => {
-    const selectedLinea = filterLinea.value;
-
-    // Limpiar filtros dependientes
-    filterObjetivo.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
-    filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
-    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
-
-    if (!selectedLinea) return; // Detener si no hay línea seleccionada
-
-    // Obtener objetivos relacionados a la línea seleccionada
-    const objetivos = [...new Set(
-      resourcesData
-        .filter(resource => resource.linea_terapeutica === selectedLinea)
-        .map(resource => resource.objetivo_terapeutico)
-    )];
-
-    // Poblar opciones de "Objetivo Terapéutico"
-    objetivos.forEach(objetivo => {
-      const option = document.createElement("option");
-      option.value = objetivo;
-      option.textContent = objetivo;
-      filterObjetivo.appendChild(option);
-    });
-  });
-
-  // Actualizar "Etapa" basado en el "Objetivo Terapéutico" seleccionado
-  filterObjetivo.addEventListener('change', () => {
-    const selectedLinea = filterLinea.value;
-    const selectedObjetivo = filterObjetivo.value;
-
-    // Limpiar filtros dependientes
-    filterEtapa.innerHTML = '<option value="">Selecciona una etapa</option>';
-    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
-
-    if (!selectedObjetivo) return; // Detener si no hay objetivo seleccionado
-
-    // Obtener etapas relacionadas al objetivo seleccionado
-    const etapas = [...new Set(
-      resourcesData
-        .filter(resource => resource.linea_terapeutica === selectedLinea && resource.objetivo_terapeutico === selectedObjetivo)
-        .map(resource => resource.etapa)
-    )];
-
-    // Poblar opciones de "Etapa"
-    etapas.forEach(etapa => {
-      const option = document.createElement("option");
-      option.value = etapa;
-      option.textContent = etapa;
-      filterEtapa.appendChild(option);
-    });
-  });
-
-  // Actualizar "Tipo" basado en la "Etapa" seleccionada
-  filterEtapa.addEventListener('change', () => {
-    const selectedLinea = filterLinea.value;
-    const selectedObjetivo = filterObjetivo.value;
-    const selectedEtapa = filterEtapa.value;
-
-    // Limpiar opciones de tipo de recurso
-    filterTipo.innerHTML = '<option value="">Selecciona un tipo de recurso</option>';
-
-    if (!selectedEtapa) return; // Detener si no hay etapa seleccionada
-
-    // Obtener tipos relacionados a la etapa seleccionada
-    const tipos = [...new Set(
-      resourcesData
-        .filter(resource => 
-          resource.linea_terapeutica === selectedLinea &&
-          resource.objetivo_terapeutico === selectedObjetivo &&
-          resource.etapa === selectedEtapa
-        )
-        .map(resource => resource.tipo)
-    )];
-
-    // Poblar opciones de "Tipo de Recurso"
-    tipos.forEach(tipo => {
-      const option = document.createElement("option");
-      option.value = tipo;
-      option.textContent = tipo;
-      filterTipo.appendChild(option);
-    });
-  });
-
-  // Filtrar y mostrar resultados en base a las selecciones del usuario
-  searchBtn.addEventListener('click', () => {
-    const selectedLinea = filterLinea.value;
-    const selectedObjetivo = filterObjetivo.value;
-    const selectedEtapa = filterEtapa.value;
-    const selectedTipo = filterTipo.value;
-
-    // Filtrar recursos según los filtros seleccionados
-    const filteredResources = resourcesData.filter(resource =>
-      (!selectedLinea || resource.linea_terapeutica === selectedLinea) &&
-      (!selectedObjetivo || resource.objetivo_terapeutico === selectedObjetivo) &&
-      (!selectedEtapa || resource.etapa === selectedEtapa) &&
-      (!selectedTipo || resource.tipo === selectedTipo)
-    );
-
-    displayResults(filteredResources); // Mostrar resultados filtrados
-  });
-
-  // Función para mostrar resultados en el DOM
-  function displayResults(resources) {
-    resultadosDiv.innerHTML = '';
-    if (resources.length > 0) {
-      resources.forEach(recurso => {
-        resultadosDiv.innerHTML += `
-          <li class="resource">
-            <h3>${recurso.nombre}</h3>
-            <p><strong>Objetivo terapéutico:</strong> ${recurso.objetivo_terapeutico}</p>
-            <p><strong>Etapa:</strong> ${recurso.etapa}</p>
-            <p><strong>Tipo:</strong> ${recurso.tipo}</p>
-            <a href="${recurso.link}" target="_blank">Abrir recurso</a>
-          </li>`;
-      });
-    } else {
-      resultadosDiv.innerHTML = '<p>No se encontraron recursos.</p>';
-    }
-  }
-
-  // Eventos de login/logout de Netlify Identity para actualizar la UI
-  netlifyIdentity.on('login', user => {
-    showAuthenticated(user);
-    netlifyIdentity.close();
-  });
-
-  netlifyIdentity.on('logout', () => {
-    location.reload();
-  });
 });
+
+netlifyIdentity.on("login", user => {
+    showApp(user);
+    netlifyIdentity.close();
+});
+
+netlifyIdentity.on("logout", () => {
+    showAuth();
+});
+
+function showApp(user) {
+    authContainer.style.display = 'none';
+    appContainer.style.display = 'block';
+    userEmail.textContent = user.email;
+    cargarLineasTerapeuticas();
+}
+
+function showAuth() {
+    authContainer.style.display = 'block';
+    appContainer.style.display = 'none';
+    userEmail.textContent = '';
+}
+
+function logout() {
+    netlifyIdentity.logout();
+}
+
+function cargarLineasTerapeuticas() {
+    const lineasTerapeuticas = [...new Set(recursos.map(item => item.linea_terapeutica))];
+    lineasTerapeuticas.forEach(linea => {
+        const option = document.createElement('option');
+        option.value = linea;
+        option.textContent = linea;
+        lineaTerapeuticaSelect.appendChild(option);
+    });
+}
+
+function actualizarObjetivos() {
+    objetivoTerapeuticoSelect.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
+    etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
+    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    const lineaSeleccionada = lineaTerapeuticaSelect.value;
+    const objetivos = [...new Set(recursos
+        .filter(item => item.linea_terapeutica === lineaSeleccionada)
+        .map(item => item.objetivo_terapeutico))];
+    objetivos.forEach(objetivo => {
+        const option = document.createElement('option');
+        option.value = objetivo;
+        option.textContent = objetivo;
+        objetivoTerapeuticoSelect.appendChild(option);
+    });
+}
+
+function actualizarEtapas() {
+    etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
+    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    const lineaSeleccionada = lineaTerapeuticaSelect.value;
+    const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
+    const etapas = [...new Set(recursos
+        .filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado)
+        .map(item => item.etapa))];
+    etapas.forEach(etapa => {
+        const option = document.createElement('option');
+        option.value = etapa;
+        option.textContent = etapa;
+        etapaSelect.appendChild(option);
+    });
+}
+
+function actualizarTipos() {
+    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    const lineaSeleccionada = lineaTerapeuticaSelect.value;
+    const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
+    const etapaSeleccionada = etapaSelect.value;
+    const tipos = [...new Set(recursos
+        .filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado && item.etapa === etapaSeleccionada)
+        .map(item => item.tipo))];
+    tipos.forEach(tipo => {
+        const option = document.createElement('option');
+        option.value = tipo;
+        option.textContent = tipo;
+        tipoSelect.appendChild(option);
+    });
+}
+
+// Inicializar Netlify Identity
+netlifyIdentity.init();
