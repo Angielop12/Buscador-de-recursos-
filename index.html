@@ -83,6 +83,21 @@
         .buscar-btn:hover {
             background-color: #25473e;
         }
+
+        /* Estilos del contenedor de resultados */
+        #resultados {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        #resultados h4 {
+            color: #d76a66;
+        }
+
+        #resultados p {
+            color: #333;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -123,6 +138,11 @@
 
         <!-- Botón de búsqueda -->
         <button class="buscar-btn" onclick="buscarRecursos()">Buscar recurso</button>
+
+        <!-- Contenedor para mostrar los resultados de la búsqueda -->
+        <div id="resultados">
+            <!-- Los resultados se mostrarán aquí -->
+        </div>
     </div>
 
     <script>
