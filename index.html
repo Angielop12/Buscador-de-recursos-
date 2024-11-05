@@ -28,7 +28,6 @@
             text-align: center;
         }
 
-        /* Button styling */
         #auth-container button, #app-container button {
             font-size: 1em;
             padding: 10px 20px;
@@ -40,7 +39,6 @@
             color: #333;
         }
 
-        /* Logo and title styling */
         #logo {
             max-width: 150px;
             margin-bottom: 20px;
@@ -52,7 +50,6 @@
             margin-bottom: 20px;
         }
 
-        /* Form styling */
         label {
             display: block;
             font-size: 0.9em;
@@ -87,13 +84,6 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 20px;
-            }
         }
     </style>
 </head>
@@ -136,13 +126,23 @@
     </div>
 
     <script>
-        // Evento de Netlify Identity para mostrar el contenedor de búsqueda después de iniciar sesión
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Página cargada');
+            if (!window.netlifyIdentity) {
+                console.error('Netlify Identity no está cargado');
+            } else {
+                console.log('Netlify Identity cargado correctamente');
+            }
+        });
+
         netlifyIdentity.on('login', user => {
+            console.log('Usuario ha iniciado sesión:', user);
             document.getElementById('auth-container').style.display = 'none';
             document.getElementById('app-container').style.display = 'block';
         });
 
         netlifyIdentity.on('logout', () => {
+            console.log('Usuario ha cerrado sesión');
             document.getElementById('auth-container').style.display = 'block';
             document.getElementById('app-container').style.display = 'none';
         });
@@ -150,3 +150,4 @@
 
 </body>
 </html>
+
