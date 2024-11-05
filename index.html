@@ -5,149 +5,39 @@
     <title>Buscador en Escala con Autenticación</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="app.js" defer></script> <!-- Enlace al archivo app.js -->
-    <style>
-        /* General styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fbeae5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        /* Container styling */
-        #auth-container, #app-container {
-            width: 80%;
-            max-width: 600px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        #auth-container button, #app-container button {
-            font-size: 1em;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #fbeae5;
-            color: #333;
-        }
-
-        #logo {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
-
-        #app-container h1 {
-            color: #333;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.9em;
-            margin: 10px 0 5px;
-            color: #666;
-        }
-
-        select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-            background: #fff;
-            color: #333;
-        }
-
-        #search-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-        }
-
-        #search-container button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            font-size: 1em;
-            color: #fff;
-            background-color: #214e41;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
 
     <!-- Formulario de Inicio de Sesión -->
     <div id="auth-container">
-        <img id="logo" src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="CreSentia Logo">
-        <button onclick="netlifyIdentity.open()">Iniciar sesión</button>
+        <button onclick="netlifyIdentity.open()">Iniciar sesión / Registrarse</button>
     </div>
 
-    <!-- Buscador en Escala -->
     <div id="app-container" style="display: none;">
-        <h1>Hola! Bienvenid@ al banco de recursos de CreSentia</h1>
-        <p>Completa los filtros al realizar la búsqueda:</p>
-        
-        <div id="search-container">
-            <label for="linea_terapeutica">Línea Terapéutica:</label>
-            <select id="linea_terapeutica" onchange="actualizarObjetivos()">
-                <option value="">Familias</option>
-            </select>
+        <p>Bienvenido, <span id="user-email"></span></p>
+        <button onclick="logout()">Cerrar sesión</button>
 
-            <label for="objetivo_terapeutico">Objetivo Terapéutico:</label>
-            <select id="objetivo_terapeutico" onchange="actualizarEtapas()">
-                <option value="">Mi doctorado emocional</option>
-            </select>
+        <!-- Buscador en Escala -->
+        <label for="linea_terapeutica">Línea Terapéutica:</label>
+        <select id="linea_terapeutica" onchange="actualizarObjetivos()">
+            <option value="">Selecciona una línea terapéutica</option>
+        </select>
 
-            <label for="etapa">Etapa:</label>
-            <select id="etapa" onchange="actualizarTipos()">
-                <option value="">Reconocimiento</option>
-            </select>
+        <label for="objetivo_terapeutico">Objetivo Terapéutico:</label>
+        <select id="objetivo_terapeutico" onchange="actualizarEtapas()">
+            <option value="">Selecciona un objetivo terapéutico</option>
+        </select>
 
-            <label for="tipo">Tipo de recurso:</label>
-            <select id="tipo">
-                <option value="">Lámina</option>
-            </select>
+        <label for="etapa">Etapa:</label>
+        <select id="etapa" onchange="actualizarTipos()">
+            <option value="">Selecciona una etapa</option>
+        </select>
 
-            <button onclick="buscarRecurso()">Buscar recurso</button>
-        </div>
+        <label for="tipo">Tipo:</label>
+        <select id="tipo">
+            <option value="">Selecciona un tipo</option>
+        </select>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Página cargada');
-            if (!window.netlifyIdentity) {
-                console.error('Netlify Identity no está cargado');
-            } else {
-                console.log('Netlify Identity cargado correctamente');
-            }
-        });
-
-        netlifyIdentity.on('login', user => {
-            console.log('Usuario ha iniciado sesión:', user);
-            document.getElementById('auth-container').style.display = 'none';
-            document.getElementById('app-container').style.display = 'block';
-        });
-
-        netlifyIdentity.on('logout', () => {
-            console.log('Usuario ha cerrado sesión');
-            document.getElementById('auth-container').style.display = 'block';
-            document.getElementById('app-container').style.display = 'none';
-        });
-    </script>
 
 </body>
 </html>
-
