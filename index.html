@@ -126,10 +126,37 @@
     </div>
 
     <script>
-        // Inicializar Netlify Identity después de la carga de la página
-        document.addEventListener("DOMContentLoaded", function() {
-            netlifyIdentity.init();
+        // Inicializar Netlify Identity y controlar el estado de autenticación
+        netlifyIdentity.on("init", user => {
+            if (user) {
+                showApp(user);
+            } else {
+                showAuth();
+            }
         });
+
+        netlifyIdentity.on("login", user => {
+            showApp(user);
+            netlifyIdentity.close();
+        });
+
+        netlifyIdentity.on("logout", () => {
+            showAuth();
+        });
+
+        // Funciones de mostrar/ocultar contenedores
+        function showApp(user) {
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+        }
+
+        function showAuth() {
+            document.getElementById('auth-container').style.display = 'block';
+            document.getElementById('app-container').style.display = 'none';
+        }
+
+        // Iniciar Netlify Identity
+        netlifyIdentity.init();
     </script>
 
 </body>
