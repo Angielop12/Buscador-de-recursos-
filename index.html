@@ -124,6 +124,18 @@
     #logout-btn {
       display: none;
     }
+
+    #resultados div {
+      background-color: #f8bbd0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #resultados h4 {
+      margin: 0 0 5px;
+      color: #e91e63;
+    }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="app.js" defer></script> <!-- Conexión a app.js -->
@@ -161,6 +173,7 @@
     
     <button id="buscar" onclick="buscarRecursos()">Buscar recurso</button>
 
+    <!-- Contenedor de resultados -->
     <div id="resultados"></div>
   </div>
 
@@ -180,11 +193,13 @@
     netlifyIdentity.on('init', user => {
       if (user) {
         showApp(user);
+        cargarDatos(); // Cargar datos cuando el usuario está autenticado
       }
     });
 
     netlifyIdentity.on('login', user => {
       showApp(user);
+      cargarDatos();
       netlifyIdentity.close();
     });
 

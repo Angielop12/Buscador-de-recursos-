@@ -1,60 +1,25 @@
 let recursos = [];
 
+// Elementos del DOM
 const lineaTerapeuticaSelect = document.getElementById('linea_terapeutica');
 const objetivoTerapeuticoSelect = document.getElementById('objetivo_terapeutico');
 const etapaSelect = document.getElementById('etapa');
 const tipoSelect = document.getElementById('tipo');
-const authContainer = document.getElementById('auth-container');
-const appContainer = document.getElementById('app-container');
-const userEmail = document.getElementById('user-email');
+const resultadosDiv = document.getElementById('resultados');
 
 // Función para cargar el archivo JSON
 async function cargarDatos() {
     try {
         const response = await fetch('resources.json');
         const data = await response.json();
-        recursos = data.recursos; // Asigna los datos del JSON a recursos
+        recursos = data.recursos;
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
     }
 }
 
-// Configurar Netlify Identity
-netlifyIdentity.on("init", user => {
-    if (user) {
-        showApp(user);
-    } else {
-        showAuth();
-    }
-});
-
-netlifyIdentity.on("login", user => {
-    showApp(user);
-    netlifyIdentity.close();
-});
-
-netlifyIdentity.on("logout", () => {
-    showAuth();
-});
-
-function showApp(user) {
-    authContainer.style.display = 'none';
-    appContainer.style.display = 'block';
-    userEmail.textContent = user.email;
-    cargarDatos(); // Llama a cargarDatos() para obtener los datos JSON
-}
-
-function showAuth() {
-    authContainer.style.display = 'block';
-    appContainer.style.display = 'none';
-    userEmail.textContent = '';
-}
-
-function logout() {
-    netlifyIdentity.logout();
-}
-
+// Cargar filtros en cascada
 function cargarLineasTerapeuticas() {
     const lineasTerapeuticas = [...new Set(recursos.map(item => item.linea_terapeutica))];
     lineasTerapeuticas.forEach(linea => {
@@ -65,6 +30,7 @@ function cargarLineasTerapeuticas() {
     });
 }
 
+// Funciones para actualizar filtros
 function actualizarObjetivos() {
     objetivoTerapeuticoSelect.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
     etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
@@ -113,13 +79,13 @@ function actualizarTipos() {
     });
 }
 
+// Mostrar resultados
 function buscarRecursos() {
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
     const etapaSeleccionada = etapaSelect.value;
     const tipoSeleccionado = tipoSelect.value;
 
-    // Filtra los recursos según los criterios seleccionados
     const resultados = recursos.filter(item => {
         return (!lineaSeleccionada || item.linea_terapeutica === lineaSeleccionada) &&
                (!objetivoSeleccionado || item.objetivo_terapeutico === objetivoSeleccionado) &&
@@ -127,9 +93,7 @@ function buscarRecursos() {
                (!tipoSeleccionado || item.tipo === tipoSeleccionado);
     });
 
-    // Muestra los resultados en el contenedor "resultados"
-    const resultadosDiv = document.getElementById('resultados');
-    resultadosDiv.innerHTML = ''; // Limpia los resultados anteriores
+    resultadosDiv.innerHTML = ''; // Limpiar resultados previos
 
     if (resultados.length === 0) {
         resultadosDiv.innerHTML = '<p>No se encontraron resultados</p>';
@@ -149,5 +113,14 @@ function buscarRecursos() {
     }
 }
 
-// Inicializar Netlify Identity
+// Inicializar Netlify Identity y cargar datos al autenticar
+netlifyIdentity.on("init", user => {
+    if (user) cargarDatos();
+});
+
+netlifyIdentity.on("login", user => {
+    cargarDatos();
+    netlifyIdentity.close();
+});
+
 netlifyIdentity.init();
