@@ -8,178 +8,198 @@
     /* Estilos del sitio */
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fbe9e7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: #fff5f7;
+      background: linear-gradient(to top right, #fff5f7, #ffebf0, #fce8e8);
+      padding: 20px;
       min-height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      display: flex;
-      background-color: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 900px;
       overflow: hidden;
-    }
-
-    .left-panel, .right-panel {
-      padding: 40px;
-    }
-
-    .left-panel {
-      background-color: #fbe9e7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 40%;
       position: relative;
     }
 
-    .right-panel {
-      width: 60%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    body::before, body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      border-radius: 50% 50% 0 0 / 15% 15% 0 0;
+      transform: scaleX(1.5);
+    }
+
+    body::before {
+      background: radial-gradient(circle at top left, #ffebf0, #fff5f7);
+      height: 50%;
+    }
+
+    body::after {
+      background: radial-gradient(circle at bottom right, #ffedd5, #fff1e8);
+      height: 80%;
+      top: 40%;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
       background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Logo y bienvenida */
-    .left-panel img {
-      width: 150px;
-      margin-bottom: 20px;
-    }
-
-    .left-panel button {
-      background-color: #ffffff;
-      color: #37474f;
-      font-weight: bold;
-      border: 2px solid #37474f;
-      padding: 12px 24px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .left-panel button:hover {
-      background-color: #e0e0e0;
-    }
-
-    /* Contenido del lado derecho */
-    h2 {
-      color: #37474f;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #616161;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    label {
+    h1 {
+      text-align: center;
       color: #e91e63;
+      font-size: 2.5em;
       font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #f48fb1;
+      font-size: 16px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: 1px solid #b0bec5;
-      background-color: #f5f5f5;
-      color: #37474f;
-      font-size: 16px;
-      outline: none;
+      background-color: #ffeef1;
+      color: #e91e63;
     }
 
-    .search-button {
-      background-color: #37474f;
-      color: #ffffff;
-      padding: 15px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
+    button {
+      background-color: #ec407a;
+      color: white;
       cursor: pointer;
       border: none;
       transition: background-color 0.3s ease;
-      width: 100%;
     }
 
-    .search-button:hover {
-      background-color: #455a64;
+    button:hover {
+      background-color: #d81b60;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f8bbd0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    a {
+      color: #ad1457;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    #login-btn, #logout-btn {
+      background-color: #ad1457;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    #login-btn:hover, #logout-btn:hover {
+      background-color: #d81b60;
+    }
+
+    #logout-btn {
+      display: none;
+    }
+
+    #resultados div {
+      background-color: #f8bbd0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    #resultados h4 {
+      margin: 0 0 5px;
+      color: #e91e63;
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="app.js" defer></script> <!-- Enlace al archivo app.js -->
+  <script src="app.js" defer></script> <!-- Conexión a app.js -->
 </head>
 <body>
 
+  <header>
+    <h1>Buscador de Recursos CreSentia</h1>
+    <button id="login-btn">Iniciar sesión</button>
+    <button id="logout-btn">Cerrar sesión</button>
+  </header>
+
   <div class="container">
-    <div class="left-panel">
-      <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia">
-      <button id="login-btn">Iniciar sesión</button>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia" width="150">
+      <h1>Buscador de Recursos CreSentia</h1>
     </div>
 
-    <div class="right-panel">
-      <h2>Hola! Bienvenid@</h2>
-      <p>Al banco de recursos de CreSentia</p>
-      <p>Completa los filtros para realizar la búsqueda:</p>
+    <!-- Filtros dinámicos en cascada -->
+    <select id="linea_terapeutica" onchange="actualizarObjetivos()">
+      <option value="">Selecciona una línea terapéutica</option>
+    </select>
 
-      <!-- Filtros dinámicos en cascada -->
-      <label for="filter-linea-terapeutica">Línea terapéutica</label>
-      <select id="filter-linea-terapeutica" onchange="actualizarObjetivos()">
-        <option value="">Selecciona una línea terapéutica</option>
-      </select>
+    <select id="objetivo_terapeutico" onchange="actualizarEtapas()">
+      <option value="">Selecciona un objetivo terapéutico</option>
+    </select>
 
-      <label for="filter-objetivo">Objetivo terapéutico</label>
-      <select id="filter-objetivo" onchange="actualizarEtapas()">
-        <option value="">Selecciona un objetivo terapéutico</option>
-      </select>
+    <select id="etapa" onchange="actualizarTipos()">
+      <option value="">Selecciona una etapa</option>
+    </select>
 
-      <label for="filter-etapa">Etapa</label>
-      <select id="filter-etapa" onchange="actualizarTipos()">
-        <option value="">Selecciona una etapa</option>
-      </select>
+    <select id="tipo">
+      <option value="">Selecciona un tipo de recurso</option>
+    </select>
+    
+    <button id="buscar" onclick="buscarRecursos()">Buscar recurso</button>
 
-      <label for="filter-tipo">Tipo de recurso</label>
-      <select id="filter-tipo">
-        <option value="">Selecciona un tipo de recurso</option>
-      </select>
-
-      <button class="search-button" id="buscar">Buscar recurso</button>
-    </div>
+    <!-- Contenedor de resultados -->
+    <div id="resultados"></div>
   </div>
 
   <script>
-    // Inicialización de autenticación
+    // Configuración de botones de autenticación
     const loginBtn = document.getElementById('login-btn');
-
-    netlifyIdentity.on('init', user => {
-      if (user) {
-        showAuthenticated(user);
-      }
-    });
-
-    function showAuthenticated(user) {
-      loginBtn.style.display = 'none';
-      fetchResources();
-    }
+    const logoutBtn = document.getElementById('logout-btn');
 
     loginBtn.addEventListener('click', () => {
       netlifyIdentity.open();
     });
 
+    logoutBtn.addEventListener('click', () => {
+      netlifyIdentity.logout();
+    });
+
+    netlifyIdentity.on('init', user => {
+      if (user) {
+        showApp(user);
+        cargarDatos(); // Cargar datos cuando el usuario está autenticado
+      }
+    });
+
     netlifyIdentity.on('login', user => {
-      showAuthenticated(user);
+      showApp(user);
+      cargarDatos();
       netlifyIdentity.close();
     });
 
@@ -187,8 +207,17 @@
       location.reload();
     });
 
-    // Llamar a las funciones de app.js para filtros en cascada
-    document.getElementById("buscar").addEventListener("click", filterResources);
+    function showApp(user) {
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+    }
+
+    function showAuth() {
+      loginBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+    }
+
+    netlifyIdentity.init();
   </script>
 </body>
 </html>
