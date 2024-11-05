@@ -20,7 +20,7 @@
     /* Main container styling */
     .container {
       width: 100%;
-      max-width: 900px;
+      max-width: 1200px; /* Increased max-width for larger layout */
       background-color: #ffffff;
       border-radius: 20px;
       display: flex;
@@ -31,8 +31,8 @@
     /* Left section styling */
     .left-section {
       background-color: #ffebf0;
-      padding: 40px 20px;
-      width: 35%; /* Reduced to make more space for the right section */
+      padding: 60px 40px; /* Increased padding */
+      width: 35%; /* Kept width same for better layout balance */
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -42,20 +42,20 @@
 
     /* Right section styling */
     .right-section {
-      padding: 40px;
-      width: 65%; /* Increased to occupy more space */
+      padding: 60px; /* Increased padding */
+      width: 65%; /* Kept width same */
     }
 
     /* Logo styling */
     .left-section img {
-      width: 120px;
-      margin-bottom: 20px;
+      width: 200px; /* Increased logo size */
+      margin-bottom: 30px;
     }
 
     .left-section button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 16px;
+      margin-top: 30px;
+      padding: 20px 40px; /* Increased button size */
+      font-size: 24px; /* Increased font size */
       color: #333;
       background-color: white;
       border: 2px solid #e91e63;
@@ -70,9 +70,9 @@
 
     /* Form styling */
     .right-section h2 {
-      font-size: 1.8em;
+      font-size: 2.5em; /* Increased heading size */
       color: #333;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .filter-section {
@@ -82,11 +82,11 @@
     /* Styling for select elements */
     select, .right-section button {
       width: 100%;
-      padding: 16px; /* Increased padding for larger clickable area */
-      margin: 12px 0;
+      padding: 24px; /* Increased padding for larger clickable area */
+      margin: 16px 0;
       border-radius: 10px;
       border: 1px solid #f48fb1;
-      font-size: 18px; /* Increased font size */
+      font-size: 24px; /* Increased font size */
       background-color: #ffeef1;
       color: #e91e63;
     }
@@ -97,7 +97,9 @@
       color: white;
       cursor: pointer;
       border: none;
+      font-size: 24px; /* Increased font size */
       transition: background-color 0.3s ease;
+      padding: 24px; /* Larger button size */
     }
 
     .right-section button:hover {
@@ -115,7 +117,7 @@
     </div>
     <div class="right-section">
       <h2>Hola! Bienvenid@ al banco de recursos de CreSentia</h2>
-      <p>Completa los filtros para realizar la búsqueda:</p>
+      <p style="font-size: 1.5em;">Completa los filtros para realizar la búsqueda:</p> <!-- Increased paragraph size -->
       <div class="filter-section">
         <select id="linea_terapeutica" onchange="actualizarObjetivos()">
           <option value="">Línea terapéutica</option>
@@ -144,10 +146,11 @@
     logoutBtn.style.backgroundColor = '#d81b60';
     logoutBtn.style.color = 'white';
     logoutBtn.style.border = 'none';
-    logoutBtn.style.padding = '12px 24px';
+    logoutBtn.style.padding = '20px 40px'; /* Larger logout button */
     logoutBtn.style.cursor = 'pointer';
     logoutBtn.style.marginTop = '20px';
     logoutBtn.style.borderRadius = '10px';
+    logoutBtn.style.fontSize = '24px'; /* Increased font size */
     loginBtn.after(logoutBtn);
 
     loginBtn.addEventListener('click', () => {
