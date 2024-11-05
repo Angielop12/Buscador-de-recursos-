@@ -8,11 +8,11 @@
     /* Estilos del sitio */
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fef2f2;
+      background-color: #fbe9e7;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      min-height: 100vh;
       margin: 0;
     }
 
@@ -21,123 +21,132 @@
       background-color: #ffffff;
       border-radius: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
       overflow: hidden;
-      max-width: 800px;
-      width: 100%;
     }
 
-    .left-section {
-      background-color: #fef2f2;
-      padding: 30px;
+    .left-panel, .right-panel {
+      padding: 40px;
+    }
+
+    .left-panel {
+      background-color: #fbe9e7;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      width: 40%;
+      position: relative;
     }
 
-    .left-section img {
-      width: 150px;
-    }
-
-    .left-section button {
+    .right-panel {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background-color: #ffffff;
-      color: #2e7d32;
-      border: 2px solid #2e7d32;
-      padding: 10px 20px;
-      font-size: 16px;
+    }
+
+    /* Logo y bienvenida */
+    .left-panel img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    .left-panel button {
+      background-color: #ffffff;
+      color: #37474f;
       font-weight: bold;
+      border: 2px solid #37474f;
+      padding: 12px 24px;
       border-radius: 10px;
       cursor: pointer;
-      margin-top: 20px;
+      font-size: 16px;
       transition: background-color 0.3s ease;
     }
 
-    .left-section button:hover {
-      background-color: #e8f5e9;
+    .left-panel button:hover {
+      background-color: #e0e0e0;
     }
 
-    .left-section p {
-      font-size: 12px;
-      color: #b71c1c;
+    /* Contenido del lado derecho */
+    h2 {
+      color: #37474f;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    .right-section {
-      flex: 1;
-      padding: 40px;
+    p {
+      color: #616161;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
-    .right-section h2 {
-      color: #1b5e20;
-      font-size: 1.2em;
+    label {
+      color: #e91e63;
       font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
     }
 
-    .right-section h3 {
-      color: #ad1457;
-      margin-top: 0;
-      font-size: 1em;
-    }
-
-    .right-section select {
+    select {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #f48fb1;
+      padding: 12px;
+      margin-bottom: 15px;
       border-radius: 10px;
+      border: 1px solid #b0bec5;
+      background-color: #f5f5f5;
+      color: #37474f;
       font-size: 16px;
-      color: #ad1457;
-      background-color: #fce4ec;
+      outline: none;
     }
 
-    .right-section button {
-      width: 100%;
+    .search-button {
+      background-color: #37474f;
+      color: #ffffff;
       padding: 15px;
+      border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
-      color: white;
-      background-color: #2e7d32;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
+      border: none;
       transition: background-color 0.3s ease;
+      width: 100%;
     }
 
-    .right-section button:hover {
-      background-color: #1b5e20;
+    .search-button:hover {
+      background-color: #455a64;
     }
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="app.js" defer></script> <!-- Enlace al archivo app.js -->
 </head>
 <body>
 
   <div class="container">
-    <!-- Sección Izquierda -->
-    <div class="left-section">
+    <div class="left-panel">
       <img src="https://raw.githubusercontent.com/Angielop12/Buscador-de-recursos-/main/logo.jpg" alt="Logo CreSentia">
       <button id="login-btn">Iniciar sesión</button>
-      <p>@crescentia.psic | crescentia.com.co</p>
     </div>
 
-    <!-- Sección Derecha -->
-    <div class="right-section">
+    <div class="right-panel">
       <h2>Hola! Bienvenid@</h2>
-      <h3>Al banco de recursos de CreSentia</h3>
+      <p>Al banco de recursos de CreSentia</p>
       <p>Completa los filtros para realizar la búsqueda:</p>
 
-      <!-- Filtros dinámicos -->
+      <!-- Filtros dinámicos en cascada -->
       <label for="filter-linea-terapeutica">Línea terapéutica</label>
-      <select id="filter-linea-terapeutica">
+      <select id="filter-linea-terapeutica" onchange="actualizarObjetivos()">
         <option value="">Selecciona una línea terapéutica</option>
       </select>
 
       <label for="filter-objetivo">Objetivo terapéutico</label>
-      <select id="filter-objetivo">
+      <select id="filter-objetivo" onchange="actualizarEtapas()">
         <option value="">Selecciona un objetivo terapéutico</option>
       </select>
 
       <label for="filter-etapa">Etapa</label>
-      <select id="filter-etapa">
+      <select id="filter-etapa" onchange="actualizarTipos()">
         <option value="">Selecciona una etapa</option>
       </select>
 
@@ -146,14 +155,14 @@
         <option value="">Selecciona un tipo de recurso</option>
       </select>
 
-      <button id="buscar">Buscar recurso</button>
+      <button class="search-button" id="buscar">Buscar recurso</button>
     </div>
   </div>
 
   <script>
-    // Inicializar Netlify Identity
+    // Inicialización de autenticación
     const loginBtn = document.getElementById('login-btn');
-    
+
     netlifyIdentity.on('init', user => {
       if (user) {
         showAuthenticated(user);
@@ -162,7 +171,7 @@
 
     function showAuthenticated(user) {
       loginBtn.style.display = 'none';
-      fetchResources();  // Cargar recursos solo para usuarios autenticados
+      fetchResources();
     }
 
     loginBtn.addEventListener('click', () => {
@@ -178,87 +187,7 @@
       location.reload();
     });
 
-    // Función para obtener los datos desde el archivo JSON y generar filtros
-    function fetchResources() {
-      fetch('/resources.json')
-        .then(response => response.json())
-        .then(data => {
-          const resources = data.recursos;
-          generarFiltros(resources);
-          renderResourceList(resources);
-        })
-        .catch(error => console.error("Error al obtener los datos del archivo JSON:", error));
-    }
-
-    function generarFiltros(resources) {
-      const filterObjetivo = document.getElementById("filter-objetivo");
-      const filterEtapa = document.getElementById("filter-etapa");
-      const filterTipo = document.getElementById("filter-tipo");
-      const filterLinea = document.getElementById("filter-linea-terapeutica");
-
-      let objetivos = new Set();
-      let etapas = new Set();
-      let tipos = new Set();
-      let lineas = new Set();
-
-      resources.forEach(resource => {
-        objetivos.add(resource.objetivo_terapeutico);
-        etapas.add(resource.etapa);
-        tipos.add(resource.tipo);
-        lineas.add(resource["linea_terapeutica"]);
-      });
-
-      objetivos.forEach(obj => {
-        let option = document.createElement("option");
-        option.value = obj;
-        option.textContent = obj;
-        filterObjetivo.appendChild(option);
-      });
-
-      etapas.forEach(et => {
-        let option = document.createElement("option");
-        option.value = et;
-        option.textContent = et;
-        filterEtapa.appendChild(option);
-      });
-
-      tipos.forEach(tp => {
-        let option = document.createElement("option");
-        option.value = tp;
-        option.textContent = tp;
-        filterTipo.appendChild(option);
-      });
-
-      lineas.forEach(ln => {
-        let option = document.createElement("option");
-        option.value = ln;
-        option.textContent = ln;
-        filterLinea.appendChild(option);
-      });
-    }
-
-    function filterResources() {
-      const filterObjetivo = document.getElementById("filter-objetivo").value.toLowerCase();
-      const filterEtapa = document.getElementById("filter-etapa").value.toLowerCase();
-      const filterTipo = document.getElementById("filter-tipo").value.toLowerCase();
-      const filterLinea = document.getElementById("filter-linea-terapeutica").value.toLowerCase();
-      const allResources = document.querySelectorAll("#resource-list li");
-
-      allResources.forEach(resource => {
-        const text = resource.textContent.toLowerCase();
-        if (
-          text.includes(filterObjetivo) &&
-          text.includes(filterEtapa) &&
-          text.includes(filterTipo) &&
-          text.includes(filterLinea)
-        ) {
-          resource.style.display = "";
-        } else {
-          resource.style.display = "none";
-        }
-      });
-    }
-
+    // Llamar a las funciones de app.js para filtros en cascada
     document.getElementById("buscar").addEventListener("click", filterResources);
   </script>
 </body>
