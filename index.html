@@ -5,117 +5,19 @@
     <title>Buscador en Escala con Autenticación</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script src="app.js" defer></script> <!-- Enlace al archivo app.js -->
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8ebe9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        
-        /* Contenedor principal */
-        #auth-container, #app-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 300px;
-        }
-
-        #app-container {
-            display: none;
-        }
-
-        /* Título y botón de sesión */
-        h1 {
-            font-size: 24px;
-            color: #d76a66;
-        }
-
-        button {
-            background-color: #ffffff;
-            border: 1px solid #d76a66;
-            color: #d76a66;
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #d76a66;
-            color: #ffffff;
-        }
-
-        /* Estilos del formulario de búsqueda */
-        label {
-            display: block;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #333;
-        }
-
-        select, .buscar-btn {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        /* Estilos del botón de búsqueda */
-        .buscar-btn {
-            background-color: #2e584e;
-            color: white;
-            border: none;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .buscar-btn:hover {
-            background-color: #25473e;
-        }
-
-        /* Estilos del contenedor de resultados */
-        #resultados {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        #resultados h4 {
-            color: #d76a66;
-        }
-
-        #resultados p {
-            color: #333;
-            margin: 5px 0;
-        }
-    </style>
 </head>
 <body>
 
     <!-- Formulario de Inicio de Sesión -->
     <div id="auth-container">
-        <h1>CreSentia</h1>
-        <p>Juntos con Sentido</p>
-        <button onclick="netlifyIdentity.open()">Iniciar sesión</button>
+        <button onclick="netlifyIdentity.open()">Iniciar sesión / Registrarse</button>
     </div>
 
-    <!-- Contenedor de búsqueda con autenticación -->
-    <div id="app-container">
-        <h1>¡Hola! Bienvenid@</h1>
-        <p>Al banco de recursos de CreSentia</p>
-        <p>Completa los filtros al realizar la búsqueda:</p>
+    <div id="app-container" style="display: none;">
+        <p>Bienvenido, <span id="user-email"></span></p>
+        <button onclick="logout()">Cerrar sesión</button>
 
-        <!-- Campos de selección para búsqueda -->
+        <!-- Buscador en Escala -->
         <label for="linea_terapeutica">Línea Terapéutica:</label>
         <select id="linea_terapeutica" onchange="actualizarObjetivos()">
             <option value="">Selecciona una línea terapéutica</option>
@@ -131,53 +33,11 @@
             <option value="">Selecciona una etapa</option>
         </select>
 
-        <label for="tipo">Tipo de recurso:</label>
+        <label for="tipo">Tipo:</label>
         <select id="tipo">
             <option value="">Selecciona un tipo</option>
         </select>
-
-        <!-- Botón de búsqueda -->
-        <button class="buscar-btn" onclick="buscarRecursos()">Buscar recurso</button>
-
-        <!-- Contenedor para mostrar los resultados de la búsqueda -->
-        <div id="resultados">
-            <!-- Los resultados se mostrarán aquí -->
-        </div>
     </div>
-
-    <script>
-        // Inicializar Netlify Identity y controlar el estado de autenticación
-        netlifyIdentity.on("init", user => {
-            if (user) {
-                showApp(user);
-            } else {
-                showAuth();
-            }
-        });
-
-        netlifyIdentity.on("login", user => {
-            showApp(user);
-            netlifyIdentity.close();
-        });
-
-        netlifyIdentity.on("logout", () => {
-            showAuth();
-        });
-
-        // Funciones de mostrar/ocultar contenedores
-        function showApp(user) {
-            document.getElementById('auth-container').style.display = 'none';
-            document.getElementById('app-container').style.display = 'block';
-        }
-
-        function showAuth() {
-            document.getElementById('auth-container').style.display = 'block';
-            document.getElementById('app-container').style.display = 'none';
-        }
-
-        // Iniciar Netlify Identity
-        netlifyIdentity.init();
-    </script>
 
 </body>
 </html>
