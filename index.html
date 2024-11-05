@@ -125,5 +125,12 @@
         <button class="buscar-btn" onclick="buscarRecursos()">Buscar recurso</button>
     </div>
 
+    <script>
+        // Inicializar Netlify Identity después de la carga de la página
+        document.addEventListener("DOMContentLoaded", function() {
+            netlifyIdentity.init();
+        });
+    </script>
+
 </body>
 </html>
