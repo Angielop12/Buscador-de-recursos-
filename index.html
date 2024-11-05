@@ -19,7 +19,7 @@
 
     /* Main container styling */
     .container {
-      width: 90%;
+      width: 100%;
       max-width: 900px;
       background-color: #ffffff;
       border-radius: 20px;
@@ -32,7 +32,7 @@
     .left-section {
       background-color: #ffebf0;
       padding: 40px 20px;
-      width: 40%;
+      width: 35%; /* Reduced to make more space for the right section */
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -43,7 +43,7 @@
     /* Right section styling */
     .right-section {
       padding: 40px;
-      width: 60%;
+      width: 65%; /* Increased to occupy more space */
     }
 
     /* Logo styling */
@@ -70,25 +70,28 @@
 
     /* Form styling */
     .right-section h2 {
-      font-size: 1.5em;
+      font-size: 1.8em;
       color: #333;
+      margin-bottom: 15px;
     }
 
     .filter-section {
       margin-top: 20px;
     }
 
-    select, button {
+    /* Styling for select elements */
+    select, .right-section button {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 16px; /* Increased padding for larger clickable area */
+      margin: 12px 0;
       border-radius: 10px;
       border: 1px solid #f48fb1;
-      font-size: 16px;
+      font-size: 18px; /* Increased font size */
       background-color: #ffeef1;
       color: #e91e63;
     }
 
+    /* Styling for the search button */
     .right-section button {
       background-color: #ec407a;
       color: white;
@@ -100,7 +103,6 @@
     .right-section button:hover {
       background-color: #d81b60;
     }
-
   </style>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="app.js" defer></script>
