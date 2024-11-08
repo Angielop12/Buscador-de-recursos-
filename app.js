@@ -111,6 +111,12 @@ function buscarRecursos() {
             resultadosDiv.appendChild(recursoDiv);
         });
     }
+
+    // Obtener el usuario actual de Netlify Identity
+    const user = netlifyIdentity.currentUser();
+    
+    // Llamada a la función de monitoreo para registrar la búsqueda
+    registrarBusqueda(user, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada, tipoSeleccionado);
 }
 
 // Inicializar Netlify Identity y cargar datos al autenticar
