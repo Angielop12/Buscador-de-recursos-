@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscador de Recursos CreSentia</title>
+  
+  <!-- Estilos de la aplicación -->
   <style>
     /* Main body styling */
     body {
@@ -16,97 +18,91 @@
       margin: 0;
       color: #333;
     }
-
     /* Main container styling */
     .container {
       width: 100%;
-      max-width: 1200px; /* Increased max-width for larger layout */
+      max-width: 1200px;
       background-color: #ffffff;
       border-radius: 20px;
       display: flex;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
     }
-
     /* Left section styling */
     .left-section {
       background-color: #ffebf0;
-      padding: 60px 40px; /* Increased padding */
-      width: 35%; /* Kept width same for better layout balance */
+      padding: 60px 40px;
+      width: 35%;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-
     /* Right section styling */
     .right-section {
-      padding: 60px; /* Increased padding */
-      width: 65%; /* Kept width same */
+      padding: 60px;
+      width: 65%;
     }
-
     /* Logo styling */
     .left-section img {
-      width: 200px; /* Increased logo size */
+      width: 200px;
       margin-bottom: 30px;
     }
-
-    .left-section button {
+    /* Button styling */
+    .left-section button, .right-section button {
       margin-top: 30px;
-      padding: 20px 40px; /* Increased button size */
-      font-size: 24px; /* Increased font size */
-      color: #333;
-      background-color: white;
-      border: 2px solid #e91e63;
+      padding: 20px 40px;
+      font-size: 24px;
       border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-    .left-section button:hover {
-      background-color: #fce4ec;
-    }
-
-    /* Form styling */
-    .right-section h2 {
-      font-size: 2.5em; /* Increased heading size */
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .filter-section {
-      margin-top: 20px;
-    }
-
-    /* Styling for select elements */
-    select, .right-section button {
-      width: 100%;
-      padding: 24px; /* Increased padding for larger clickable area */
-      margin: 16px 0;
-      border-radius: 10px;
-      border: 1px solid #f48fb1;
-      font-size: 24px; /* Increased font size */
-      background-color: #ffeef1;
-      color: #e91e63;
-    }
-
-    /* Styling for the search button */
     .right-section button {
       background-color: #ec407a;
       color: white;
-      cursor: pointer;
       border: none;
-      font-size: 24px; /* Increased font size */
-      transition: background-color 0.3s ease;
-      padding: 24px; /* Larger button size */
     }
-
     .right-section button:hover {
       background-color: #d81b60;
     }
+    /* Form styling */
+    select, .right-section button {
+      width: 100%;
+      padding: 24px;
+      margin: 16px 0;
+      border-radius: 10px;
+      border: 1px solid #f48fb1;
+      font-size: 24px;
+      background-color: #ffeef1;
+      color: #e91e63;
+    }
   </style>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Configuración de Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js"></script>
+
+  <script>
+    // Tu configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAy8J1xeXEGINvvQ8DDJcvnZPGREQIe4G8",
+      authDomain: "buscador-cresentia-dad48.firebaseapp.com",
+      projectId: "buscador-cresentia-dad48",
+      storageBucket: "buscador-cresentia-dad48.appspot.com",
+      messagingSenderId: "401159603535",
+      appId: "1:401159603535:web:9442828e92ed08f295b13a",
+      measurementId: "G-HD1L0EHGQF"
+    };
+    
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore();
+  </script>
+
+  <!-- Incluir scripts de la aplicación -->
   <script src="app.js" defer></script>
   <script src="analytics.js" defer></script>
 </head>
@@ -118,7 +114,7 @@
     </div>
     <div class="right-section">
       <h2>Hola! Bienvenid@ al banco de recursos de CreSentia</h2>
-      <p style="font-size: 1.5em;">Completa los filtros para realizar la búsqueda:</p> <!-- Increased paragraph size -->
+      <p style="font-size: 1.5em;">Completa los filtros para realizar la búsqueda:</p>
       <div class="filter-section">
         <select id="linea_terapeutica" onchange="actualizarObjetivos()">
           <option value="">Línea terapéutica</option>
@@ -139,19 +135,11 @@
   </div>
 
   <script>
-    // Authentication buttons behavior
+    // Comportamiento de botones de autenticación
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.createElement('button');
     logoutBtn.textContent = "Cerrar sesión";
     logoutBtn.style.display = 'none';
-    logoutBtn.style.backgroundColor = '#d81b60';
-    logoutBtn.style.color = 'white';
-    logoutBtn.style.border = 'none';
-    logoutBtn.style.padding = '20px 40px'; /* Larger logout button */
-    logoutBtn.style.cursor = 'pointer';
-    logoutBtn.style.marginTop = '20px';
-    logoutBtn.style.borderRadius = '10px';
-    logoutBtn.style.fontSize = '24px'; /* Increased font size */
     loginBtn.after(logoutBtn);
 
     loginBtn.addEventListener('click', () => {
