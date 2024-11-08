@@ -1,7 +1,7 @@
 async function registrarBusqueda(user, linea, objetivo, etapa, tipo) {
     const fechaHora = new Date().toISOString();
     const registro = {
-        user: user ? user.email : "anonimo",  // Nombre de usuario o "anónimo" si no ha iniciado sesión
+        user: user ? user.email : "anonimo", // Usa el email del usuario o "anónimo" si no está autenticado
         fecha_hora: fechaHora,
         linea_terapeutica: linea,
         objetivo_terapeutico: objetivo,
@@ -10,9 +10,9 @@ async function registrarBusqueda(user, linea, objetivo, etapa, tipo) {
     };
 
     try {
-        // Por ahora, vamos a registrar en la consola
-        console.log("Registro de búsqueda:", registro);
-        // Más adelante podemos configurar un almacenamiento en archivo o base de datos
+        // Guardar el registro en Firebase Firestore
+        await db.collection("registros").add(registro);
+        console.log("Registro de búsqueda guardado en Firebase:", registro);
     } catch (error) {
         console.error("Error al registrar la búsqueda:", error);
     }
