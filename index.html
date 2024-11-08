@@ -102,6 +102,9 @@
     const db = firebase.firestore();
   </script>
 
+  <!-- Netlify Identity Widget -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <!-- Incluir scripts de la aplicación -->
   <script src="app.js" defer></script>
   <script src="analytics.js" defer></script>
@@ -135,11 +138,19 @@
   </div>
 
   <script>
-    // Comportamiento de botones de autenticación
+    // Configuración de Netlify Identity para autenticación
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.createElement('button');
     logoutBtn.textContent = "Cerrar sesión";
     logoutBtn.style.display = 'none';
+    logoutBtn.style.backgroundColor = '#d81b60';
+    logoutBtn.style.color = 'white';
+    logoutBtn.style.border = 'none';
+    logoutBtn.style.padding = '20px 40px';
+    logoutBtn.style.cursor = 'pointer';
+    logoutBtn.style.marginTop = '20px';
+    logoutBtn.style.borderRadius = '10px';
+    logoutBtn.style.fontSize = '24px';
     loginBtn.after(logoutBtn);
 
     loginBtn.addEventListener('click', () => {
@@ -168,6 +179,8 @@
     netlifyIdentity.on('logout', () => {
       location.reload();
     });
+
+    netlifyIdentity.init();
   </script>
 </body>
 </html>
