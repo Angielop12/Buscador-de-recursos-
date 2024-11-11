@@ -16,6 +16,7 @@ async function cargarDatos() {
         const response = await fetch('resources.json');
         const data = await response.json();
         recursos = data.recursos;
+        console.log("Datos cargados correctamente:", recursos); // Comprobación de carga de datos
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
@@ -28,6 +29,10 @@ window.cargarDatos = cargarDatos;
 
 // Cargar filtros en cascada
 function cargarLineasTerapeuticas() {
+    if (recursos.length === 0) {
+        console.log("recursos no contiene datos.");
+        return;
+    }
     lineaTerapeuticaSelect.innerHTML = '<option value="">Línea terapéutica</option>';
     const lineasTerapeuticas = [...new Set(recursos.map(item => item.linea_terapeutica))];
     lineasTerapeuticas.forEach(linea => {
@@ -36,6 +41,7 @@ function cargarLineasTerapeuticas() {
         option.textContent = linea;
         lineaTerapeuticaSelect.appendChild(option);
     });
+    console.log("Líneas terapéuticas cargadas:", lineasTerapeuticas);
 }
 
 // Funciones para actualizar filtros en cascada
@@ -51,6 +57,7 @@ function actualizarObjetivos() {
         option.textContent = objetivo;
         objetivoTerapeuticoSelect.appendChild(option);
     });
+    console.log("Objetivos terapéuticos cargados:", objetivos);
 }
 
 function actualizarEtapas() {
@@ -65,6 +72,7 @@ function actualizarEtapas() {
         option.textContent = etapa;
         etapaSelect.appendChild(option);
     });
+    console.log("Etapas cargadas:", etapas);
 }
 
 function actualizarTipos() {
@@ -79,6 +87,7 @@ function actualizarTipos() {
         option.textContent = tipo;
         tipoSelect.appendChild(option);
     });
+    console.log("Tipos cargados:", tipos);
 }
 
 // Mostrar resultados y registrar búsqueda
