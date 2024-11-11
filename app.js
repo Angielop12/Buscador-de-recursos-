@@ -23,6 +23,9 @@ async function cargarDatos() {
     }
 }
 
+// Hacer que cargarDatos esté disponible globalmente
+window.cargarDatos = cargarDatos;
+
 // Cargar filtros en cascada
 function cargarLineasTerapeuticas() {
     lineaTerapeuticaSelect.innerHTML = '<option value="">Línea terapéutica</option>';
@@ -132,4 +135,3 @@ netlifyIdentity.on("login", user => {
 });
 
 netlifyIdentity.init();
-
