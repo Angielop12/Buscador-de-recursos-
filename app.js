@@ -1,3 +1,6 @@
+// Importa la función registrarBusqueda desde analytics.js
+import { registrarBusqueda } from './analytics.js';
+
 let recursos = [];
 
 // Elementos del DOM
