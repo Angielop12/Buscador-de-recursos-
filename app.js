@@ -11,12 +11,12 @@ const tipoSelect = document.getElementById('tipo');
 const resultadosDiv = document.getElementById('resultados');
 
 // Función para cargar el archivo JSON
-async function cargarDatos() {
+export async function cargarDatos() {
     try {
         const response = await fetch('resources.json');
         const data = await response.json();
         recursos = data.recursos;
-        console.log("Datos cargados:", recursos);
+        console.log("Datos cargados:", recursos); // Verifica los datos cargados
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
@@ -122,5 +122,3 @@ function buscarRecursos() {
 }
 
 document.getElementById('buscar').onclick = buscarRecursos;
-
-export { cargarDatos };
