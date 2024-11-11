@@ -79,30 +79,10 @@
     }
   </style>
 
-  <!-- Configuración de Firebase -->
+  <!-- Firebase y Netlify Identity -->
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js"></script>
-
-  <script>
-    // Configuración de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAy8J1xeXEGINvvQ8DDJcvnZPGREQIe4G8",
-      authDomain: "buscador-cresentia-dad48.firebaseapp.com",
-      projectId: "buscador-cresentia-dad48",
-      storageBucket: "buscador-cresentia-dad48.firebasestorage.app",
-      messagingSenderId: "401159603535",
-      appId: "1:401159603535:web:9442828e92ed08f295b13a",
-      measurementId: "G-HD1L0EHGQF"
-    };
-    
-    // Inicializar Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    const db = firebase.firestore(); // Variable db para acceder a Firestore
-  </script>
-
-  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- Incluir scripts de la aplicación -->
@@ -165,21 +145,21 @@
       if (user) {
         loginBtn.style.display = 'none';
         logoutBtn.style.display = 'block';
-        cargarDatos();
       }
     });
 
     netlifyIdentity.on('login', user => {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'block';
-      cargarDatos();
+      cargarDatos(); // Asegura que los datos se carguen al iniciar sesión
       netlifyIdentity.close();
     });
 
     netlifyIdentity.on('logout', () => {
-      location.reload();
+      loginBtn.style.display = 'block';
+      logoutBtn.style.display = 'none';
+      document.getElementById('resultados').innerHTML = ''; // Limpia los resultados al cerrar sesión
     });
   </script>
 </body>
 </html>
-
