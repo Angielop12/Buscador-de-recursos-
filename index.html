@@ -118,7 +118,6 @@
   </div>
 
   <script>
-    // Configuración de Netlify Identity para autenticación
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.createElement('button');
     logoutBtn.textContent = "Cerrar sesión";
@@ -151,7 +150,7 @@
     netlifyIdentity.on('login', user => {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'block';
-      cargarDatos(); // Asegura que los datos se carguen al iniciar sesión
+      cargarDatos(); // Carga los datos cuando el usuario inicia sesión
       netlifyIdentity.close();
     });
 

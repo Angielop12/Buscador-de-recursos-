@@ -9,7 +9,6 @@ const objetivoTerapeuticoSelect = document.getElementById('objetivo_terapeutico'
 const etapaSelect = document.getElementById('etapa');
 const tipoSelect = document.getElementById('tipo');
 const resultadosDiv = document.getElementById('resultados');
-const loginBtn = document.getElementById('login-btn'); // Botón de inicio de sesión
 
 // Función para cargar el archivo JSON
 async function cargarDatos() {
@@ -17,7 +16,7 @@ async function cargarDatos() {
         const response = await fetch('resources.json');
         const data = await response.json();
         recursos = data.recursos;
-        console.log("Datos cargados:", recursos); // Verifica los datos cargados
+        console.log("Datos cargados:", recursos);
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
@@ -99,7 +98,7 @@ function buscarRecursos() {
                (!tipoSeleccionado || item.tipo === tipoSeleccionado);
     });
 
-    resultadosDiv.innerHTML = ''; // Limpiar resultados previos
+    resultadosDiv.innerHTML = '';
 
     if (resultados.length === 0) {
         resultadosDiv.innerHTML = '<p>No se encontraron resultados</p>';
@@ -118,39 +117,10 @@ function buscarRecursos() {
         });
     }
 
-    // Obtener el usuario actual de Netlify Identity
     const user = netlifyIdentity.currentUser();
-    
-    // Llamada a la función de monitoreo para registrar la búsqueda
     registrarBusqueda(user, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada, tipoSeleccionado);
 }
 
-// Asignar el evento al botón de búsqueda
 document.getElementById('buscar').onclick = buscarRecursos;
 
-// Inicializar Netlify Identity y configurar eventos de autenticación
-loginBtn.addEventListener('click', () => {
-    netlifyIdentity.open();
-});
-
-netlifyIdentity.on("init", user => {
-    if (user) {
-        cargarDatos();
-        loginBtn.style.display = 'none';
-    } else {
-        loginBtn.style.display = 'block';
-    }
-});
-
-netlifyIdentity.on("login", user => {
-    cargarDatos(); // Cargar datos al iniciar sesión
-    netlifyIdentity.close();
-    loginBtn.style.display = 'none';
-});
-
-netlifyIdentity.on("logout", () => {
-    location.reload(); // Recargar la página al cerrar sesión
-});
-
-netlifyIdentity.init();
-
+export { cargarDatos };
