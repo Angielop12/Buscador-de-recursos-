@@ -19,11 +19,13 @@ async function cargarDatos() {
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
+        resultadosDiv.innerHTML = '<p>Error al cargar los datos. Intenta de nuevo más tarde.</p>';
     }
 }
 
 // Cargar filtros en cascada
 function cargarLineasTerapeuticas() {
+    lineaTerapeuticaSelect.innerHTML = '<option value="">Línea terapéutica</option>';
     const lineasTerapeuticas = [...new Set(recursos.map(item => item.linea_terapeutica))];
     lineasTerapeuticas.forEach(linea => {
         const option = document.createElement('option');
@@ -33,15 +35,13 @@ function cargarLineasTerapeuticas() {
     });
 }
 
-// Funciones para actualizar filtros
+// Funciones para actualizar filtros en cascada
 function actualizarObjetivos() {
     objetivoTerapeuticoSelect.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
     etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
     tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
-    const objetivos = [...new Set(recursos
-        .filter(item => item.linea_terapeutica === lineaSeleccionada)
-        .map(item => item.objetivo_terapeutico))];
+    const objetivos = [...new Set(recursos.filter(item => item.linea_terapeutica === lineaSeleccionada).map(item => item.objetivo_terapeutico))];
     objetivos.forEach(objetivo => {
         const option = document.createElement('option');
         option.value = objetivo;
@@ -55,9 +55,7 @@ function actualizarEtapas() {
     tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
-    const etapas = [...new Set(recursos
-        .filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado)
-        .map(item => item.etapa))];
+    const etapas = [...new Set(recursos.filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado).map(item => item.etapa))];
     etapas.forEach(etapa => {
         const option = document.createElement('option');
         option.value = etapa;
@@ -71,9 +69,7 @@ function actualizarTipos() {
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
     const etapaSeleccionada = etapaSelect.value;
-    const tipos = [...new Set(recursos
-        .filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado && item.etapa === etapaSeleccionada)
-        .map(item => item.tipo))];
+    const tipos = [...new Set(recursos.filter(item => item.linea_terapeutica === lineaSeleccionada && item.objetivo_terapeutico === objetivoSeleccionado && item.etapa === etapaSeleccionada).map(item => item.tipo))];
     tipos.forEach(tipo => {
         const option = document.createElement('option');
         option.value = tipo;
@@ -82,8 +78,8 @@ function actualizarTipos() {
     });
 }
 
-// Mostrar resultados
-function buscarRecursos() {
+// Mostrar resultados y registrar búsqueda
+async function buscarRecursos() {
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
     const etapaSeleccionada = etapaSelect.value;
@@ -117,15 +113,15 @@ function buscarRecursos() {
 
     // Obtener el usuario actual de Netlify Identity
     const user = netlifyIdentity.currentUser();
-    
-    // Llamada a la función de monitoreo para registrar la búsqueda
-    registrarBusqueda(user, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada, tipoSeleccionado);
+
+    // Registrar búsqueda
+    await registrarBusqueda(user, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada, tipoSeleccionado);
 }
 
 // Asignar el evento al botón de búsqueda
 document.getElementById('buscar').onclick = buscarRecursos;
 
-// Inicializar Netlify Identity y cargar datos al autenticar
+// Inicializar Netlify Identity y cargar datos solo si el usuario está autenticado
 netlifyIdentity.on("init", user => {
     if (user) cargarDatos();
 });
