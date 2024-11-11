@@ -8,6 +8,7 @@ if (!firebase.apps.length) {
       storageBucket: "buscador-cresentia-dad48.firebasestorage.app",
       messagingSenderId: "401159603535",
       appId: "1:401159603535:web:9442828e92ed08f295b13a",
+      measurementId: "G-HD1L0EHGQF"
     });
   }
   
