@@ -9,6 +9,7 @@ const objetivoTerapeuticoSelect = document.getElementById('objetivo_terapeutico'
 const etapaSelect = document.getElementById('etapa');
 const tipoSelect = document.getElementById('tipo');
 const resultadosDiv = document.getElementById('resultados');
+const loginBtn = document.getElementById('login-btn'); // Botón de inicio de sesión
 
 // Función para cargar el archivo JSON
 async function cargarDatos() {
@@ -127,14 +128,28 @@ function buscarRecursos() {
 // Asignar el evento al botón de búsqueda
 document.getElementById('buscar').onclick = buscarRecursos;
 
-// Inicializar Netlify Identity y cargar datos al autenticar
+// Inicializar Netlify Identity y configurar eventos de autenticación
+loginBtn.addEventListener('click', () => {
+    netlifyIdentity.open();
+});
+
 netlifyIdentity.on("init", user => {
-    if (user) cargarDatos();
+    if (user) {
+        cargarDatos();
+        loginBtn.style.display = 'none';
+    } else {
+        loginBtn.style.display = 'block';
+    }
 });
 
 netlifyIdentity.on("login", user => {
-    cargarDatos();
+    cargarDatos(); // Cargar datos al iniciar sesión
     netlifyIdentity.close();
+    loginBtn.style.display = 'none';
+});
+
+netlifyIdentity.on("logout", () => {
+    location.reload(); // Recargar la página al cerrar sesión
 });
 
 netlifyIdentity.init();
