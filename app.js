@@ -16,7 +16,7 @@ export async function cargarDatos() {
         const response = await fetch('resources.json');
         const data = await response.json();
         recursos = data.recursos;
-        console.log("Datos cargados:", recursos); // Verifica los datos cargados
+        console.log("Datos cargados:", recursos);
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
@@ -98,7 +98,7 @@ function buscarRecursos() {
                (!tipoSeleccionado || item.tipo === tipoSeleccionado);
     });
 
-    resultadosDiv.innerHTML = '';
+    resultadosDiv.innerHTML = ''; // Limpiar resultados previos
 
     if (resultados.length === 0) {
         resultadosDiv.innerHTML = '<p>No se encontraron resultados</p>';
@@ -122,3 +122,5 @@ function buscarRecursos() {
 }
 
 document.getElementById('buscar').onclick = buscarRecursos;
+
+export { cargarDatos };
