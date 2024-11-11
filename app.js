@@ -14,10 +14,15 @@ const resultadosDiv = document.getElementById('resultados');
 async function cargarDatos() {
     try {
         const response = await fetch('resources.json');
+        if (!response.ok) throw new Error(`Error HTTP! status: ${response.status}`);
         const data = await response.json();
         recursos = data.recursos;
         console.log("Datos cargados correctamente:", recursos); // Comprobación de carga de datos
-        cargarLineasTerapeuticas();
+        if (recursos && recursos.length > 0) {
+            cargarLineasTerapeuticas();
+        } else {
+            console.error("No se encontraron datos en el archivo JSON.");
+        }
     } catch (error) {
         console.error("Error al cargar los datos:", error);
         resultadosDiv.innerHTML = '<p>Error al cargar los datos. Intenta de nuevo más tarde.</p>';
@@ -46,6 +51,7 @@ function cargarLineasTerapeuticas() {
 
 // Funciones para actualizar filtros en cascada
 function actualizarObjetivos() {
+    if (!lineaTerapeuticaSelect.value) return;
     objetivoTerapeuticoSelect.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
     etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
     tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
@@ -60,7 +66,11 @@ function actualizarObjetivos() {
     console.log("Objetivos terapéuticos cargados:", objetivos);
 }
 
+// Exponer actualizarObjetivos al contexto global
+window.actualizarObjetivos = actualizarObjetivos;
+
 function actualizarEtapas() {
+    if (!objetivoTerapeuticoSelect.value) return;
     etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
     tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
@@ -75,7 +85,11 @@ function actualizarEtapas() {
     console.log("Etapas cargadas:", etapas);
 }
 
+// Exponer actualizarEtapas al contexto global
+window.actualizarEtapas = actualizarEtapas;
+
 function actualizarTipos() {
+    if (!etapaSelect.value) return;
     tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
@@ -89,6 +103,9 @@ function actualizarTipos() {
     });
     console.log("Tipos cargados:", tipos);
 }
+
+// Exponer actualizarTipos al contexto global
+window.actualizarTipos = actualizarTipos;
 
 // Mostrar resultados y registrar búsqueda
 async function buscarRecursos() {
