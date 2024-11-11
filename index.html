@@ -79,10 +79,30 @@
     }
   </style>
 
-  <!-- Firebase y Netlify Identity -->
+  <!-- Configuración de Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js"></script>
+
+  <script>
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAy8J1xeXEGINvvQ8DDJcvnZPGREQIe4G8",
+      authDomain: "buscador-cresentia-dad48.firebaseapp.com",
+      projectId: "buscador-cresentia-dad48",
+      storageBucket: "buscador-cresentia-dad48.firebasestorage.app",
+      messagingSenderId: "401159603535",
+      appId: "1:401159603535:web:9442828e92ed08f295b13a",
+      measurementId: "G-HD1L0EHGQF"
+    };
+    
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore(); // Variable db para acceder a Firestore
+  </script>
+
+  <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <!-- Incluir scripts de la aplicación -->
@@ -118,6 +138,7 @@
   </div>
 
   <script>
+    // Configuración de Netlify Identity para autenticación
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.createElement('button');
     logoutBtn.textContent = "Cerrar sesión";
@@ -144,26 +165,21 @@
       if (user) {
         loginBtn.style.display = 'none';
         logoutBtn.style.display = 'block';
+        cargarDatos();
       }
     });
 
     netlifyIdentity.on('login', user => {
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'block';
-      if (typeof cargarDatos === 'function') {
-        cargarDatos(); // Carga los datos después de iniciar sesión
-      }
+      cargarDatos();
       netlifyIdentity.close();
     });
 
     netlifyIdentity.on('logout', () => {
-      loginBtn.style.display = 'block';
-      logoutBtn.style.display = 'none';
-      document.getElementById('resultados').innerHTML = ''; // Limpia los resultados al cerrar sesión
+      location.reload();
     });
-    
-    // Inicializar Netlify Identity
-    netlifyIdentity.init();
   </script>
 </body>
 </html>
+
