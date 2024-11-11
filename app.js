@@ -16,6 +16,7 @@ async function cargarDatos() {
         const response = await fetch('resources.json');
         const data = await response.json();
         recursos = data.recursos;
+        console.log("Datos cargados:", recursos); // Verifica los datos cargados
         cargarLineasTerapeuticas();
     } catch (error) {
         console.error("Error al cargar los datos:", error);
@@ -24,6 +25,7 @@ async function cargarDatos() {
 
 // Cargar filtros en cascada
 function cargarLineasTerapeuticas() {
+    lineaTerapeuticaSelect.innerHTML = '<option value="">Línea terapéutica</option>';
     const lineasTerapeuticas = [...new Set(recursos.map(item => item.linea_terapeutica))];
     lineasTerapeuticas.forEach(linea => {
         const option = document.createElement('option');
@@ -35,9 +37,9 @@ function cargarLineasTerapeuticas() {
 
 // Funciones para actualizar filtros
 function actualizarObjetivos() {
-    objetivoTerapeuticoSelect.innerHTML = '<option value="">Selecciona un objetivo terapéutico</option>';
-    etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
-    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    objetivoTerapeuticoSelect.innerHTML = '<option value="">Objetivo terapéutico</option>';
+    etapaSelect.innerHTML = '<option value="">Etapa</option>';
+    tipoSelect.innerHTML = '<option value="">Tipo de recurso</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivos = [...new Set(recursos
         .filter(item => item.linea_terapeutica === lineaSeleccionada)
@@ -51,8 +53,8 @@ function actualizarObjetivos() {
 }
 
 function actualizarEtapas() {
-    etapaSelect.innerHTML = '<option value="">Selecciona una etapa</option>';
-    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    etapaSelect.innerHTML = '<option value="">Etapa</option>';
+    tipoSelect.innerHTML = '<option value="">Tipo de recurso</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
     const etapas = [...new Set(recursos
@@ -67,7 +69,7 @@ function actualizarEtapas() {
 }
 
 function actualizarTipos() {
-    tipoSelect.innerHTML = '<option value="">Selecciona un tipo</option>';
+    tipoSelect.innerHTML = '<option value="">Tipo de recurso</option>';
     const lineaSeleccionada = lineaTerapeuticaSelect.value;
     const objetivoSeleccionado = objetivoTerapeuticoSelect.value;
     const etapaSeleccionada = etapaSelect.value;
@@ -136,3 +138,4 @@ netlifyIdentity.on("login", user => {
 });
 
 netlifyIdentity.init();
+
