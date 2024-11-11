@@ -122,6 +122,9 @@ function buscarRecursos() {
     registrarBusqueda(user, lineaSeleccionada, objetivoSeleccionado, etapaSeleccionada, tipoSeleccionado);
 }
 
+// Asignar el evento al botón de búsqueda
+document.getElementById('buscar').onclick = buscarRecursos;
+
 // Inicializar Netlify Identity y cargar datos al autenticar
 netlifyIdentity.on("init", user => {
     if (user) cargarDatos();
