@@ -27,7 +27,7 @@
     .left-section {
       background-color: #ffebf0;
       padding: 60px 40px;
-      width: 40%;
+      width: 40%; /* Más ancho para que ocupe más espacio */
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -37,14 +37,14 @@
 
     /* Logo styling */
     .left-section img {
-      width: 250px;
+      width: 250px; /* Tamaño más grande del logo */
       margin-bottom: 30px;
     }
 
     /* Botón de Iniciar sesión */
     .left-section button {
       margin-top: 30px;
-      padding: 15px 50px;
+      padding: 15px 50px; /* Más ancho */
       font-size: 20px;
       border-radius: 8px;
       background-color: #ffffff;
@@ -61,46 +61,36 @@
     /* Right section styling */
     .right-section {
       padding: 60px;
-      width: 60%;
+      width: 60%; /* Menos ancho para hacer más espacio para la izquierda */
       background-color: #fdfdfd;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-    }
-
-    /* Contenedor interno para el recuadro blanco */
-    .right-section .content-box {
-      background-color: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 80%; /* Hacer el recuadro un poco más pequeño que la sección */
-      max-width: 500px;
-      text-align: center;
+      align-items: center; /* Centrar el contenido */
     }
 
     /* Texto de bienvenida */
-    .content-box h1 {
+    .right-section h1 {
       font-size: 26px;
       color: #1b4332;
       margin-bottom: 10px;
     }
 
-    .content-box p {
+    .right-section p {
       font-size: 18px;
       color: #1b4332;
       text-align: center;
     }
 
-    .content-box p span {
+    .right-section p span {
       color: #f3d0d5;
       font-weight: bold;
     }
 
     /* Form styling */
     form {
-      width: 100%; /* Ajustar el formulario al ancho del contenedor interno */
+      width: 80%; /* Hacer el formulario menos ancho */
+      max-width: 400px; /* Limitar el ancho máximo */
     }
     
     select {
@@ -125,7 +115,7 @@
     }
 
     /* Botón Buscar recurso */
-    .content-box button {
+    .right-section button {
       background-color: #1b4332;
       color: white;
       border: none;
@@ -137,7 +127,7 @@
       width: 100%;
       margin-top: 20px;
     }
-    .content-box button:hover {
+    .right-section button:hover {
       background-color: #144226;
     }
   </style>
