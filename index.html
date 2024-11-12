@@ -5,110 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscador de Recursos CreSentia</title>
   
-  <!-- Estilos de la aplicación -->
   <style>
     /* Main body styling */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  color: #333;
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fef7f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #333;
+    }
 
-/* Main container styling */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  background-color: #fffcfd;
-  border-radius: 20px;
-  display: flex;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
+    /* Main container styling */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      display: flex;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
 
-/* Left section styling */
-.left-section {
-  background-color: #ffebf0;
-  padding: 60px 40px;
-  width: 35%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+    /* Left section styling */
+    .left-section {
+      background-color: #ffebf0;
+      padding: 60px 40px;
+      width: 35%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Logo styling */
-.left-section img {
-  width: 200px;
-  margin-bottom: 30px;
-}
+    /* Logo styling */
+    .left-section img {
+      width: 180px;
+      margin-bottom: 30px;
+    }
 
-/* Botón Cerrar sesión */
-.left-section button {
-  margin-top: 30px;
-  padding: 20px 40px;
-  font-size: 24px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: #1b4332; /* Verde oscuro */
-  border: 2px solid #1b4332; /* Borde verde oscuro */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.left-section button:hover {
-  background-color: #e9f5ec; /* Fondo verde claro al pasar el cursor */
-}
+    /* Botón de Iniciar sesión */
+    .left-section button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #1b4332;
+      border: 1.5px solid #1b4332;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .left-section button:hover {
+      background-color: #e1f0e8;
+      color: #1b4332;
+    }
 
-/* Right section styling */
-.right-section {
-  padding: 60px;
-  width: 65%;
-}
+    /* Right section styling */
+    .right-section {
+      padding: 60px;
+      width: 65%;
+      background-color: #fef7f9;
+    }
 
-/* Texto de bienvenida */
-.right-section h1 {
-  font-size: 28px;
-  color: #1b4332; /* Verde oscuro */
-}
-.right-section p {
-  font-size: 18px;
-  color: #1b4332; /* Verde oscuro */
-}
-.right-section p span {
-  color: #f3d0d5; /* Rosado claro para "CreSentia" */
-}
+    /* Texto de bienvenida */
+    .right-section h1 {
+      font-size: 26px;
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
 
-/* Form styling */
-select {
-  width: 100%;
-  padding: 20px;
-  margin: 16px 0;
-  border-radius: 10px;
-  border: 0.005px solid #333; /* Borde negro */
-  font-size: 18px;
-  background-color: #ffffff; /* Fondo blanco */
-  color: #c2789c; /* Texto color durazno */
-}
+    .right-section p {
+      font-size: 18px;
+      color: #1b4332;
+    }
 
-/* Botón Buscar recurso */
-.right-section button {
-  background-color: #1b4332; /* Verde oscuro */
-  color: white; /* Texto blanco */
-  border: none;
-  padding: 20px;
-  font-size: 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.right-section button:hover {
-  background-color: #144226; /* Verde más oscuro al pasar el cursor */
-}
+    .right-section p span {
+      color: #f3d0d5;
+      font-weight: bold;
+    }
+
+    /* Form styling */
+    select {
+      width: 100%;
+      padding: 16px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid #333;
+      font-size: 18px;
+      background-color: #ffffff;
+      color: #c2789c; /* Color durazno para el texto */
+      appearance: none;
+      background-image: url('data:image/svg+xml,%3Csvg width="24" height="24" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M7 10l5 5 5-5H7z" fill="%23333" /%3E%3C/svg%3E');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+      padding-right: 30px;
+    }
+    select:focus {
+      outline: none;
+      border-color: #1b4332;
+    }
+
+    /* Botón Buscar recurso */
+    .right-section button {
+      background-color: #1b4332;
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+    .right-section button:hover {
+      background-color: #144226;
+    }
 
   </style>
 
