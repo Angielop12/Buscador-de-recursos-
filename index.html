@@ -27,7 +27,7 @@
     .left-section {
       background-color: #ffebf0;
       padding: 60px 40px;
-      width: 35%;
+      width: 40%; /* Más ancho para que ocupe más espacio */
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -37,14 +37,14 @@
 
     /* Logo styling */
     .left-section img {
-      width: 180px;
+      width: 250px; /* Tamaño más grande del logo */
       margin-bottom: 30px;
     }
 
     /* Botón de Iniciar sesión */
     .left-section button {
       margin-top: 30px;
-      padding: 15px 30px;
+      padding: 15px 50px; /* Más ancho */
       font-size: 20px;
       border-radius: 8px;
       background-color: #ffffff;
@@ -61,11 +61,12 @@
     /* Right section styling */
     .right-section {
       padding: 60px;
-      width: 65%;
+      width: 60%; /* Menos ancho para hacer más espacio para la izquierda */
       background-color: #fdfdfd;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center; /* Centrar el contenido */
     }
 
     /* Texto de bienvenida */
@@ -78,6 +79,7 @@
     .right-section p {
       font-size: 18px;
       color: #1b4332;
+      text-align: center;
     }
 
     .right-section p span {
@@ -86,6 +88,11 @@
     }
 
     /* Form styling */
+    form {
+      width: 80%; /* Hacer el formulario menos ancho */
+      max-width: 400px; /* Limitar el ancho máximo */
+    }
+    
     select {
       width: 100%;
       padding: 16px;
@@ -118,14 +125,12 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       width: 100%;
-      max-width: 300px;
       margin-top: 20px;
     }
     .right-section button:hover {
       background-color: #144226;
     }
   </style>
-
   <!-- Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
