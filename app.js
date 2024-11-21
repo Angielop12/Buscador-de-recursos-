@@ -130,14 +130,11 @@ async function buscarRecursos() {
             const recursoDiv = document.createElement('div');
             recursoDiv.innerHTML = `
                 <h4>${recurso.nombre}</h4>
-                <p>Línea Terapéutica: ${recurso.linea_terapeutica}</p>
-                <p>Objetivo Terapéutico: ${recurso.objetivo_terapeutico}</p>
-                <p>Etapa: ${recurso.etapa}</p>
-                <p>Tipo: ${recurso.tipo}</p>
                 <a href="${recurso.link}" target="_blank">Ver Recurso</a>
             `;
             resultadosDiv.appendChild(recursoDiv);
         });
+        
     }
 
     // Obtener el usuario actual de Netlify Identity
