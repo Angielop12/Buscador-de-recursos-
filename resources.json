@@ -1,7 +1,7 @@
 {
     "recursos": [
         {
-            "nombre": "Limite y bienestar manual de uso",
+            "nombre": "Manual de uso: Limite y bienestar",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Comunicacion y limites acertivos",
             "etapa": "Reconocimiento",
@@ -9,7 +9,7 @@
             "link": "https://docs.google.com/document/d/1ogqTUhzdm9yab9jPrE52Ts0QJ1Te8jEF/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Limite y bienestar ",
+            "nombre": "Recurso: Limite y bienestar ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Comunicacion y limites acertivos",
             "etapa": "Reconocimiento",
@@ -17,7 +17,7 @@
             "link": "https://docs.google.com/presentation/d/1kqB1PXu4OzaxD6nBpMOw4szaUEtYWqTA/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "DEAR MAN guia ",
+            "nombre": "Manual de uso: DEAR MAN ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Comunicacion y limites acertivos",
             "etapa": "Entrenamiento en expresion",
@@ -25,7 +25,7 @@
             "link": "https://docs.google.com/document/d/1H-KCPTKvx8ZYSiz4jBxN2zuKxw59hjd_/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "DEAR MAN ",
+            "nombre": "Recurso: DEAR MAN ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Comunicacion y limites acertivos",
             "etapa": "Entrenamiento en expresion",
@@ -33,7 +33,7 @@
             "link": "https://drive.google.com/file/d/1J1Ih5PC5UjgajzbL_RLf2RjKImZakJ8C/view?usp=drive_link"
         },
         {
-            "nombre": "Mi red social",
+            "nombre": "Manual de uso: Mi red social",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Reconocimiento",
@@ -41,7 +41,7 @@
             "link": "https://docs.google.com/document/d/1qASnBAAZmJvRFsM2-k_uGGcRKJffPMNS/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Mi red social",
+            "nombre": "Recurso: Mi red social",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Reconocimiento",
@@ -49,7 +49,7 @@
             "link": "https://docs.google.com/presentation/d/1qhBLbalhTWCkuKOPDnzNDFCVOA59wPfS/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Vinculo seguro discriminacion",
+            "nombre": "Manual de uso: Vinculo seguro discriminacion",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Reconocimiento",
@@ -57,7 +57,7 @@
             "link": "https://docs.google.com/document/d/14HVMZ8kXwUyFeppBTzpcAgvGroHzZ4g_/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Vinculo seguro discriminacion",
+            "nombre": "Recurso: Vinculo seguro discriminacion",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Reconocimiento",
@@ -65,7 +65,7 @@
             "link": "https://docs.google.com/presentation/d/1C247KWFuxcTQOUgGrAg1b0xRuZoe0J7v/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "La amistad manual de uso",
+            "nombre": "Manual de uso: La amistad",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -73,7 +73,7 @@
             "link": "https://docs.google.com/document/d/1NWo9q1uqmt7oZ2Rgve8LVsmZM7PKAObA/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "La amistad",
+            "nombre": "Recurso: La amistad",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -81,7 +81,7 @@
             "link": "https://docs.google.com/presentation/d/1pTKWl7KGVZfu47HVhCols5FIDwfJgCV8/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Validacion emocional ",
+            "nombre": "Manual de uso: Validacion emocional ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -89,7 +89,7 @@
             "link": "https://docs.google.com/document/d/18xUbXnQSl13kH9WOq1yIAbKGwDO6S8Ko/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Validacion emocional ",
+            "nombre": "Recurso: Validacion emocional ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -97,7 +97,7 @@
             "link": "https://docs.google.com/presentation/d/1Epag0ScMVtzmjhdmR3hApqE9zmVICTiC/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Vinculo seguro valores y acciones ",
+            "nombre": "Manual de uso: Vinculo seguro valores y acciones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -105,7 +105,7 @@
             "link": "https://docs.google.com/document/d/1u_yT1dqF_QQiKt4zuQAAMDdbr7dVA-WW/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Vinculo seguro valores y acciones ",
+            "nombre": "Recurso: Vinculo seguro valores y acciones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Construir vinculos seguros ",
             "etapa": "Entrenamiento",
@@ -113,7 +113,7 @@
             "link": "https://docs.google.com/presentation/d/16fnbp8hIxdafBD3v67gdDH8_AO9ctRn9/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Construyendo la consiencia de mis emociones ",
+            "nombre": "Manual de uso: Construyendo la consiencia de mis emociones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -121,7 +121,7 @@
             "link": "https://docs.google.com/document/d/1g8IFPdYyf79tPRgCgqzr1JQKpoN6NvKV/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Construyendo la consiencia de mis emociones ",
+            "nombre": "Recurso: Construyendo la consiencia de mis emociones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -129,7 +129,7 @@
             "link": "https://drive.google.com/file/d/1hVI5o3W9OmEgMY0sRt-gadr3qNux1B77/view?usp=drive_link"
         },
         {
-            "nombre": "Hechos e interpretaciones manual de uso ",
+            "nombre": "Manual de uso: Hechos e interpretaciones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -137,7 +137,7 @@
             "link": "https://docs.google.com/document/d/1nl2QtAkSn0K2-wrBdrytZg-0g_CGfYwz/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Hechos e interpretaciones ",
+            "nombre": "Recurso: Hechos e interpretaciones ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -145,7 +145,7 @@
             "link": "https://docs.google.com/document/d/1UQbTkc9o1xjtqzy4knREcjTFccspMUEg/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Hechos vs interpretacion ",
+            "nombre": "Manual de uso: Hechos vs interpretacion ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -153,7 +153,7 @@
             "link": "https://docs.google.com/document/d/18d9faxw_X3NJQk2-x45IjoFL-bUBfVsd/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Hechos vs interpretacion ",
+            "nombre": "Recurso: Hechos vs interpretacion ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Separacion",
@@ -161,7 +161,7 @@
             "link": "https://drive.google.com/file/d/1LhxueESHtBl0sUYBiHWFgMGSIQZNaL4L/view?usp=drive_link"
         },
         {
-            "nombre": "Fuera de mi control ",
+            "nombre": "Manual de uso: Fuera de mi control ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -169,7 +169,7 @@
             "link": "https://docs.google.com/document/d/13AMhtwZ-Fw7aDI74QA_A4KJAlNv3mFg2/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Fuera de mi control ",
+            "nombre": "Recurso: Fuera de mi control ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -177,7 +177,7 @@
             "link": "https://docs.google.com/presentation/d/12Mysanhrh-zwM7M3h08Kfl88Gug78MwH/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Habilidades de mindfulness",
+            "nombre": "Manual de uso: Habilidades de mindfulness",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -185,7 +185,7 @@
             "link": "https://docs.google.com/document/d/1RpZLi2O2I7NTxleYZ4UDlsUpMYpQJcGb/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Habilidades de mindfulness",
+            "nombre": "Recurso: Habilidades de mindfulness",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -193,7 +193,7 @@
             "link": "https://docs.google.com/presentation/d/1QRpy4wiU7lQz-CD1LQPpoU5Fpc3Qzkzb/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Validacion vs invalidacion emocional ",
+            "nombre": "Manual de uso: Validacion vs invalidacion emocional ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -201,7 +201,7 @@
             "link": "https://docs.google.com/document/d/1QsyWibS_jkZAGKywJX84XOWA_WP8RDGl/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Validacion vs invalidacion emocional ",
+            "nombre": "Recurso: Validacion vs invalidacion emocional ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Doctorado emocional ",
             "etapa": "Gestion",
@@ -209,7 +209,7 @@
             "link": "https://docs.google.com/presentation/d/1lZVNwtB5aof8bcn7DNuOtuzdqZSqB8dK/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Resolucion de problemas manual de uso ",
+            "nombre": "Manual de uso: Resolucion de problemas ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Habilidades sociales ",
             "etapa": "Practica",
@@ -217,7 +217,7 @@
             "link": "https://docs.google.com/document/d/1wATBcUDqoPd8p5T4LvgEFqzz8Tq6iKBa/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Resolucion de problemas ",
+            "nombre": "Recurso: Resolucion de problemas ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Habilidades sociales ",
             "etapa": "Practica",
@@ -225,7 +225,7 @@
             "link": "https://docs.google.com/document/d/1ZUrUEdsnyrxhfJqwwSe8YUlLJTU2roj9/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Arbol_imagen",
+            "nombre": "Manual de uso: Arbol_imagen",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Mi vision del yo",
             "etapa": "Clarificacion",
@@ -233,7 +233,7 @@
             "link": "https://docs.google.com/document/d/1373qyMCRIkQsNkScZCEODBl4ZqLySXUp/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Arbol_imagen",
+            "nombre": "Recurso: Arbol_imagen",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Mi vision del yo",
             "etapa": "Clarificacion",
@@ -241,7 +241,7 @@
             "link": "https://drive.google.com/file/d/1vFtaX4BOYH6VMSITMBTvmfyAWtZO_SHn/view?usp=drive_link"
         },
         {
-            "nombre": "Quien soy_azul",
+            "nombre": "Recurso: Quien soy_azul",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Mi vision del yo",
             "etapa": "Clarificacion",
@@ -249,7 +249,7 @@
             "link": "https://docs.google.com/presentation/d/17jxE3c1xXdQOTsGW0CrXYCS_1OTfZnEE/edit?usp=drive_link&ouid=115392417081378960220&rtpof=true&sd=true"
         },
         {
-            "nombre": "Quien soy manual de uso ",
+            "nombre": "Manual de uso: Quien soy manual ",
             "linea_terapeutica": "Adultos",
             "objetivo_terapeutico": "Mi vision del yo",
             "etapa": "Clarificacion",
